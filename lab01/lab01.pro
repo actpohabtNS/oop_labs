@@ -17,7 +17,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tests/doctest_main.cpp \
+    tests/test_test.cpp
 
 HEADERS += \
     mainwindow.h
