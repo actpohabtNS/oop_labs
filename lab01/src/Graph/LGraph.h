@@ -42,6 +42,7 @@ private:
 
     int _nodes;
     int _edges;
+    bool _weighed;
 
 public:
 
@@ -49,7 +50,7 @@ public:
     /// \brief LGraph
     ///
     /// Basic constructor.
-    LGraph() : _nodes {0}, _edges {0} {};
+    LGraph() : _nodes {0}, _edges {0}, _weighed {false} {};
 
     ///
     /// \brief LGraph
@@ -57,7 +58,7 @@ public:
     ///
     /// Used to create LGraph and add Nodes given in std::initializer_list.
     explicit LGraph(std::initializer_list<NT> list)
-        : _nodes {0}, _edges {0} {
+        : _nodes {0}, _edges {0}, _weighed {false} {
         for (auto elem : list)
             this->addNode(elem);
     }
@@ -72,6 +73,18 @@ public:
 
     int nodes() const override {
         return this->_nodes;
+    }
+
+    int edges() const override {
+        return this->_edges;
+    }
+
+    bool empty() const override {
+        return this->_nodes == 0;
+    }
+
+    bool weighed() const override {
+        return this->_weighed;
     }
 };
 
