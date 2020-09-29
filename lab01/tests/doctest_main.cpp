@@ -3,7 +3,7 @@
 
 namespace unit_doctest {
 
-    int main(int argc, char** argv) {
+    int main_test(int argc, char* argv[]) {
 
         doctest::Context context;
 
