@@ -23,6 +23,7 @@ SOURCES += \
 
 HEADERS += \
     mainwindow.h \
+    src/Graph/Graph.h \
     src/UI/mainwindow.h \
 
 FORMS += \
