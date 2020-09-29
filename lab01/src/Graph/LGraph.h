@@ -57,8 +57,9 @@ public:
     ///
     /// Used to create LGraph and add Nodes given in std::initializer_list.
     explicit LGraph(std::initializer_list<NT> list)
-        : _nodes {static_cast<int>(list.size())}, _edges {0} {
-        //TODO add(node);
+        : _nodes {0}, _edges {0} {
+        for (auto elem : list)
+            this->addNode(elem);
     }
 
     ~LGraph() = default;
