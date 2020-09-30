@@ -6,12 +6,18 @@ TEST_CASE("LGraph") {
     LGraph<int, int> lg;
     lg.addNode(5);
 
-    SUBCASE("Adding Node") {
-        CHECK(lg.nodes() == 1);
+    SUBCASE("Adding Nodes") {
+        lg.addNode(2);
+        CHECK(lg.nodes() == 2);
     }
 
     SUBCASE("Node exist") {
         CHECK(lg.nodeExist(5));
+    }
+
+    SUBCASE("Adding node with the same value") {
+        lg.addNode(5);
+        CHECK(lg.nodes() == 1);
     }
 
     SUBCASE("Creating with Initializer list") {

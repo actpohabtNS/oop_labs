@@ -6,6 +6,8 @@
 #include <vector>
 #include <unordered_map>
 
+#include <QDebug>
+
 ///
 ///\brief Adjacent list graph class
 ///
@@ -38,7 +40,7 @@ private:
     ///
     ///  _list represents Adjacency list of LGraph.
     /// std::unordered_map is used instead of std::map because keeping order is not needed.
-    std::unordered_map<const NT*, std::vector<Edge*>> _list;
+    std::unordered_map<NT, std::vector<Edge*>> _list;
 
     int _nodes;
     int _edges;
@@ -66,29 +68,32 @@ public:
     ~LGraph() = default;
 
     void addNode(const NT& data) override {
+        if (this->nodeExist(data))
+            return;
+
         this->_nodes++;
 
-        this->_list.emplace(std::make_pair(&data, std::vector<Edge*>()));
+        this->_list.emplace(std::make_pair(data, std::vector<Edge*>()));
     }
 
     ///
     /// \brief nodeExist
     /// \param data
-    /// \return Whether nodes with [ data ] is presented in graph
+    /// \return bool
     ///
-    /// \note Can't use std::unordered_map::find because it would compare addresses in memory, not actual values.
+    /// Checks whether node with [ data ] is presented in LGraph.
     bool nodeExist(const NT& data) const override {
-        bool res = false;
+        return this->_list.find(data) != this->_list.end();
+    }
 
-        for( const auto& pair : this->_list )
-                if (*pair.first == data)
-                    return true;
-
-        return res;
+    void print() const {
+        for( const auto& pair : this->_list ) {
+            qDebug() << pair.first;
+        }
     }
 
     int nodes() const override {
-        return this->_nodes;
+        return this->_list.size();
     }
 
     int edges() const override {

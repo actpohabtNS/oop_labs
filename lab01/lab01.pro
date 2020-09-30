@@ -19,8 +19,7 @@ SOURCES += \
     src/main.cpp \
     src/UI/mainwindow.cpp \
     tests/LGraph_tests.cpp \
-    tests/doctest_main.cpp \
-    tests/test_test.cpp
+    tests/doctest_main.cpp
 
 HEADERS += \
     src/Graph/Graph.h \
