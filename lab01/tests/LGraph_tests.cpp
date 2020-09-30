@@ -4,10 +4,14 @@
 
 TEST_CASE("LGraph") {
     LGraph<int, int> lg;
+    lg.addNode(5);
 
     SUBCASE("Adding Node") {
-        lg.addNode(5);
         CHECK(lg.nodes() == 1);
+    }
+
+    SUBCASE("Node exist") {
+        CHECK(lg.nodeExist(5));
     }
 
     SUBCASE("Creating with Initializer list") {

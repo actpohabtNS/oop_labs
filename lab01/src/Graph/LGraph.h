@@ -71,6 +71,22 @@ public:
         this->_list.emplace(std::make_pair(&data, std::vector<Edge*>()));
     }
 
+    ///
+    /// \brief nodeExist
+    /// \param data
+    /// \return Whether nodes with [ data ] is presented in graph
+    ///
+    /// \note Can't use std::unordered_map::find because it would compare addresses in memory, not actual values.
+    bool nodeExist(const NT& data) const override {
+        bool res = false;
+
+        for( const auto& pair : this->_list )
+                if (*pair.first == data)
+                    return true;
+
+        return res;
+    }
+
     int nodes() const override {
         return this->_nodes;
     }
