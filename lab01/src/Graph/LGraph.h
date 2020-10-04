@@ -145,6 +145,8 @@ void LGraph<NT, ET>::addEdge(const NT &n1, const NT &n2, const ET &edgeData) {
 
     this->_list[n1].emplace_back(new Edge(&this->_list.find(n2)->first, edgeData));
     this->_list[n2].emplace_back(new Edge(&this->_list.find(n1)->first, edgeData));
+
+    this->_edges++;
 }
 
 
