@@ -23,15 +23,25 @@ TEST_CASE("LGraph") {
 
         lg.addNode(1);
         lg.addNode(2);
+        lg.addNode(3);
 
         SUBCASE("Adding node with the same value") {
             lg.addNode(1);
-            CHECK(lg.nodes() == 2);
+            CHECK(lg.nodes() == 3);
         }
 
         SUBCASE("Node exist") {
             CHECK(lg.nodeExist(1) == true);
             CHECK(lg.nodeExist(10) == false);
+        }
+
+        SUBCASE("Erase node") {
+           lg.eraseNode(3);
+           CHECK(lg.nodes() == 2);
+
+           lg.eraseNode(2);
+           CHECK(lg.nodes() == 1);
+           CHECK(lg.edges() == 0);
         }
     }
 

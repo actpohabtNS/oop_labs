@@ -74,6 +74,14 @@ public:
     bool nodeExist(const NT& data) const override;
 
     ///
+    /// \brief eraseNode
+    /// \param data
+    ///
+    /// Erases node with data = [ data ] and all its edges.
+    void eraseNode(const NT& data) override;
+
+
+    ///
     /// \brief addEdge
     /// \param n1
     /// \param n2
@@ -113,6 +121,9 @@ public:
     /// \note If either of these nodes does not exist or the edge does not exist, nothing happens.
     void eraseEdge(const NT& n1, const NT& n2) override;
 
+    ///
+    /// \brief eraseEdges
+    /// Erases all edges in graph.
     void eraseEdges() override;
 
     ///
@@ -163,6 +174,25 @@ void LGraph<NT, ET>::addNode(const NT &data) {
 template<typename NT, typename ET>
 bool LGraph<NT, ET>::nodeExist(const NT &data) const {
     return this->_list.find(data) != this->_list.end();
+}
+
+template<typename NT, typename ET>
+void LGraph<NT, ET>::eraseNode(const NT &data) {
+    if (!this->nodeExist(data))
+        return;
+
+    for (auto& nodeEdges : this->_list) {
+        for (std::size_t i = 0; nodeEdges.second.size(); i++) {
+            if (*nodeEdges.second[i]->toNode == data) {
+                nodeEdges.second.erase(nodeEdges.second.begin() + i);
+                break;
+            }
+        }
+    }
+
+    this->_list.erase(data);
+
+    this->_nodes--;
 }
 
 
