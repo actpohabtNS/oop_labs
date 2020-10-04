@@ -22,11 +22,11 @@ private:
     ///
     /// The Edge struct is used to implement a connection between two Nodes.
     struct Edge {
-        NT* toNode;
-        ET* data;
+        const NT* toNode;
+        ET data;
 
         Edge() = default;
-        explicit Edge(const NT* toNode, const ET* data = nullptr)
+        explicit Edge(const NT* toNode, const ET data)
             : toNode {toNode}, data {data} {};
 
         ~Edge() {
@@ -86,9 +86,29 @@ public:
         return this->_list.find(data) != this->_list.end();
     }
 
+    ///
+    /// \brief addEdge
+    /// \param n1
+    /// \param n2
+    /// \param edgeData
+    ///
+    /// Adds an edge with [ edgeData ] between nodes [ n1 ] and [ n2 ] if these exist in graph.
+    void addEdge(const NT& n1, const NT& n2, const ET& edgeData) {
+        if (!this->nodeExist(n1) || !this->nodeExist(n2))
+            return;
+
+        this->_list[n1].emplace_back(new Edge(&this->_list.find(n2)->first, edgeData));
+        this->_list[n2].emplace_back(new Edge(&this->_list.find(n1)->first, edgeData));
+    }
+
+
+
     void print() const {
-        for( const auto& pair : this->_list ) {
-            qDebug() << pair.first;
+        for (const auto& pair : this->_list) {
+            qDebug() << pair.first << ": ";
+
+            for (const auto& edge : pair.second)
+                qDebug() << "to" << *edge->toNode << "( data:" << edge->data << ")";
         }
     }
 

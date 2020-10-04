@@ -24,4 +24,12 @@ TEST_CASE("LGraph") {
         LGraph<int, int> lg2({1,2,3,4,5});
         CHECK(lg2.nodes() == 5);
     }
+
+    SUBCASE("Adding edge") {
+        lg.addNode(1);
+
+        lg.addEdge(1, 5, 15);
+
+        lg.print();
+    }
 }

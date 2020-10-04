@@ -11,7 +11,7 @@ public:
 //    virtual void eraseNode(const NT& data) = 0;
     virtual bool nodeExist(const NT& data)const = 0;
 
-//    virtual void addEdge(const NT& n1, const NT& n2, const ET& edgeData) = 0;
+    virtual void addEdge(const NT& n1, const NT& n2, const ET& edgeData) = 0;
 //    virtual void eraseEdge(const NT& n1, const NT& n2) = 0;
 //    virtual bool edgeExist(const ET& edgeData) = 0;
 //    virtual bool edgeExist(const NT& n1, const NT& n2) = 0;
