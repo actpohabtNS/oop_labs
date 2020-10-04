@@ -32,4 +32,13 @@ TEST_CASE("LGraph") {
 
         lg.print();
     }
+
+    SUBCASE("Edge exist") {
+        lg.addNode(1);
+
+        lg.addEdge(1, 5, 15);
+
+        CHECK(lg.edgeExist(1, 5) == true);
+        CHECK(lg.edgeExist(1, 4) == false);
+    }
 }

@@ -81,9 +81,17 @@ public:
     ///
     /// Adds an edge with [ edgeData ] between nodes [ n1 ] and [ n2 ].
     /// \note If either of nodes [ n1 ] or [ n2 ] does not exist, edge is not added.
-    void addEdge(const NT& n1, const NT& n2, const ET& edgeData);
+    void addEdge(const NT& n1, const NT& n2, const ET& edgeData) override;
 
-
+    ///
+    /// \brief edgeExist
+    /// \param n1
+    /// \param n2
+    /// \return
+    ///
+    /// Checks whether an edge between nodes [ n1 ] and [ n2 ] exists.
+    /// \note If either of nodes [ n1 ] or [ n2 ] does not exist, false is returned.
+    bool edgeExist(const NT& n1, const NT& n2) const override;
     ///
     /// \brief print
     ///
@@ -147,6 +155,19 @@ void LGraph<NT, ET>::addEdge(const NT &n1, const NT &n2, const ET &edgeData) {
     this->_list[n2].emplace_back(new Edge(&this->_list.find(n1)->first, edgeData));
 
     this->_edges++;
+}
+
+template<typename NT, typename ET>
+bool LGraph<NT, ET>::edgeExist(const NT &n1, const NT &n2) const {
+    if (!this->nodeExist(n1) || !this->nodeExist(n2))
+        return false;
+
+    for (const auto* edge : this->_list.find(n1)->second) {
+        if (edge->toNode == &this->_list.find(n2)->first)
+            return true;
+    }
+
+    return false;
 }
 
 
