@@ -3,42 +3,53 @@
 #include "doctest.h"
 
 TEST_CASE("LGraph") {
-    LGraph<int, int> lg;
-    lg.addNode(5);
-
-    SUBCASE("Adding Nodes") {
-        lg.addNode(2);
-        CHECK(lg.nodes() == 2);
-    }
-
-    SUBCASE("Node exist") {
-        CHECK(lg.nodeExist(5));
-    }
-
-    SUBCASE("Adding node with the same value") {
-        lg.addNode(5);
-        CHECK(lg.nodes() == 1);
-    }
 
     SUBCASE("Creating with Initializer list") {
-        LGraph<int, int> lg2({1,2,3,4,5});
-        CHECK(lg2.nodes() == 5);
+        LGraph<int, int> lg({1,2,3,4,5});
+        CHECK(lg.nodes() == 5);
     }
 
-    SUBCASE("Adding edge") {
+    LGraph<int, int> lg;
+
+    SUBCASE("Creating empty") {
+        CHECK(lg.nodes() == 0);
+    }
+
+    SUBCASE("Nodes") {
+        SUBCASE("Adding node") {
+            lg.addNode(1);
+            CHECK(lg.nodes() == 1);
+        }
+
         lg.addNode(1);
+        lg.addNode(2);
 
-        lg.addEdge(1, 5, 15);
+        SUBCASE("Adding node with the same value") {
+            lg.addNode(1);
+            CHECK(lg.nodes() == 2);
+        }
 
-        lg.print();
+        SUBCASE("Node exist") {
+            CHECK(lg.nodeExist(1) == true);
+            CHECK(lg.nodeExist(10) == false);
+        }
     }
 
-    SUBCASE("Edge exist") {
-        lg.addNode(1);
+    lg.addNode(1);
+    lg.addNode(2);
 
-        lg.addEdge(1, 5, 15);
+    SUBCASE("Edges") {
+        SUBCASE("Adding edge") {
+            lg.addEdge(1, 2, 15);
+            CHECK(lg.edges() == 1);
+        }
 
-        CHECK(lg.edgeExist(1, 5) == true);
-        CHECK(lg.edgeExist(1, 4) == false);
+        lg.addEdge(1, 2, 15);
+
+        SUBCASE("Edge exist") {
+            CHECK(lg.edgeExist(1, 2) == true);
+            CHECK(lg.edgeExist(1, 10) == false);
+        }
     }
+
 }
