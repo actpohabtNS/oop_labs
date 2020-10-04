@@ -79,11 +79,15 @@ public:
     /// \param n2
     /// \param edgeData
     ///
-    /// Adds an edge with [ edgeData ] between nodes [ n1 ] and [ n2 ] if these exist in graph.
+    /// Adds an edge with [ edgeData ] between nodes [ n1 ] and [ n2 ].
+    /// \note If either of nodes [ n1 ] or [ n2 ] does not exist, edge is not added.
     void addEdge(const NT& n1, const NT& n2, const ET& edgeData);
 
 
-
+    ///
+    /// \brief print
+    ///
+    /// Prints graph to qDebug stream.
     void print() const;
 
     int nodes() const override;
