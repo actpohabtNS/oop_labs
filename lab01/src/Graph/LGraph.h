@@ -5,6 +5,8 @@
 
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
+#include <stack>
 
 #include <QDebug>
 
@@ -45,6 +47,14 @@ private:
     int _nodes;
     int _edges;
     bool _weighed;
+
+    ///
+    /// \brief _dfs
+    /// \param snode
+    /// \param visited
+    ///
+    /// An internal implementation of Depth First Search to be widely use in LGraph methods.
+    void _dfs(const NT& snode, std::unordered_set<const NT*>* visited) const;
 
 public:
 
@@ -126,6 +136,22 @@ public:
     /// Erases all edges in graph.
     void eraseEdges() override;
 
+    ////
+    /// \brief dfs
+    /// \param snode
+    /// \param visited
+    ///
+    /// Does Deep First Search, adding visited nodes to [ visited ].
+    void dfs(const NT& snode, std::unordered_set<const NT*>* visited) const;
+
+    ///
+    /// \brief connected
+    /// \return bool
+    ///
+    /// Checks whether graph is connected (any node can be reached from any other one).
+    bool connected() const override;
+
+
     ///
     /// \brief print
     ///
@@ -142,6 +168,31 @@ public:
 };
 
 #endif // LGRAPH_H
+
+
+
+// -------------------------------------- INTERNAL METHODS --------------------------------------
+
+template<typename NT, typename ET>
+void LGraph<NT, ET>::_dfs(const NT &snode, std::unordered_set<const NT *> *visited) const {
+    if (visited->count(&snode))
+            return;
+
+    std::stack<const NT*> nodes;
+    nodes.push(&snode);
+    visited->insert(&snode);
+
+    while (!nodes.empty()) {
+        const NT* current = nodes.top();
+        nodes.pop();
+
+        for (const auto* edge : this->_list.find(*current)->second)
+            if (!visited->count(edge->toNode)) {
+                nodes.push(edge->toNode);
+                visited->insert(edge->toNode);
+            }
+    }
+}
 
 
 
@@ -277,6 +328,25 @@ void LGraph<NT, ET>::eraseEdges() {
         keyValue.second.clear();
 
     this->_edges = 0;
+}
+
+template<typename NT, typename ET>
+void LGraph<NT, ET>::dfs(const NT &snode, std::unordered_set<const NT *> *visited) const {
+    this->_dfs(snode, visited);
+}
+
+template<typename NT, typename ET>
+bool LGraph<NT, ET>::connected() const {
+    if (this->empty())
+        return true;
+
+    std::unordered_set<const NT*> visited;
+    this->dfs(this->_list.begin()->first, &visited);
+
+    if (this->_list.size() != visited.size())
+        return false;
+
+    return true;
 }
 
 
