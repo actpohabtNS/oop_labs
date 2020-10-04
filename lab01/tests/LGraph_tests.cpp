@@ -40,15 +40,22 @@ TEST_CASE("LGraph") {
 
     SUBCASE("Edges") {
         SUBCASE("Adding edge") {
-            lg.addEdge(1, 2, 15);
+            lg.addEdge(1, 2, 12);
             CHECK(lg.edges() == 1);
         }
 
-        lg.addEdge(1, 2, 15);
+        lg.addEdge(1, 2, 12);
 
         SUBCASE("Edge exist") {
             CHECK(lg.edgeExist(1, 2) == true);
+            CHECK(lg.edgeExist(2, 1) == true);
             CHECK(lg.edgeExist(1, 10) == false);
+        }
+
+        SUBCASE("Get edge") {
+            CHECK(*lg.getEdge(1, 2) == 12);
+            CHECK(*lg.getEdge(2, 1) == 12);
+            CHECK(lg.getEdge(1, 10) == nullptr);
         }
     }
 

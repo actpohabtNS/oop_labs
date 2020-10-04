@@ -83,6 +83,17 @@ public:
     /// \note If either of nodes [ n1 ] or [ n2 ] does not exist, edge is not added.
     void addEdge(const NT& n1, const NT& n2, const ET& edgeData) override;
 
+
+    ///
+    /// \brief getEdge
+    /// \param n1
+    /// \param n2
+    /// \return const EdgeType*
+    ///
+    /// Return pointer to data, contained in an egde, connecting nodes [ n1 ] and [ n2 ].
+    /// \note If either of these nodes does not exist or the edge does not exist, null pointer is returned.
+    const ET* getEdge(const NT& n1, const NT& n2) const;
+
     ///
     /// \brief edgeExist
     /// \param n1
@@ -157,6 +168,22 @@ void LGraph<NT, ET>::addEdge(const NT &n1, const NT &n2, const ET &edgeData) {
     this->_edges++;
 }
 
+template<typename NT, typename ET>
+const ET *LGraph<NT, ET>::getEdge(const NT &n1, const NT &n2) const {
+    if (!this->nodeExist(n1) || !this->nodeExist(n2))
+        return nullptr;
+
+    for (const auto* edge : this->_list.find(n1)->second) {
+        if (edge->toNode == &this->_list.find(n2)->first)
+            return &edge->data;
+    }
+
+    return nullptr;
+}
+
+///
+/// \note In std::unordered_map find() used due to const_iterator version presense unlike in []. const_iterator is required here because method defined as const.
+///
 template<typename NT, typename ET>
 bool LGraph<NT, ET>::edgeExist(const NT &n1, const NT &n2) const {
     if (!this->nodeExist(n1) || !this->nodeExist(n2))
