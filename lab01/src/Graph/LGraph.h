@@ -103,6 +103,16 @@ public:
     /// Checks whether an edge between nodes [ n1 ] and [ n2 ] exists.
     /// \note If either of nodes [ n1 ] or [ n2 ] does not exist, false is returned.
     bool edgeExist(const NT& n1, const NT& n2) const override;
+
+    ///
+    /// \brief eraseEdge
+    /// \param n1
+    /// \param n2
+    ///
+    /// Erase edge between nodes [ n1 ] and [ n2 ]
+    /// \note If either of these nodes does not exist or the edge does not exist, nothing happens.
+    void eraseEdge(const NT& n1, const NT& n2) override;
+
     ///
     /// \brief print
     ///
@@ -195,6 +205,38 @@ bool LGraph<NT, ET>::edgeExist(const NT &n1, const NT &n2) const {
     }
 
     return false;
+}
+
+template<typename NT, typename ET>
+void LGraph<NT, ET>::eraseEdge(const NT &n1, const NT &n2) {
+    if (!this->nodeExist(n1) || !this->nodeExist(n2))
+        return;
+
+    auto& n1Edges = this->_list[n1];
+
+    bool edgeRemoved = false;
+
+    for (int i = 0; i < n1Edges.size(); i++) {
+        if (*n1Edges[i]->toNode == n2) {
+            n1Edges.erase(n1Edges.begin() + i);
+            edgeRemoved = true;
+            break;
+        }
+    }
+
+    if (!edgeRemoved)
+        return;
+
+    auto& n2Edges = this->_list[n2];
+
+    for (int i = 0; i < n2Edges.size(); i++) {
+        if (*n2Edges[i]->toNode == n1) {
+            n2Edges.erase(n2Edges.begin() + i);
+            break;
+        }
+    }
+
+    this->_edges--;
 }
 
 

@@ -37,6 +37,7 @@ TEST_CASE("LGraph") {
 
     lg.addNode(1);
     lg.addNode(2);
+    lg.addNode(3);
 
     SUBCASE("Edges") {
         SUBCASE("Adding edge") {
@@ -49,13 +50,26 @@ TEST_CASE("LGraph") {
         SUBCASE("Edge exist") {
             CHECK(lg.edgeExist(1, 2) == true);
             CHECK(lg.edgeExist(2, 1) == true);
+            CHECK(lg.edgeExist(1, 3) == false);
             CHECK(lg.edgeExist(1, 10) == false);
         }
 
         SUBCASE("Get edge") {
             CHECK(*lg.getEdge(1, 2) == 12);
             CHECK(*lg.getEdge(2, 1) == 12);
+            CHECK(lg.getEdge(1, 3) == nullptr);
             CHECK(lg.getEdge(1, 10) == nullptr);
+        }
+
+        SUBCASE("Erase edge") {
+            lg.eraseEdge(1, 3);
+            CHECK(lg.edges() == 1);
+
+            lg.eraseEdge(1,2);
+            CHECK(lg.edges() == 0);
+
+            lg.eraseEdge(1,2);
+            CHECK(lg.edges() == 0);
         }
     }
 
