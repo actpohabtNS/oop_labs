@@ -113,6 +113,8 @@ public:
     /// \note If either of these nodes does not exist or the edge does not exist, nothing happens.
     void eraseEdge(const NT& n1, const NT& n2) override;
 
+    void eraseEdges() override;
+
     ///
     /// \brief print
     ///
@@ -216,7 +218,7 @@ void LGraph<NT, ET>::eraseEdge(const NT &n1, const NT &n2) {
 
     bool edgeRemoved = false;
 
-    for (int i = 0; i < n1Edges.size(); i++) {
+    for (std::size_t i = 0; i < n1Edges.size(); i++) {
         if (*n1Edges[i]->toNode == n2) {
             n1Edges.erase(n1Edges.begin() + i);
             edgeRemoved = true;
@@ -229,7 +231,7 @@ void LGraph<NT, ET>::eraseEdge(const NT &n1, const NT &n2) {
 
     auto& n2Edges = this->_list[n2];
 
-    for (int i = 0; i < n2Edges.size(); i++) {
+    for (std::size_t i = 0; i < n2Edges.size(); i++) {
         if (*n2Edges[i]->toNode == n1) {
             n2Edges.erase(n2Edges.begin() + i);
             break;
@@ -237,6 +239,14 @@ void LGraph<NT, ET>::eraseEdge(const NT &n1, const NT &n2) {
     }
 
     this->_edges--;
+}
+
+template<typename NT, typename ET>
+void LGraph<NT, ET>::eraseEdges() {
+    for (auto& keyValue : this->_list)
+        keyValue.second.clear();
+
+    this->_edges = 0;
 }
 
 

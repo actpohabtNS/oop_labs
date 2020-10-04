@@ -71,6 +71,11 @@ TEST_CASE("LGraph") {
             lg.eraseEdge(1,2);
             CHECK(lg.edges() == 0);
         }
+
+        SUBCASE("Erase edges") {
+            lg.eraseEdges();
+            CHECK(lg.edges() == 0);
+        }
     }
 
 }

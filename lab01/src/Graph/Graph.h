@@ -15,7 +15,7 @@ public:
     virtual void eraseEdge(const NT& n1, const NT& n2) = 0;
     virtual const ET* getEdge(const NT& n1, const NT& n2) const = 0;
     virtual bool edgeExist(const NT& n1, const NT& n2) const = 0;
-//    virtual void eraseEdges() = 0;
+    virtual void eraseEdges() = 0;
 
 //    virtual void weighed(bool weighed) = 0;
 
