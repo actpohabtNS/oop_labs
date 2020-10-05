@@ -88,11 +88,27 @@ TEST_CASE("LGraph") {
         }
     }
 
+
+    lg.addEdge(1, 2, 12);
+
     SUBCASE("Connected") {
         lg.addEdge(1, 2, 12);
         CHECK(lg.connected() == false);
 
         lg.addEdge(1, 3, 13);
         CHECK(lg.connected() == true);
+    }
+
+    lg.addEdge(1, 2, 12);
+    lg.addEdge(1, 3, 13);
+
+    lg.addNode(4);
+    lg.addEdge(1, 4, 14);
+
+    SUBCASE("Cyclic") {
+        CHECK(lg.cyclic() == false);
+
+        lg.addEdge(2, 4, 24);
+        CHECK(lg.cyclic() == true);
     }
 }

@@ -42,7 +42,7 @@ private:
     ///
     ///  _list represents Adjacency list of LGraph.
     /// std::unordered_map is used instead of std::map because keeping order is not needed.
-    std::unordered_map<NT, std::vector<Edge*>> _list;
+    mutable std::unordered_map<NT, std::vector<Edge*>> _list;
 
     int _nodes;
     int _edges;
@@ -151,6 +151,12 @@ public:
     /// Checks whether graph is connected (any node can be reached from any other one).
     bool connected() const override;
 
+    ///
+    /// \brief cyclic
+    /// \return bool
+    ///
+    /// Checks whether graph has cycles.
+    bool cyclic() const override;
 
     ///
     /// \brief print
@@ -330,6 +336,10 @@ void LGraph<NT, ET>::eraseEdges() {
     this->_edges = 0;
 }
 
+
+
+// -------------------------------------- GRAPH PROPERTIES METHODS --------------------------------------
+
 template<typename NT, typename ET>
 void LGraph<NT, ET>::dfs(const NT &snode, std::unordered_set<const NT *> *visited) const {
     this->_dfs(snode, visited);
@@ -347,6 +357,47 @@ bool LGraph<NT, ET>::connected() const {
         return false;
 
     return true;
+}
+
+///
+/// Using white, grey, black (coloring) algorithm. Instead of numbers, two unordered_sets are used.
+template<typename NT, typename ET>
+bool LGraph<NT, ET>::cyclic() const {
+    std::unordered_set<const NT*> vis_black;
+    std::unordered_set<const NT*> vis_grey;
+
+        std::function<bool(const NT*, const NT*)> _dfs = [&](const NT* snode, const NT* parent) {
+            vis_grey.insert(snode);
+
+            for (const auto* edge : this->_list[*snode]) {
+               if (vis_black.find(edge->toNode) == vis_black.end() && vis_grey.find(edge->toNode) == vis_grey.end()) {
+                    if (_dfs(edge->toNode, snode))
+                        return true;
+
+               }
+
+               if (vis_grey.find(edge->toNode) != vis_grey.end()) {
+                   if (edge->toNode == parent)
+                       continue;
+
+                    return true;
+               }
+            }
+
+            vis_grey.erase(snode);
+            vis_black.insert(snode);
+            return false;
+        };
+
+        for (const auto& kV : this->_list) {
+            if (vis_black.find(&kV.first) != vis_black.end() || vis_grey.find(&kV.first) != vis_grey.end() )
+                continue;
+
+            if (_dfs(&kV.first, nullptr))
+                return true;
+        }
+
+        return false;
 }
 
 
