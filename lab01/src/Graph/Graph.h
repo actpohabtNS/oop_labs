@@ -22,7 +22,7 @@ public:
     virtual bool connected() const = 0;
     virtual bool cyclic() const = 0;
 
-//    [[nodiscard]] virtual int distance(const NT& n1, const NT& n2) const = 0;
+    [[nodiscard]] virtual int distance(const NT& n1, const NT& n2) const = 0;
 
     virtual int nodes() const = 0;
     virtual int edges() const = 0;

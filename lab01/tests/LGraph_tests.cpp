@@ -111,4 +111,13 @@ TEST_CASE("LGraph") {
         lg.addEdge(2, 4, 24);
         CHECK(lg.cyclic() == true);
     }
+
+    SUBCASE("Distance") {
+        lg.addNode(5);
+        CHECK(lg.distance(1, 5) == -1);
+
+        CHECK(lg.distance(1, 3) == 1);
+        CHECK(lg.distance(2, 3) == 2);
+        CHECK(lg.distance(2, 2) == 0);
+    }
 }

@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <stack>
+#include <queue>
 
 #include <QDebug>
 
@@ -56,6 +57,14 @@ private:
     /// An internal implementation of Depth First Search to be widely use in LGraph methods.
     void _dfs(const NT& snode, std::unordered_set<const NT*>* visited) const;
 
+    ///
+    /// \brief _dfsDistances
+    /// \param snode
+    /// \param unordered_map<const NT*, int>
+    ///
+    /// An internal implementation of node - distances to other nodes using Breadth First Search to be widely use in LGraph methods.
+    [[nodiscard]] std::unordered_map<const NT*, int> _bfsDistances(const NT* snode) const;
+
 public:
 
     ///
@@ -101,7 +110,6 @@ public:
     /// \note If either of nodes [ n1 ] or [ n2 ] does not exist, edge is not added.
     void addEdge(const NT& n1, const NT& n2, const ET& edgeData) override;
 
-
     ///
     /// \brief getEdge
     /// \param n1
@@ -136,6 +144,7 @@ public:
     /// Erases all edges in graph.
     void eraseEdges() override;
 
+
     ////
     /// \brief dfs
     /// \param snode
@@ -157,6 +166,17 @@ public:
     ///
     /// Checks whether graph has cycles.
     bool cyclic() const override;
+
+    ///
+    /// \brief distance
+    /// \param n1
+    /// \param n2
+    /// \return int
+    ///
+    /// Returns distance between nodes [ n1 ] and [ n2 ].
+    /// \note If either of nodes are not in graph or they are not connecred, -1 is returned.
+    [[nodiscard]] int distance(const NT& n1, const NT& n2) const override;
+
 
     ///
     /// \brief print
@@ -198,6 +218,34 @@ void LGraph<NT, ET>::_dfs(const NT &snode, std::unordered_set<const NT *> *visit
                 visited->insert(edge->toNode);
             }
     }
+}
+
+template<typename NT, typename ET>
+std::unordered_map<const NT *, int> LGraph<NT, ET>::_bfsDistances(const NT *snode) const {
+    std::unordered_set<const NT*> visited;
+    std::unordered_map<const NT*, int> distances;
+
+    std::queue<const NT*> queue;
+    queue.push(snode);
+
+    visited.insert(snode);
+    distances[snode] = 0;
+
+    while (!queue.empty()) {
+        const NT* curr = queue.front();
+        queue.pop();
+
+        for (const auto* edge : this->_list[*curr]) {
+            if (visited.count(edge->toNode) == 1)
+                continue;
+
+            distances[edge->toNode] = distances[curr] + 1;
+            visited.insert(edge->toNode);
+            queue.push(edge->toNode);
+        }
+    }
+
+    return distances;
 }
 
 
@@ -398,6 +446,16 @@ bool LGraph<NT, ET>::cyclic() const {
         }
 
         return false;
+}
+
+template<typename NT, typename ET>
+int LGraph<NT, ET>::distance(const NT &n1, const NT &n2) const {
+    if (!this->nodeExist(n1) || !this->nodeExist(n2))
+        return -1;
+
+    std::unordered_map<const NT*, int> distances = this->_bfsDistances(&this->_list.find(n1)->first);
+
+    return ( distances.count(&this->_list.find(n2)->first) == 1 ) ? distances[&this->_list.find(n2)->first] : -1;
 }
 
 
