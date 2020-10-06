@@ -17,8 +17,6 @@ public:
     virtual bool edgeExist(const NT& n1, const NT& n2) const = 0;
     virtual void eraseEdges() = 0;
 
-//    virtual void weighed(bool weighed) = 0;
-
     virtual bool connected() const = 0;
     virtual bool cyclic() const = 0;
 
@@ -27,7 +25,6 @@ public:
     virtual int nodes() const = 0;
     virtual int edges() const = 0;
     virtual bool empty() const = 0;
-    virtual bool weighed() const = 0;
 };
 
 #endif // GRAPH_H
