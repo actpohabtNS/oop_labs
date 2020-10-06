@@ -24,6 +24,7 @@ SOURCES += \
 HEADERS += \
     src/Graph/Graph.h \
     src/Graph/LGraph.h \
+    src/Graph/MGraph.h \
     src/UI/mainwindow.h \
     tests/doctest.h
 

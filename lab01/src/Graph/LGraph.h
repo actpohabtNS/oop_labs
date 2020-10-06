@@ -14,8 +14,9 @@
 ///
 ///\brief Adjacent list graph class
 ///
-///Graph implemented using lists of nodes adjacent to each node.
+///LGraph implemented using lists of nodes adjacent to each node.
 ///Consumes O(|N| + |E|) space, where |N| - number of nodes, |E| - number of edges.
+///
 template <typename NT, typename ET>
 class LGraph : public Graph<NT, ET> {
 private:
@@ -24,6 +25,7 @@ private:
     /// \brief The LGraph Edge struct
     ///
     /// The Edge struct is used to implement a connection between two Nodes.
+    ///
     struct Edge {
         const NT* toNode;
         ET data;
@@ -39,142 +41,165 @@ private:
     };
 
     ///
-    /// \brief _list
+    /// \brief _list represents Adjacency list of LGraph.
     ///
-    ///  _list represents Adjacency list of LGraph.
     /// std::unordered_map is used instead of std::map because keeping order is not needed.
+    ///
     mutable std::unordered_map<NT, std::vector<Edge*>> _list;
 
     int _nodes;
     int _edges;
-    bool _weighed;
 
     ///
-    /// \brief _dfs
-    /// \param snode
-    /// \param visited
+    /// \brief Depth First Search
+    /// \param snode Pointer to starting node
+    /// \param visited Pointer to set containing visited nodes
     ///
     /// An internal implementation of Depth First Search to be widely use in LGraph methods.
+    ///
     void _dfs(const NT& snode, std::unordered_set<const NT*>* visited) const;
 
     ///
-    /// \brief _dfsDistances
-    /// \param snode
-    /// \param unordered_map<const NT*, int>
+    /// \brief Breadth First Search
+    /// \param snode Pointer to starting node
+    /// \param visited Pointer to set containing visited nodes
     ///
     /// An internal implementation of node - distances to other nodes using Breadth First Search to be widely use in LGraph methods.
+    ///
     [[nodiscard]] std::unordered_map<const NT*, int> _bfsDistances(const NT* snode) const;
 
 public:
 
     ///
-    /// \brief LGraph
+    /// \brief Basic constructor.
     ///
-    /// Basic constructor.
     LGraph();
 
     ///
-    /// \brief LGraph
-    /// \param list
+    /// \brief Constructor using initializer_list of nodes.
+    /// \param list Initializer_list of nodes
     ///
     /// Used to create LGraph and add Nodes given in std::initializer_list.
+    ///
     explicit LGraph(std::initializer_list<NT> list);
 
     ~LGraph() = default;
 
+    ///
+    /// \brief Add a node
+    /// \param data Data to be added as node
+    ///
+    /// Adds a node with [ data ] to LGraph.
+    ///
     void addNode(const NT& data) override;
 
     ///
-    /// \brief nodeExist
-    /// \param data
-    /// \return bool
+    /// \brief Checks if node exist
+    /// \param data Data to be searched
+    /// \return bool Whether node with [ data ] exists
     ///
     /// Checks whether node with [ data ] is presented in LGraph.
+    ///
     bool nodeExist(const NT& data) const override;
 
     ///
-    /// \brief eraseNode
-    /// \param data
+    /// \brief Erase node
+    /// \param data Node with [ data ] to be erased
     ///
     /// Erases node with data = [ data ] and all its edges.
+    ///
     void eraseNode(const NT& data) override;
 
 
     ///
-    /// \brief addEdge
-    /// \param n1
-    /// \param n2
-    /// \param edgeData
+    /// \brief Add an edge
+    /// \param n1 Node 1 data ref
+    /// \param n2 Node 2 data ref
+    /// \param edgeData Data to be stored in an edge
     ///
     /// Adds an edge with [ edgeData ] between nodes [ n1 ] and [ n2 ].
+    ///
     /// \note If either of nodes [ n1 ] or [ n2 ] does not exist, edge is not added.
+    ///
     void addEdge(const NT& n1, const NT& n2, const ET& edgeData) override;
 
     ///
-    /// \brief getEdge
-    /// \param n1
-    /// \param n2
-    /// \return const EdgeType*
+    /// \brief Get edge data
+    /// \param n1 Node 1 data ref
+    /// \param n2 Node 2 data ref
+    /// \return const ET* Pointer to data stored in an edge
     ///
     /// Return pointer to data, contained in an egde, connecting nodes [ n1 ] and [ n2 ].
     /// \note If either of these nodes does not exist or the edge does not exist, null pointer is returned.
+    ///
     const ET* getEdge(const NT& n1, const NT& n2) const;
 
     ///
-    /// \brief edgeExist
-    /// \param n1
-    /// \param n2
-    /// \return
+    /// \brief Check if an edge exist
+    /// \param n1 Node 1 data ref
+    /// \param n2 Node 2 data ref
+    /// \return bool Whether an edge exist
     ///
     /// Checks whether an edge between nodes [ n1 ] and [ n2 ] exists.
+    ///
     /// \note If either of nodes [ n1 ] or [ n2 ] does not exist, false is returned.
+    ///
     bool edgeExist(const NT& n1, const NT& n2) const override;
 
     ///
-    /// \brief eraseEdge
-    /// \param n1
-    /// \param n2
+    /// \brief Delete an edge
+    /// \param n1 Node 1 data ref
+    /// \param n2 Node 2 data ref
     ///
     /// Erase edge between nodes [ n1 ] and [ n2 ]
+    ///
     /// \note If either of these nodes does not exist or the edge does not exist, nothing happens.
+    ///
     void eraseEdge(const NT& n1, const NT& n2) override;
 
     ///
-    /// \brief eraseEdges
+    /// \brief Delete all adges
+    ///
     /// Erases all edges in graph.
+    ///
     void eraseEdges() override;
 
 
     ////
-    /// \brief dfs
-    /// \param snode
-    /// \param visited
+    /// \brief Deep First Search
+    /// \param snode Pointer to starting node
+    /// \param visited Pointer to set storing visited nodes
     ///
     /// Does Deep First Search, adding visited nodes to [ visited ].
+    ///
     void dfs(const NT& snode, std::unordered_set<const NT*>* visited) const;
 
     ///
-    /// \brief connected
-    /// \return bool
+    /// \brief Is connected
+    /// \return bool If graph is connected
     ///
     /// Checks whether graph is connected (any node can be reached from any other one).
+    ///
     bool connected() const override;
 
     ///
-    /// \brief cyclic
-    /// \return bool
+    /// \brief Is cyclic
+    /// \return bool If graph is cyclic
     ///
     /// Checks whether graph has cycles.
+    ///
     bool cyclic() const override;
 
     ///
-    /// \brief distance
-    /// \param n1
-    /// \param n2
-    /// \return int
+    /// \brief Get distance between 2 nodes
+    /// \param n1 Node 1 data ref
+    /// \param n2 Node 2 data ref
+    /// \return int Number if edges
     ///
     /// Returns distance between nodes [ n1 ] and [ n2 ].
+    ///
     /// \note If either of nodes are not in graph or they are not connecred, -1 is returned.
+    ///
     [[nodiscard]] int distance(const NT& n1, const NT& n2) const override;
 
 
@@ -182,6 +207,7 @@ public:
     /// \brief print
     ///
     /// Prints graph to qDebug stream.
+    ///
     void print() const;
 
     int nodes() const override;
@@ -189,8 +215,6 @@ public:
     int edges() const override;
 
     bool empty() const override;
-
-    bool weighed() const override;
 };
 
 #endif // LGRAPH_H
@@ -253,11 +277,11 @@ std::unordered_map<const NT *, int> LGraph<NT, ET>::_bfsDistances(const NT *snod
 // -------------------------------------- CONSTRUCTOR, DESTRUCTOR --------------------------------------
 
 template<typename NT, typename ET>
-LGraph<NT, ET>::LGraph() : _nodes {0}, _edges {0}, _weighed {false} {}
+LGraph<NT, ET>::LGraph() : _nodes {0}, _edges {0}{}
 
 template<typename NT, typename ET>
 LGraph<NT, ET>::LGraph(std::initializer_list<NT> list)
-    : _nodes {0}, _edges {0}, _weighed {false} {
+    : _nodes {0}, _edges {0} {
     for (auto elem : list)
         this->addNode(elem);
 }
@@ -408,7 +432,8 @@ bool LGraph<NT, ET>::connected() const {
 }
 
 ///
-/// Using white, grey, black (coloring) algorithm. Instead of numbers, two unordered_sets are used.
+/// \note White, grey, black (coloring) algorithm is used. Instead of numbers, two unordered_sets are used.
+///
 template<typename NT, typename ET>
 bool LGraph<NT, ET>::cyclic() const {
     std::unordered_set<const NT*> vis_black;
@@ -489,9 +514,4 @@ int LGraph<NT, ET>::edges() const {
 template<typename NT, typename ET>
 bool LGraph<NT, ET>::empty() const {
     return this->_nodes == 0;
-}
-
-template<typename NT, typename ET>
-bool LGraph<NT, ET>::weighed() const {
-    return this->_weighed;
 }
