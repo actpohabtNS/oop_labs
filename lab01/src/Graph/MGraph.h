@@ -179,7 +179,9 @@ MGraph<NT, ET>::MGraph() : _nodes {0}, _edges {0} {}
 template<typename NT, typename ET>
 MGraph<NT, ET>::MGraph(std::initializer_list<NT> list)
     : _nodes {0}, _edges {0} {
-
+    for (const auto& node : list) {
+        this->addNode(node);
+    }
 }
 
 
@@ -189,6 +191,9 @@ MGraph<NT, ET>::MGraph(std::initializer_list<NT> list)
 template<typename NT, typename ET>
 void MGraph<NT, ET>::addNode(const NT &data) {
 
+    this->_nodes++;
+
+    this->_nodeList.emplace_back(data);
 }
 
 template<typename NT, typename ET>
