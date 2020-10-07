@@ -87,4 +87,14 @@ TEST_CASE("MGraph") {
             CHECK(mg.edges() == 0);
         }
     }
+
+    mg.addEdge(1, 2, 12);
+
+    SUBCASE("Connected") {
+        mg.addEdge(1, 2, 12);
+        CHECK(mg.connected() == false);
+
+        mg.addEdge(1, 3, 13);
+        CHECK(mg.connected() == true);
+    }
 }

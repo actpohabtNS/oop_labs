@@ -3,9 +3,13 @@
 
 #include "Graph.h"
 
-#include <vector>
 #include <algorithm>
 #include <memory>
+#include <vector>
+#include <stack>
+#include <queue>
+#include <unordered_set>
+#include <unordered_map>
 
 ///
 ///\brief Matrix graph class
@@ -40,6 +44,25 @@ private:
 
     int _nodes;
     int _edges;
+
+
+    ///
+    /// \brief Depth First Search
+    /// \param snode Pointer to starting node
+    /// \param visited Pointer to set containing visited nodes
+    ///
+    /// An internal implementation of Depth First Search to be widely use in MGraph methods.
+    ///
+    void _dfs(const NT& snode, std::unordered_set<const NT*>* visited) const;
+
+    ///
+    /// \brief Breadth First Search
+    /// \param snode Pointer to starting node
+    /// \param visited Pointer to set containing visited nodes
+    ///
+    /// An internal implementation of node - distances to other nodes using Breadth First Search to be widely use in MGraph methods.
+    ///
+    [[nodiscard]] std::unordered_map<const NT*, int> _bfsDistances(const NT* snode) const;
 
 public:
     ///
@@ -139,6 +162,15 @@ public:
 
 
     ///
+    /// \brief Deep First Search
+    /// \param snode Pointer to starting node
+    /// \param visited Pointer to set storing visited nodes
+    ///
+    /// Does Deep First Search, adding visited nodes to [ visited ].
+    ///
+    void dfs(const NT& snode, std::unordered_set<const NT*>* visited) const;
+
+    ///
     /// \brief Is connected
     /// \return bool If graph is connected
     ///
@@ -180,8 +212,32 @@ public:
 
 // -------------------------------------- INTERNAL METHODS --------------------------------------
 
+template<typename NT, typename ET>
+void MGraph<NT, ET>::_dfs(const NT &snode, std::unordered_set<const NT *> *visited) const {
+    if (visited->count(&snode))
+            return;
 
+    std::stack<const NT*> nodes;
+    nodes.push(&snode);
+    visited->insert(&snode);
 
+    while (!nodes.empty()) {
+        const NT* current = nodes.top();
+        nodes.pop();
+
+        int nodeIdx = std::find(this->_nodeList.begin(), this->_nodeList.end(), *current) - this->_nodeList.begin();
+
+        for (int i = 0; i < this->_nodes; i++) {
+            if (!this->_matrix[nodeIdx][i])
+                continue;
+
+            if (!visited->count(&this->_nodeList[i])) {
+                nodes.push(&this->_nodeList[i]);
+                visited->insert(&this->_nodeList[i]);
+            }
+        }
+    }
+}
 
 
 
@@ -311,8 +367,22 @@ void MGraph<NT, ET>::eraseEdges() {
 // -------------------------------------- GRAPH PROPERTIES METHODS --------------------------------------
 
 template<typename NT, typename ET>
-bool MGraph<NT, ET>::connected() const {
+void MGraph<NT, ET>::dfs(const NT &snode, std::unordered_set<const NT *> *visited) const {
+    this->_dfs(snode, visited);
+}
 
+template<typename NT, typename ET>
+bool MGraph<NT, ET>::connected() const {
+    if (this->empty())
+        return true;
+
+    std::unordered_set<const NT*> visited;
+    this->dfs(this->_nodeList[0], &visited);
+
+    if (this->_nodeList.size() != visited.size())
+        return false;
+
+    return true;
 }
 
 template<typename NT, typename ET>
