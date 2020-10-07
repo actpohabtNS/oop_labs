@@ -52,15 +52,6 @@ public:
     void addNode(const NT& data) override;
 
     ///
-    /// \brief Erase node
-    /// \param data Node with [ data ] to be erased
-    ///
-    /// Erases node with data = [ data ] and all its edges.
-    ///
-    ///
-    void eraseNode(const NT& data) override;
-
-    ///
     /// \brief Checks if node exist
     /// \param data Data to be searched
     /// \return bool Whether node with [ data ] exists
@@ -68,6 +59,15 @@ public:
     /// Checks whether node with [ data ] is presented in MGraph.
     ///
     bool nodeExist(const NT& data) const override;
+
+    ///
+    /// \brief Erase node
+    /// \param data Node with [ data ] to be erased
+    ///
+    /// Erases node with data = [ data ] and all its edges.
+    ///
+    ///
+    void eraseNode(const NT& data) override;
 
 
     ///
@@ -81,17 +81,6 @@ public:
     /// \note If either of nodes [ n1 ] or [ n2 ] does not exist, edge is not added.
     ///
     void addEdge(const NT& n1, const NT& n2, const ET& edgeData) override;
-
-    ///
-    /// \brief Delete an edge
-    /// \param n1 Node 1 data ref
-    /// \param n2 Node 2 data ref
-    ///
-    /// Erase edge between nodes [ n1 ] and [ n2 ]
-    ///
-    /// \note If either of these nodes does not exist or the edge does not exist, nothing happens.
-    ///
-    void eraseEdge(const NT& n1, const NT& n2) override;
 
     ///
     /// \brief Get edge data
@@ -117,6 +106,17 @@ public:
     bool edgeExist(const NT& n1, const NT& n2) const override;
 
     ///
+    /// \brief Delete an edge
+    /// \param n1 Node 1 data ref
+    /// \param n2 Node 2 data ref
+    ///
+    /// Erase edge between nodes [ n1 ] and [ n2 ]
+    ///
+    /// \note If either of these nodes does not exist or the edge does not exist, nothing happens.
+    ///
+    void eraseEdge(const NT& n1, const NT& n2) override;
+
+    ///
     /// \brief Delete all adges
     ///
     /// Erases all edges in graph.
@@ -140,7 +140,6 @@ public:
     ///
     bool cyclic() const override;
 
-
     ///
     /// \brief Get distance between 2 nodes
     /// \param n1 Node 1 data ref
@@ -152,7 +151,6 @@ public:
     /// \note If either of nodes are not in graph or they are not connecred, -1 is returned.
     ///
     [[nodiscard]] int distance(const NT& n1, const NT& n2) const override;
-
 
 
     int nodes() const override;
