@@ -19,6 +19,7 @@ SOURCES += \
     src/main.cpp \
     src/UI/mainwindow.cpp \
     tests/LGraph_tests.cpp \
+    tests/MGraph_tests.cpp \
     tests/doctest_main.cpp
 
 HEADERS += \
