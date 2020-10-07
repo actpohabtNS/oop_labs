@@ -29,7 +29,10 @@ TEST_CASE("MGraph") {
             CHECK(mg.nodes() == 3);
         }
 
-
+        SUBCASE("Node exist") {
+            CHECK(mg.nodeExist(1) == true);
+            CHECK(mg.nodeExist(10) == false);
+        }
 
 
     }

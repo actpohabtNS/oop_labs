@@ -4,6 +4,7 @@
 #include "Graph.h"
 
 #include <vector>
+#include <algorithm>
 
 ///
 ///\brief Matrix graph class
@@ -190,6 +191,8 @@ MGraph<NT, ET>::MGraph(std::initializer_list<NT> list)
 
 template<typename NT, typename ET>
 void MGraph<NT, ET>::addNode(const NT &data) {
+    if (nodeExist(data))
+        return;
 
     this->_nodes++;
 
@@ -198,7 +201,7 @@ void MGraph<NT, ET>::addNode(const NT &data) {
 
 template<typename NT, typename ET>
 bool MGraph<NT, ET>::nodeExist(const NT &data) const {
-
+    return std::find(this->_nodeList.begin(), this->_nodeList.end(), data) != this->_nodeList.end();
 }
 
 template<typename NT, typename ET>
