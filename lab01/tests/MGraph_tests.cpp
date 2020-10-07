@@ -82,9 +82,9 @@ TEST_CASE("MGraph") {
             CHECK(mg.edges() == 0);
         }
 
-//        SUBCASE("Erase edges") {
-//            mg.eraseEdges();
-//            CHECK(mg.edges() == 0);
-//        }
+        SUBCASE("Erase edges") {
+            mg.eraseEdges();
+            CHECK(mg.edges() == 0);
+        }
     }
 }

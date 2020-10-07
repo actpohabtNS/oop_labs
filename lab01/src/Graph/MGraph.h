@@ -297,7 +297,13 @@ void MGraph<NT, ET>::eraseEdge(const NT &n1, const NT &n2) {
 
 template<typename NT, typename ET>
 void MGraph<NT, ET>::eraseEdges() {
+    for (auto& row : this->_matrix) {
+        row.clear();
+    }
 
+    this->_matrix.clear();
+
+    this->_edges = 0;
 }
 
 
