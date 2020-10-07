@@ -56,19 +56,19 @@ TEST_CASE("MGraph") {
 
         mg.addEdge(1, 2, 12);
 
-//        SUBCASE("Edge exist") {
-//            CHECK(mg.edgeExist(1, 2) == true);
-//            CHECK(mg.edgeExist(2, 1) == true);
-//            CHECK(mg.edgeExist(1, 3) == false);
-//            CHECK(mg.edgeExist(1, 10) == false);
-//        }
+        SUBCASE("Edge exist") {
+            CHECK(mg.edgeExist(1, 2) == true);
+            CHECK(mg.edgeExist(2, 1) == true);
+            CHECK(mg.edgeExist(1, 3) == false);
+            CHECK(mg.edgeExist(1, 10) == false);
+        }
 
-//        SUBCASE("Get edge") {
-//            CHECK(*mg.getEdge(1, 2) == 12);
-//            CHECK(*mg.getEdge(2, 1) == 12);
-//            CHECK(mg.getEdge(1, 3) == nullptr);
-//            CHECK(mg.getEdge(1, 10) == nullptr);
-//        }
+        SUBCASE("Get edge") {
+            CHECK(*mg.getEdge(1, 2) == 12);
+            CHECK(*mg.getEdge(2, 1) == 12);
+            CHECK(mg.getEdge(1, 3) == nullptr);
+            CHECK(mg.getEdge(1, 10) == nullptr);
+        }
 
 //        SUBCASE("Erase edge") {
 //            mg.eraseEdge(1, 3);
