@@ -70,16 +70,17 @@ TEST_CASE("MGraph") {
             CHECK(mg.getEdge(1, 10) == nullptr);
         }
 
-//        SUBCASE("Erase edge") {
-//            mg.eraseEdge(1, 3);
-//            CHECK(mg.edges() == 1);
+        SUBCASE("Erase edge") {
+            mg.eraseEdge(1, 3);
+            CHECK(mg.edges() == 1);
+            CHECK(mg.edgeExist(1,3) == false);
 
-//            mg.eraseEdge(1,2);
-//            CHECK(mg.edges() == 0);
+            mg.eraseEdge(1,2);
+            CHECK(mg.edges() == 0);
 
-//            mg.eraseEdge(1,2);
-//            CHECK(mg.edges() == 0);
-//        }
+            mg.eraseEdge(1,2);
+            CHECK(mg.edges() == 0);
+        }
 
 //        SUBCASE("Erase edges") {
 //            mg.eraseEdges();

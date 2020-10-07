@@ -281,7 +281,18 @@ bool MGraph<NT, ET>::edgeExist(const NT &n1, const NT &n2) const {
 
 template<typename NT, typename ET>
 void MGraph<NT, ET>::eraseEdge(const NT &n1, const NT &n2) {
+    if (!this->nodeExist(n1) || !this->nodeExist(n2))
+        return;
 
+    int n1Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n1) - this->_nodeList.begin();
+    int n2Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n2) - this->_nodeList.begin();
+
+    if (this->_matrix[n1Idx][n2Idx] != nullptr) {
+        this->_matrix[n1Idx][n2Idx] = nullptr;
+        this->_matrix[n2Idx][n1Idx] = nullptr;
+
+        this->_edges--;
+    }
 }
 
 template<typename NT, typename ET>
