@@ -10,6 +10,9 @@
 #include <queue>
 #include <unordered_set>
 #include <unordered_map>
+#include <functional>
+
+#include <QDebug>
 
 ///
 ///\brief Matrix graph class
@@ -78,7 +81,7 @@ public:
     ///
     explicit MGraph(std::initializer_list<NT> list);
 
-    ~MGraph() = default;
+    ~MGraph() {qDebug() << "Trying to destruct";};
 
     ///
     /// \brief Add a node
@@ -290,6 +293,8 @@ void MGraph<NT, ET>::eraseNode(const NT &data) {
 
     this->_matrix.erase(this->_matrix.begin() + idx);
 
+    this->_nodeList.erase(this->_nodeList.begin() + idx);
+
     this->_nodes--;
 }
 
@@ -387,7 +392,46 @@ bool MGraph<NT, ET>::connected() const {
 
 template<typename NT, typename ET>
 bool MGraph<NT, ET>::cyclic() const {
+    std::unordered_set<const NT*> vis_black;
+    std::unordered_set<const NT*> vis_grey;
 
+        std::function<bool(const NT*, const NT*)> _dfs = [&](const NT* snode, const NT* parent) {
+            vis_grey.insert(snode);
+
+            int nodeIdx = std::find(this->_nodeList.begin(), this->_nodeList.end(), *snode) - this->_nodeList.begin();
+
+            for (int i = 0; i < this->_nodes; i++) {
+                if (!this->_matrix[nodeIdx][i])
+                    continue;
+
+               if (vis_black.find(&this->_nodeList[i]) == vis_black.end() && vis_grey.find(&this->_nodeList[i]) == vis_grey.end()) {
+                    if (_dfs(&this->_nodeList[i], snode))
+                        return true;
+
+               }
+
+               if (vis_grey.find(&this->_nodeList[i]) != vis_grey.end()) {
+                   if (&this->_nodeList[i] == parent)
+                       continue;
+
+                    return true;
+               }
+            }
+
+            vis_grey.erase(snode);
+            vis_black.insert(snode);
+            return false;
+        };
+
+        for (const auto& node : this->_nodeList) {
+            if (vis_black.find(&node) != vis_black.end() || vis_grey.find(&node) != vis_grey.end() )
+                continue;
+
+            if (_dfs(&node, nullptr))
+                return true;
+        }
+
+        return false;
 }
 
 template<typename NT, typename ET>

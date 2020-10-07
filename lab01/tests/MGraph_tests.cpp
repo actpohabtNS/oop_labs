@@ -97,4 +97,17 @@ TEST_CASE("MGraph") {
         mg.addEdge(1, 3, 13);
         CHECK(mg.connected() == true);
     }
+
+    mg.addEdge(1, 2, 12);
+    mg.addEdge(1, 3, 13);
+
+    mg.addNode(4);
+    mg.addEdge(1, 4, 14);
+
+    SUBCASE("Cyclic") {
+        CHECK(mg.cyclic() == false);
+
+        mg.addEdge(2, 4, 24);
+        CHECK(mg.cyclic() == true);
+    }
 }
