@@ -34,6 +34,13 @@ TEST_CASE("MGraph") {
             CHECK(mg.nodeExist(10) == false);
         }
 
+        SUBCASE("Erase node") {
+           mg.eraseNode(3);
+           CHECK(mg.nodes() == 2);
 
+           mg.eraseNode(2);
+           CHECK(mg.nodes() == 1);
+           CHECK(mg.edges() == 0);
+        }
     }
 }

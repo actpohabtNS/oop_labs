@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <memory>
 
 ///
 ///\brief Matrix graph class
@@ -16,6 +17,18 @@ template <typename NT, typename ET>
 class MGraph : public Graph<NT, ET> {
 private:
     ///
+    /// \brief The Edge class
+    ///
+    /// To store data somewhere and use smart pointers to them.
+    ///
+    class Edge {
+      ET data;
+
+      Edge(const ET& data);
+      ~Edge() = default;
+    };
+
+    ///
     /// \brief _nodes stores Nodes values
     ///
     std::vector<NT> _nodeList;
@@ -23,7 +36,7 @@ private:
     ///
     /// \brief _matrix stores Edge values which represent connection between nodes
     ///
-    std::vector<std::vector<ET>> _matrix;
+    std::vector<std::vector<std::shared_ptr<Edge>>> _matrix;
 
     int _nodes;
     int _edges;
@@ -197,6 +210,11 @@ void MGraph<NT, ET>::addNode(const NT &data) {
     this->_nodes++;
 
     this->_nodeList.emplace_back(data);
+
+    this->_matrix.resize(this->_nodes);
+
+    for (auto& row : this->_matrix)
+         row.resize(this->_nodes, nullptr);
 }
 
 template<typename NT, typename ET>
@@ -206,7 +224,17 @@ bool MGraph<NT, ET>::nodeExist(const NT &data) const {
 
 template<typename NT, typename ET>
 void MGraph<NT, ET>::eraseNode(const NT &data) {
+    if (!nodeExist(data))
+        return;
 
+    int idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), data) - this->_nodeList.begin();
+
+    for (auto& row : this->_matrix)
+        row.erase(row.begin() + idx);
+
+    this->_matrix.erase(this->_matrix.begin() + idx);
+
+    this->_nodes--;
 }
 
 
