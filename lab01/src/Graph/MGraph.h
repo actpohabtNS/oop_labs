@@ -17,7 +17,7 @@ private:
     ///
     /// \brief _nodes stores Nodes values
     ///
-    std::vector<NT> _nodesList;
+    std::vector<NT> _nodeList;
 
     ///
     /// \brief _matrix stores Edge values which represent connection between nodes
@@ -161,3 +161,109 @@ public:
 };
 
 #endif // MGRAPH_H
+
+
+
+// -------------------------------------- INTERNAL METHODS --------------------------------------
+
+
+
+
+
+
+// -------------------------------------- CONSTRUCTOR, DESTRUCTOR --------------------------------------
+
+template<typename NT, typename ET>
+MGraph<NT, ET>::MGraph() : _nodes {0}, _edges {0} {}
+
+template<typename NT, typename ET>
+MGraph<NT, ET>::MGraph(std::initializer_list<NT> list)
+    : _nodes {0}, _edges {0} {
+
+}
+
+
+
+// -------------------------------------- NODE METHODS --------------------------------------
+
+template<typename NT, typename ET>
+void MGraph<NT, ET>::addNode(const NT &data) {
+
+}
+
+template<typename NT, typename ET>
+bool MGraph<NT, ET>::nodeExist(const NT &data) const {
+
+}
+
+template<typename NT, typename ET>
+void MGraph<NT, ET>::eraseNode(const NT &data) {
+
+}
+
+
+
+// -------------------------------------- EDGE METHODS --------------------------------------
+
+template<typename NT, typename ET>
+void MGraph<NT, ET>::addEdge(const NT &n1, const NT &n2, const ET &edgeData) {
+
+}
+
+template<typename NT, typename ET>
+const ET *MGraph<NT, ET>::getEdge(const NT &n1, const NT &n2) const {
+
+}
+
+template<typename NT, typename ET>
+bool MGraph<NT, ET>::edgeExist(const NT &n1, const NT &n2) const {
+
+}
+
+template<typename NT, typename ET>
+void MGraph<NT, ET>::eraseEdge(const NT &n1, const NT &n2) {
+
+}
+
+template<typename NT, typename ET>
+void MGraph<NT, ET>::eraseEdges() {
+
+}
+
+
+
+// -------------------------------------- GRAPH PROPERTIES METHODS --------------------------------------
+
+template<typename NT, typename ET>
+bool MGraph<NT, ET>::connected() const {
+
+}
+
+template<typename NT, typename ET>
+bool MGraph<NT, ET>::cyclic() const {
+
+}
+
+template<typename NT, typename ET>
+int MGraph<NT, ET>::distance(const NT &n1, const NT &n2) const {
+
+}
+
+
+
+// -------------------------------------- GETTERS --------------------------------------
+
+template<typename NT, typename ET>
+int MGraph<NT, ET>::nodes() const {
+    return this->_nodes;
+}
+
+template<typename NT, typename ET>
+int MGraph<NT, ET>::edges() const {
+    return this->_edges;
+}
+
+template<typename NT, typename ET>
+bool MGraph<NT, ET>::empty() const {
+    return this->_nodes == 0;
+}
