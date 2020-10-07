@@ -21,10 +21,10 @@ private:
     ///
     /// To store data somewhere and use smart pointers to them.
     ///
-    class Edge {
+    struct Edge {
       ET data;
 
-      Edge(const ET& data);
+      Edge(const ET& data) : data {data} {}
       ~Edge() = default;
     };
 
@@ -204,7 +204,7 @@ MGraph<NT, ET>::MGraph(std::initializer_list<NT> list)
 
 template<typename NT, typename ET>
 void MGraph<NT, ET>::addNode(const NT &data) {
-    if (nodeExist(data))
+    if (this->nodeExist(data))
         return;
 
     this->_nodes++;
@@ -224,7 +224,7 @@ bool MGraph<NT, ET>::nodeExist(const NT &data) const {
 
 template<typename NT, typename ET>
 void MGraph<NT, ET>::eraseNode(const NT &data) {
-    if (!nodeExist(data))
+    if (!this->nodeExist(data))
         return;
 
     int idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), data) - this->_nodeList.begin();
@@ -243,7 +243,18 @@ void MGraph<NT, ET>::eraseNode(const NT &data) {
 
 template<typename NT, typename ET>
 void MGraph<NT, ET>::addEdge(const NT &n1, const NT &n2, const ET &edgeData) {
+    if (!this->nodeExist(n1) || !this->nodeExist(n2))
+        return;
 
+    int n1Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n1) - this->_nodeList.begin();
+    int n2Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n2) - this->_nodeList.begin();
+
+    auto edgePtr = std::shared_ptr<Edge>(new Edge(edgeData));
+
+    this->_matrix[n1Idx][n2Idx] = edgePtr;
+    this->_matrix[n2Idx][n1Idx] = edgePtr;
+
+    this->_edges++;
 }
 
 template<typename NT, typename ET>
