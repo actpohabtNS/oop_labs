@@ -81,7 +81,12 @@ public:
     ///
     explicit MGraph(std::initializer_list<NT> list);
 
-    ~MGraph() {qDebug() << "Trying to destruct";};
+    ~MGraph() {
+        qDebug() << "Trying to destruct";
+        qDebug() << this->_nodes << this->_edges;
+        for (auto& node : this->_nodeList)
+            qDebug() << node;
+    };
 
     ///
     /// \brief Add a node
@@ -242,6 +247,36 @@ void MGraph<NT, ET>::_dfs(const NT &snode, std::unordered_set<const NT *> *visit
     }
 }
 
+template<typename NT, typename ET>
+std::unordered_map<const NT *, int> MGraph<NT, ET>::_bfsDistances(const NT *snode) const {
+    std::unordered_set<const NT*> visited;
+    std::unordered_map<const NT*, int> distances;
+
+    std::queue<const NT*> queue;
+    queue.push(snode);
+
+    visited.insert(snode);
+    distances[snode] = 0;
+
+    while (!queue.empty()) {
+        const NT* curr = queue.front();
+        queue.pop();
+
+        int nodeIdx = std::find(this->_nodeList.begin(), this->_nodeList.end(), *curr) - this->_nodeList.begin();
+
+        for (int i = 0; i < this->_nodes; i++) {
+            if (!this->_matrix[nodeIdx][i])
+                continue;
+
+            distances[&this->_nodeList[i]] = distances[curr] + 1;
+            visited.insert(&this->_nodeList[i]);
+            queue.push(&this->_nodeList[i]);
+        }
+    }
+
+    return distances;
+}
+
 
 
 // -------------------------------------- CONSTRUCTOR, DESTRUCTOR --------------------------------------
@@ -310,10 +345,10 @@ void MGraph<NT, ET>::addEdge(const NT &n1, const NT &n2, const ET &edgeData) {
     int n1Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n1) - this->_nodeList.begin();
     int n2Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n2) - this->_nodeList.begin();
 
-    auto edgePtr = std::shared_ptr<Edge>(new Edge(edgeData));
+    //std::shared_ptr<Edge> edgePtr = std::shared_ptr<Edge>(new Edge(edgeData));
 
-    this->_matrix[n1Idx][n2Idx] = edgePtr;
-    this->_matrix[n2Idx][n1Idx] = edgePtr;
+    this->_matrix[n1Idx][n2Idx] = std::shared_ptr<Edge>(new Edge(edgeData));
+    this->_matrix[n2Idx][n1Idx] = std::shared_ptr<Edge>(new Edge(edgeData));
 
     this->_edges++;
 }
@@ -436,7 +471,20 @@ bool MGraph<NT, ET>::cyclic() const {
 
 template<typename NT, typename ET>
 int MGraph<NT, ET>::distance(const NT &n1, const NT &n2) const {
+    if (!this->nodeExist(n1) || !this->nodeExist(n2))
+        return -1;
 
+
+    qDebug() << "in distance";
+
+    int node1Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n1) - this->_nodeList.begin();
+    int node2Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n2) - this->_nodeList.begin();
+
+    qDebug() << "in distance 2";
+
+    std::unordered_map<const NT*, int> distances = this->_bfsDistances(&this->_nodeList[node1Idx]);
+
+    return ( distances.count(&this->_nodeList[node2Idx]) == 1 ) ? distances[&this->_nodeList[node2Idx]] : -1;
 }
 
 
