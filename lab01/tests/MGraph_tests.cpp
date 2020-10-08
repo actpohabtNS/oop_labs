@@ -70,30 +70,28 @@ TEST_CASE("MGraph") {
             CHECK(mg.getEdge(1, 10) == nullptr);
         }
 
-//        SUBCASE("Erase edge") {
-//            mg.eraseEdge(1, 3);
-//            CHECK(mg.edges() == 1);
-//            CHECK(mg.edgeExist(1,3) == false);
+        SUBCASE("Erase edge") {
+            mg.eraseEdge(1, 3);
+            CHECK(mg.edges() == 1);
+            CHECK(mg.edgeExist(1,3) == false);
 
-//            mg.eraseEdge(1,2);
-//            CHECK(mg.edges() == 0);
+            mg.eraseEdge(1,2);
+            CHECK(mg.edges() == 0);
 
-//            mg.eraseEdge(1,2);
-//            CHECK(mg.edges() == 0);
-//        }
+            mg.eraseEdge(1,2);
+            CHECK(mg.edges() == 0);
+        }
 
-//        SUBCASE("Erase edges") {
-//            qDebug() << "erase edges";
-//            mg.eraseEdges();
-//            CHECK(mg.edges() == 0);
-//        }
+        SUBCASE("Erase edges") {
+            mg.eraseEdges();
+            CHECK(mg.edges() == 0);
+        }
     }
 
     mg.addEdge(1, 2, 12);
 
-    SUBCASE("Connected") {                  // <- if comment this subcase - everything works
-        qDebug() << "connected";
-        mg.addEdge(1, 2, 12);               // though even when it is uncommented, it can work
+    SUBCASE("Connected") {
+        mg.addEdge(1, 2, 12);
         CHECK(mg.connected() == false);
 
         mg.addEdge(1, 3, 13);
@@ -106,7 +104,6 @@ TEST_CASE("MGraph") {
     mg.addEdge(1, 4, 14);
 
     SUBCASE("Cyclic") {
-        qDebug() << "cyclic";
         CHECK(mg.cyclic() == false);
 
         mg.addEdge(2, 4, 24);
@@ -114,7 +111,6 @@ TEST_CASE("MGraph") {
     }
 
     SUBCASE("Distance") {
-        qDebug() << "distance";
         mg.addNode(5);
         CHECK(mg.distance(1, 5) == -1);
 
@@ -122,5 +118,4 @@ TEST_CASE("MGraph") {
         CHECK(mg.distance(2, 3) == 2);
         CHECK(mg.distance(2, 2) == 0);
     }
-    qDebug() << "end";
 }

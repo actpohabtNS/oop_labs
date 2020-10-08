@@ -81,12 +81,7 @@ public:
     ///
     explicit MGraph(std::initializer_list<NT> list);
 
-    ~MGraph() {
-        qDebug() << "Trying to destruct";
-        qDebug() << this->_nodes << this->_edges;
-        for (auto& node : this->_nodeList)
-            qDebug() << node;
-    };
+    ~MGraph() = default;
 
     ///
     /// \brief Add a node
@@ -263,8 +258,6 @@ std::unordered_map<const NT *, int> MGraph<NT, ET>::_bfsDistances(const NT *snod
         const NT* curr = queue.front();
         queue.pop();
 
-        qDebug() << "curr:" << *curr;
-
         int nodeIdx = std::find(this->_nodeList.begin(), this->_nodeList.end(), *curr) - this->_nodeList.begin();
 
         for (int i = 0; i < this->_nodes; i++) {
@@ -399,13 +392,12 @@ void MGraph<NT, ET>::eraseEdge(const NT &n1, const NT &n2) {
 
 template<typename NT, typename ET>
 void MGraph<NT, ET>::eraseEdges() {
-    for (auto& row : this->_matrix) {
-        row.clear();
-    }
-
-    this->_matrix.clear();
-
     this->_edges = 0;
+
+        for (int i = 0; i < this->_nodes; i++)
+            for (int j = 0; j < this->_nodes; j++)
+                this->_matrix[i][j] = nullptr;
+
 }
 
 
@@ -480,17 +472,10 @@ int MGraph<NT, ET>::distance(const NT &n1, const NT &n2) const {
     if (!this->nodeExist(n1) || !this->nodeExist(n2))
         return -1;
 
-
-    qDebug() << "in distance";
-
     int node1Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n1) - this->_nodeList.begin();
     int node2Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n2) - this->_nodeList.begin();
 
-    qDebug() << "in distance 2";
-
     std::unordered_map<const NT*, int> distances = this->_bfsDistances(&this->_nodeList[node1Idx]);
-
-    qDebug() << "in distance 3";
 
     return ( distances.count(&this->_nodeList[node2Idx]) == 1 ) ? distances[&this->_nodeList[node2Idx]] : -1;
 }
