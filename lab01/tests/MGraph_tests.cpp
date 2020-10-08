@@ -70,23 +70,23 @@ TEST_CASE("MGraph") {
             CHECK(mg.getEdge(1, 10) == nullptr);
         }
 
-        SUBCASE("Erase edge") {
-            mg.eraseEdge(1, 3);
-            CHECK(mg.edges() == 1);
-            CHECK(mg.edgeExist(1,3) == false);
+//        SUBCASE("Erase edge") {
+//            mg.eraseEdge(1, 3);
+//            CHECK(mg.edges() == 1);
+//            CHECK(mg.edgeExist(1,3) == false);
 
-            mg.eraseEdge(1,2);
-            CHECK(mg.edges() == 0);
+//            mg.eraseEdge(1,2);
+//            CHECK(mg.edges() == 0);
 
-            mg.eraseEdge(1,2);
-            CHECK(mg.edges() == 0);
-        }
+//            mg.eraseEdge(1,2);
+//            CHECK(mg.edges() == 0);
+//        }
 
-        SUBCASE("Erase edges") {
-            qDebug() << "erase edges";
-            mg.eraseEdges();
-            CHECK(mg.edges() == 0);
-        }
+//        SUBCASE("Erase edges") {
+//            qDebug() << "erase edges";
+//            mg.eraseEdges();
+//            CHECK(mg.edges() == 0);
+//        }
     }
 
     mg.addEdge(1, 2, 12);
@@ -100,28 +100,27 @@ TEST_CASE("MGraph") {
         CHECK(mg.connected() == true);
     }
 
-//    mg.addEdge(1, 2, 12);
-//    mg.addEdge(1, 3, 13);
+    mg.addEdge(1, 3, 13);
 
     mg.addNode(4);
-//    mg.addEdge(1, 4, 14);
+    mg.addEdge(1, 4, 14);
 
-//    SUBCASE("Cyclic") {
-//        qDebug() << "cyclic";
-//        CHECK(mg.cyclic() == false);
+    SUBCASE("Cyclic") {
+        qDebug() << "cyclic";
+        CHECK(mg.cyclic() == false);
 
-//        mg.addEdge(2, 4, 24);
-//        CHECK(mg.cyclic() == true);
-//    }
+        mg.addEdge(2, 4, 24);
+        CHECK(mg.cyclic() == true);
+    }
 
-//    SUBCASE("Distance") {
-//        qDebug() << "distance";
-//        mg.addNode(5);
-//        CHECK(mg.distance(1, 5) == -1);
+    SUBCASE("Distance") {
+        qDebug() << "distance";
+        mg.addNode(5);
+        CHECK(mg.distance(1, 5) == -1);
 
-//        CHECK(mg.distance(1, 3) == 1);
-//        CHECK(mg.distance(2, 3) == 2);
-//        CHECK(mg.distance(2, 2) == 0);
-//    }
+        CHECK(mg.distance(1, 3) == 1);
+        CHECK(mg.distance(2, 3) == 2);
+        CHECK(mg.distance(2, 2) == 0);
+    }
     qDebug() << "end";
 }

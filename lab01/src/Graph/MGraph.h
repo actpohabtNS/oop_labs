@@ -259,13 +259,19 @@ std::unordered_map<const NT *, int> MGraph<NT, ET>::_bfsDistances(const NT *snod
     distances[snode] = 0;
 
     while (!queue.empty()) {
+
         const NT* curr = queue.front();
         queue.pop();
+
+        qDebug() << "curr:" << *curr;
 
         int nodeIdx = std::find(this->_nodeList.begin(), this->_nodeList.end(), *curr) - this->_nodeList.begin();
 
         for (int i = 0; i < this->_nodes; i++) {
             if (!this->_matrix[nodeIdx][i])
+                continue;
+
+            if (visited.count(&this->_nodeList[i]) == 1)
                 continue;
 
             distances[&this->_nodeList[i]] = distances[curr] + 1;
@@ -305,10 +311,10 @@ void MGraph<NT, ET>::addNode(const NT &data) {
 
     this->_nodeList.emplace_back(data);
 
-    this->_matrix.resize(this->_nodes);
-
     for (auto& row : this->_matrix)
          row.resize(this->_nodes, nullptr);
+
+    this->_matrix.emplace_back(std::vector<std::shared_ptr<Edge>>(this->_nodes, nullptr));
 }
 
 template<typename NT, typename ET>
@@ -345,10 +351,10 @@ void MGraph<NT, ET>::addEdge(const NT &n1, const NT &n2, const ET &edgeData) {
     int n1Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n1) - this->_nodeList.begin();
     int n2Idx = std::find(this->_nodeList.begin(), this->_nodeList.end(), n2) - this->_nodeList.begin();
 
-    //std::shared_ptr<Edge> edgePtr = std::shared_ptr<Edge>(new Edge(edgeData));
+    std::shared_ptr<Edge> edgePtr = std::shared_ptr<Edge>(new Edge(edgeData));
 
-    this->_matrix[n1Idx][n2Idx] = std::shared_ptr<Edge>(new Edge(edgeData));
-    this->_matrix[n2Idx][n1Idx] = std::shared_ptr<Edge>(new Edge(edgeData));
+    this->_matrix[n1Idx][n2Idx] = edgePtr;
+    this->_matrix[n2Idx][n1Idx] = edgePtr;
 
     this->_edges++;
 }
@@ -483,6 +489,8 @@ int MGraph<NT, ET>::distance(const NT &n1, const NT &n2) const {
     qDebug() << "in distance 2";
 
     std::unordered_map<const NT*, int> distances = this->_bfsDistances(&this->_nodeList[node1Idx]);
+
+    qDebug() << "in distance 3";
 
     return ( distances.count(&this->_nodeList[node2Idx]) == 1 ) ? distances[&this->_nodeList[node2Idx]] : -1;
 }
