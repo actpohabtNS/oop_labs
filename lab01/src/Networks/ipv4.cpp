@@ -10,6 +10,9 @@ IPv4::IPv4() {
     std::fill(this->_octets, this->_octets + MAX_OCTETS, 0);
 }
 
+IPv4::IPv4(uchar o1, uchar o2, uchar o3, uchar o4) : _octets {o1, o2, o3, o4} {};
+
+
 
 
 // -------------------------------------- OTHER --------------------------------------
