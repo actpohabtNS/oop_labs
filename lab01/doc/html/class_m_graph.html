@@ -63,11 +63,18 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_m_graph-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MGraph&lt; NT, ET &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Matrix graph class.  
+ <a href="class_m_graph.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_m_graph_8h_source.html">MGraph.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for MGraph&lt; NT, ET &gt;:</div>
 <div class="dyncontent">
@@ -78,52 +85,617 @@ Inheritance diagram for MGraph&lt; NT, ET &gt;:</div>
   </map>
 </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_methods_class_graph"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_graph')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a></td></tr>
-<tr class="memitem:aefeb78663e2b6306df82287df36508c8 inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="aefeb78663e2b6306df82287df36508c8"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addNode</b> (const NT &amp;data)=0</td></tr>
-<tr class="separator:aefeb78663e2b6306df82287df36508c8 inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69c641506716632b8f5c488c5c14ae21 inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a69c641506716632b8f5c488c5c14ae21"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>eraseNode</b> (const NT &amp;data)=0</td></tr>
-<tr class="separator:a69c641506716632b8f5c488c5c14ae21 inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35ab91205f082d32b33dc444dbbd36ab inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a35ab91205f082d32b33dc444dbbd36ab"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>nodeExist</b> (const NT &amp;data) const =0</td></tr>
-<tr class="separator:a35ab91205f082d32b33dc444dbbd36ab inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a121d6870e1e72880755e180c3b8d4435 inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a121d6870e1e72880755e180c3b8d4435"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addEdge</b> (const NT &amp;n1, const NT &amp;n2, const ET &amp;edgeData)=0</td></tr>
-<tr class="separator:a121d6870e1e72880755e180c3b8d4435 inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63838c6d825ea1e03623a3308aff347f inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a63838c6d825ea1e03623a3308aff347f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>eraseEdge</b> (const NT &amp;n1, const NT &amp;n2)=0</td></tr>
-<tr class="separator:a63838c6d825ea1e03623a3308aff347f inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af514d6a0e5f5cc689083022126040e75 inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="af514d6a0e5f5cc689083022126040e75"></a>
-virtual const ET *&#160;</td><td class="memItemRight" valign="bottom"><b>getEdge</b> (const NT &amp;n1, const NT &amp;n2) const =0</td></tr>
-<tr class="separator:af514d6a0e5f5cc689083022126040e75 inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a152259b0e36c19ebfef8dd1796f5c088 inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a152259b0e36c19ebfef8dd1796f5c088"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>edgeExist</b> (const NT &amp;n1, const NT &amp;n2) const =0</td></tr>
-<tr class="separator:a152259b0e36c19ebfef8dd1796f5c088 inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ff62ba262b707ae33c52783b33ce93c inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a1ff62ba262b707ae33c52783b33ce93c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>eraseEdges</b> ()=0</td></tr>
-<tr class="separator:a1ff62ba262b707ae33c52783b33ce93c inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d0ecde260f55abc06db58e010d5d4c5 inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a2d0ecde260f55abc06db58e010d5d4c5"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>connected</b> () const =0</td></tr>
-<tr class="separator:a2d0ecde260f55abc06db58e010d5d4c5 inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add658e1c717dbab5697ef53b5d88ff0a inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="add658e1c717dbab5697ef53b5d88ff0a"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>cyclic</b> () const =0</td></tr>
-<tr class="separator:add658e1c717dbab5697ef53b5d88ff0a inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d35d677916eddae048afa46e0d8d145 inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a1d35d677916eddae048afa46e0d8d145"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>distance</b> (const NT &amp;n1, const NT &amp;n2) const =0</td></tr>
-<tr class="separator:a1d35d677916eddae048afa46e0d8d145 inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a432aa0cdf1dbbc2da9c48461ec8544e7 inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a432aa0cdf1dbbc2da9c48461ec8544e7"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>nodes</b> () const =0</td></tr>
-<tr class="separator:a432aa0cdf1dbbc2da9c48461ec8544e7 inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9552b74a206fdeaf1f90b80955c77c28 inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="a9552b74a206fdeaf1f90b80955c77c28"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>edges</b> () const =0</td></tr>
-<tr class="separator:a9552b74a206fdeaf1f90b80955c77c28 inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6f599ed0b353d27b43c6f56a6b47b9c inherit pub_methods_class_graph"><td class="memItemLeft" align="right" valign="top"><a id="ab6f599ed0b353d27b43c6f56a6b47b9c"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>empty</b> () const =0</td></tr>
-<tr class="separator:ab6f599ed0b353d27b43c6f56a6b47b9c inherit pub_methods_class_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2850b2f529bb38f39149b8fa0bc2ebb5"><td class="memItemLeft" align="right" valign="top"><a id="a2850b2f529bb38f39149b8fa0bc2ebb5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a2850b2f529bb38f39149b8fa0bc2ebb5">MGraph</a> ()</td></tr>
+<tr class="memdesc:a2850b2f529bb38f39149b8fa0bc2ebb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor. <br /></td></tr>
+<tr class="separator:a2850b2f529bb38f39149b8fa0bc2ebb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79628aa9036c7347099337c0b0b2566f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a79628aa9036c7347099337c0b0b2566f">MGraph</a> (std::initializer_list&lt; NT &gt; list)</td></tr>
+<tr class="memdesc:a79628aa9036c7347099337c0b0b2566f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor using initializer_list of nodes.  <a href="class_m_graph.html#a79628aa9036c7347099337c0b0b2566f">More...</a><br /></td></tr>
+<tr class="separator:a79628aa9036c7347099337c0b0b2566f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad58ed6d15714a8192bb0a3aa3bab0b72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#ad58ed6d15714a8192bb0a3aa3bab0b72">addNode</a> (const NT &amp;data) override</td></tr>
+<tr class="memdesc:ad58ed6d15714a8192bb0a3aa3bab0b72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a node.  <a href="class_m_graph.html#ad58ed6d15714a8192bb0a3aa3bab0b72">More...</a><br /></td></tr>
+<tr class="separator:ad58ed6d15714a8192bb0a3aa3bab0b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac21f13d66d4f5824e2081514931244c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#ac21f13d66d4f5824e2081514931244c0">nodeExist</a> (const NT &amp;data) const override</td></tr>
+<tr class="memdesc:ac21f13d66d4f5824e2081514931244c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if node exist.  <a href="class_m_graph.html#ac21f13d66d4f5824e2081514931244c0">More...</a><br /></td></tr>
+<tr class="separator:ac21f13d66d4f5824e2081514931244c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0055cfa2fea669e538234ce4c635b00c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a0055cfa2fea669e538234ce4c635b00c">eraseNode</a> (const NT &amp;data) override</td></tr>
+<tr class="memdesc:a0055cfa2fea669e538234ce4c635b00c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erase node.  <a href="class_m_graph.html#a0055cfa2fea669e538234ce4c635b00c">More...</a><br /></td></tr>
+<tr class="separator:a0055cfa2fea669e538234ce4c635b00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad746f8e1f1892c5b5944f2c15eb476f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#ad746f8e1f1892c5b5944f2c15eb476f6">addEdge</a> (const NT &amp;n1, const NT &amp;n2, const ET &amp;edgeData) override</td></tr>
+<tr class="memdesc:ad746f8e1f1892c5b5944f2c15eb476f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an edge.  <a href="class_m_graph.html#ad746f8e1f1892c5b5944f2c15eb476f6">More...</a><br /></td></tr>
+<tr class="separator:ad746f8e1f1892c5b5944f2c15eb476f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac763580b19a802b0204d4b839b2097"><td class="memItemLeft" align="right" valign="top">const ET *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#afac763580b19a802b0204d4b839b2097">getEdge</a> (const NT &amp;n1, const NT &amp;n2) const override</td></tr>
+<tr class="memdesc:afac763580b19a802b0204d4b839b2097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get edge data.  <a href="class_m_graph.html#afac763580b19a802b0204d4b839b2097">More...</a><br /></td></tr>
+<tr class="separator:afac763580b19a802b0204d4b839b2097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186a8db6fa236ef9baeb36469ba3224b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a186a8db6fa236ef9baeb36469ba3224b">edgeExist</a> (const NT &amp;n1, const NT &amp;n2) const override</td></tr>
+<tr class="memdesc:a186a8db6fa236ef9baeb36469ba3224b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an edge exist.  <a href="class_m_graph.html#a186a8db6fa236ef9baeb36469ba3224b">More...</a><br /></td></tr>
+<tr class="separator:a186a8db6fa236ef9baeb36469ba3224b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae77a72b06219ba7fee9d9658ea4639d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#ae77a72b06219ba7fee9d9658ea4639d8">eraseEdge</a> (const NT &amp;n1, const NT &amp;n2) override</td></tr>
+<tr class="memdesc:ae77a72b06219ba7fee9d9658ea4639d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete an edge.  <a href="class_m_graph.html#ae77a72b06219ba7fee9d9658ea4639d8">More...</a><br /></td></tr>
+<tr class="separator:ae77a72b06219ba7fee9d9658ea4639d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78351563b3c99ca652cd98e99f1cdf15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a78351563b3c99ca652cd98e99f1cdf15">eraseEdges</a> () override</td></tr>
+<tr class="memdesc:a78351563b3c99ca652cd98e99f1cdf15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all adges.  <a href="class_m_graph.html#a78351563b3c99ca652cd98e99f1cdf15">More...</a><br /></td></tr>
+<tr class="separator:a78351563b3c99ca652cd98e99f1cdf15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e8547742392f161c0ca87a26c063c11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a0e8547742392f161c0ca87a26c063c11">dfs</a> (const NT &amp;snode, std::unordered_set&lt; const NT * &gt; *visited) const</td></tr>
+<tr class="memdesc:a0e8547742392f161c0ca87a26c063c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deep First Search.  <a href="class_m_graph.html#a0e8547742392f161c0ca87a26c063c11">More...</a><br /></td></tr>
+<tr class="separator:a0e8547742392f161c0ca87a26c063c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae459613de00effffda4f189dd33d4e2c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#ae459613de00effffda4f189dd33d4e2c">connected</a> () const override</td></tr>
+<tr class="memdesc:ae459613de00effffda4f189dd33d4e2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is connected.  <a href="class_m_graph.html#ae459613de00effffda4f189dd33d4e2c">More...</a><br /></td></tr>
+<tr class="separator:ae459613de00effffda4f189dd33d4e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8027d8e46c1f6145442b23200ed28693"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a8027d8e46c1f6145442b23200ed28693">cyclic</a> () const override</td></tr>
+<tr class="memdesc:a8027d8e46c1f6145442b23200ed28693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is cyclic.  <a href="class_m_graph.html#a8027d8e46c1f6145442b23200ed28693">More...</a><br /></td></tr>
+<tr class="separator:a8027d8e46c1f6145442b23200ed28693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20033734d5e1f854b9c90c851f05fd4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a20033734d5e1f854b9c90c851f05fd4f">distance</a> (const NT &amp;n1, const NT &amp;n2) const override</td></tr>
+<tr class="memdesc:a20033734d5e1f854b9c90c851f05fd4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get distance between 2 nodes.  <a href="class_m_graph.html#a20033734d5e1f854b9c90c851f05fd4f">More...</a><br /></td></tr>
+<tr class="separator:a20033734d5e1f854b9c90c851f05fd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a581d6a2ce557103b1584e1d7cab6094c"><td class="memItemLeft" align="right" valign="top"><a id="a581d6a2ce557103b1584e1d7cab6094c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nodes</b> () const override</td></tr>
+<tr class="separator:a581d6a2ce557103b1584e1d7cab6094c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36ee0d8e73a434a9214d7aa1a4dbf168"><td class="memItemLeft" align="right" valign="top"><a id="a36ee0d8e73a434a9214d7aa1a4dbf168"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>edges</b> () const override</td></tr>
+<tr class="separator:a36ee0d8e73a434a9214d7aa1a4dbf168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48d4974570258ea7e007f69b81ebe3f3"><td class="memItemLeft" align="right" valign="top"><a id="a48d4974570258ea7e007f69b81ebe3f3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>empty</b> () const override</td></tr>
+<tr class="separator:a48d4974570258ea7e007f69b81ebe3f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename NT, typename ET&gt;<br />
+class MGraph&lt; NT, ET &gt;</h3>
+
+<p>Matrix graph class. </p>
+<p><a class="el" href="class_m_graph.html" title="Matrix graph class.">MGraph</a> implemented using matrix containing adges. Consumes O(|N|^2) space, where |N| - number of nodes, |E| - number of edges. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a79628aa9036c7347099337c0b0b2566f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79628aa9036c7347099337c0b0b2566f">&#9670;&nbsp;</a></span>MGraph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::<a class="el" href="class_m_graph.html">MGraph</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::initializer_list&lt; NT &gt;&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor using initializer_list of nodes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>Initializer_list of nodes</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Is used to create <a class="el" href="class_m_graph.html" title="Matrix graph class.">MGraph</a> and add Nodes given in std::initializer_list. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad746f8e1f1892c5b5944f2c15eb476f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad746f8e1f1892c5b5944f2c15eb476f6">&#9670;&nbsp;</a></span>addEdge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::addEdge </td>
+          <td>(</td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ET &amp;&#160;</td>
+          <td class="paramname"><em>edgeData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add an edge. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n1</td><td>Node 1 data ref </td></tr>
+    <tr><td class="paramname">n2</td><td>Node 2 data ref </td></tr>
+    <tr><td class="paramname">edgeData</td><td>Data to be stored in an edge</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Adds an edge with [ edgeData ] between nodes [ n1 ] and [ n2 ].</p>
+<dl class="section note"><dt>Note</dt><dd>If either of nodes [ n1 ] or [ n2 ] does not exist, edge is not added. </dd></dl>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ad58ed6d15714a8192bb0a3aa3bab0b72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad58ed6d15714a8192bb0a3aa3bab0b72">&#9670;&nbsp;</a></span>addNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::addNode </td>
+          <td>(</td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add a node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Data to be added as node</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Adds a node with [ data ] to <a class="el" href="class_m_graph.html" title="Matrix graph class.">MGraph</a>. </p>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ae459613de00effffda4f189dd33d4e2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae459613de00effffda4f189dd33d4e2c">&#9670;&nbsp;</a></span>connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::connected</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Is connected. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool If graph is connected</dd></dl>
+<p>Checks whether graph is connected (any node can be reached from any other one). </p>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a8027d8e46c1f6145442b23200ed28693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8027d8e46c1f6145442b23200ed28693">&#9670;&nbsp;</a></span>cyclic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::cyclic</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Is cyclic. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool If graph is cyclic</dd></dl>
+<p>Checks whether graph has cycles. </p>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a0e8547742392f161c0ca87a26c063c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e8547742392f161c0ca87a26c063c11">&#9670;&nbsp;</a></span>dfs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::dfs </td>
+          <td>(</td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>snode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unordered_set&lt; const NT * &gt; *&#160;</td>
+          <td class="paramname"><em>visited</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deep First Search. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">snode</td><td>Pointer to starting node </td></tr>
+    <tr><td class="paramname">visited</td><td>Pointer to set storing visited nodes</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Does Deep First Search, adding visited nodes to [ visited ]. </p>
+
+</div>
+</div>
+<a id="a20033734d5e1f854b9c90c851f05fd4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20033734d5e1f854b9c90c851f05fd4f">&#9670;&nbsp;</a></span>distance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::distance </td>
+          <td>(</td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get distance between 2 nodes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n1</td><td>Node 1 data ref </td></tr>
+    <tr><td class="paramname">n2</td><td>Node 2 data ref </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int Number if edges</dd></dl>
+<p>Returns distance between nodes [ n1 ] and [ n2 ].</p>
+<dl class="section note"><dt>Note</dt><dd>If either of nodes are not in graph or they are not connecred, -1 is returned. </dd></dl>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a186a8db6fa236ef9baeb36469ba3224b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a186a8db6fa236ef9baeb36469ba3224b">&#9670;&nbsp;</a></span>edgeExist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::edgeExist </td>
+          <td>(</td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if an edge exist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n1</td><td>Node 1 data ref </td></tr>
+    <tr><td class="paramname">n2</td><td>Node 2 data ref </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool Whether an edge exist</dd></dl>
+<p>Checks whether an edge between nodes [ n1 ] and [ n2 ] exists.</p>
+<dl class="section note"><dt>Note</dt><dd>If either of nodes [ n1 ] or [ n2 ] does not exist, false is returned. </dd></dl>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ae77a72b06219ba7fee9d9658ea4639d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae77a72b06219ba7fee9d9658ea4639d8">&#9670;&nbsp;</a></span>eraseEdge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::eraseEdge </td>
+          <td>(</td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delete an edge. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n1</td><td>Node 1 data ref </td></tr>
+    <tr><td class="paramname">n2</td><td>Node 2 data ref</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Erase edge between nodes [ n1 ] and [ n2 ]</p>
+<dl class="section note"><dt>Note</dt><dd>If either of these nodes does not exist or the edge does not exist, nothing happens. </dd></dl>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a78351563b3c99ca652cd98e99f1cdf15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78351563b3c99ca652cd98e99f1cdf15">&#9670;&nbsp;</a></span>eraseEdges()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::eraseEdges</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delete all adges. </p>
+<p>Erases all edges in graph. </p>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a0055cfa2fea669e538234ce4c635b00c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0055cfa2fea669e538234ce4c635b00c">&#9670;&nbsp;</a></span>eraseNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::eraseNode </td>
+          <td>(</td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Erase node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Node with [ data ] to be erased</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Erases node with data = [ data ] and all its edges. </p>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="afac763580b19a802b0204d4b839b2097"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afac763580b19a802b0204d4b839b2097">&#9670;&nbsp;</a></span>getEdge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const ET * <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::getEdge </td>
+          <td>(</td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>n2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get edge data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n1</td><td>Node 1 data ref </td></tr>
+    <tr><td class="paramname">n2</td><td>Node 2 data ref </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>const ET* Pointer to data stored in an edge</dd></dl>
+<p>Return pointer to data, contained in an egde, connecting nodes [ n1 ] and [ n2 ]. </p><dl class="section note"><dt>Note</dt><dd>If either of these nodes does not exist or the edge does not exist, null pointer is returned. </dd></dl>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ac21f13d66d4f5824e2081514931244c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac21f13d66d4f5824e2081514931244c0">&#9670;&nbsp;</a></span>nodeExist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::nodeExist </td>
+          <td>(</td>
+          <td class="paramtype">const NT &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if node exist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Data to be searched </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool Whether node with [ data ] exists</dd></dl>
+<p>Checks whether node with [ data ] is presented in <a class="el" href="class_m_graph.html" title="Matrix graph class.">MGraph</a>. </p>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/Graph/<a class="el" href="_m_graph_8h_source.html">MGraph.h</a></li>
 </ul>
