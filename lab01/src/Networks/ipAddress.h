@@ -9,9 +9,12 @@
 /// Basic class of IpAddresses, intruduces general logic of IpAddresses.
 ///
 class IpAddress {
+public:
     IpAddress() = default;
     IpAddress(const QString& data);
     virtual ~IpAddress() = default;
+
+    virtual QString QStr() const = 0;
 };
 
 #endif // IPADDRESS_H

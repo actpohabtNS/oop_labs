@@ -1,0 +1,34 @@
+#include "ipv4.h"
+
+#include <algorithm>
+
+#include <QDebug>
+
+// -------------------------------------- CONSTRUCTOR, DESTRUCTOR --------------------------------------
+
+IPv4::IPv4() {
+    std::fill(this->_octets, this->_octets + MAX_OCTETS, 0);
+}
+
+
+
+// -------------------------------------- OTHER --------------------------------------
+
+QString IPv4::QStr() const {
+    QString qStr = "";
+
+    for (std::size_t octInd = 0; octInd < MAX_OCTETS; octInd++)
+        qStr.append(QString::number(this->_octets[octInd]) + '.');
+
+    qStr.chop(1);
+
+    return qStr;
+}
+
+
+
+// -------------------------------------- OVERLOADED OPERATORS --------------------------------------
+
+QTextStream& IPv4::operator<<(QTextStream &ostream) {
+    return ostream << this->QStr();
+}

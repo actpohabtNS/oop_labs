@@ -16,17 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/Networks/ipv4.cpp \
     src/main.cpp \
     src/UI/mainwindow.cpp \
     tests/LGraph_tests.cpp \
     tests/MGraph_tests.cpp \
-    tests/doctest_main.cpp
+    tests/doctest_main.cpp \
+    tests/ipv4_tests.cpp
 
 HEADERS += \
     src/Graph/Graph.h \
     src/Graph/LGraph.h \
     src/Graph/MGraph.h \
     src/Networks/ipAddress.h \
+    src/Networks/ipv4.h \
     src/UI/mainwindow.h \
     tests/doctest.h
 
