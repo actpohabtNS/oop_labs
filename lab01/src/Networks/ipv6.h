@@ -51,7 +51,7 @@ public:
     ///
     /// Initializer list constructor
     ///
-    IPv6(std::initializer_list<uchar> list);
+    IPv6(std::initializer_list<ushort> list);
 
     ///
     /// \brief IPv6
@@ -68,9 +68,10 @@ public:
 
     ///
     /// \brief QStr
+    /// \param base - blocks output base
     /// \return QString - IPv6 translated into QString
     ///
-    QString QStr() const override;
+    QString QStr(int base = 16) const override;
 
     ///
     /// \brief type
