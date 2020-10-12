@@ -85,6 +85,41 @@ public:
     /// Operator overloading to perform output to QTextStream
     ///
     QTextStream& operator<<(QTextStream &ostream);
+
+    ///
+    /// \brief operator <
+    /// \param other - other IPv4 address to compare
+    /// \return bool - whethet this IPv4 address is less other IPv4
+    ///
+    bool operator< (const IPv4& other) const;
+
+    ///
+    /// \brief operator <=
+    /// \param other - other IPv4 address to compare
+    /// \return bool - whethet this IPv4 address is less-equal other IPv4
+    ///
+    bool operator<= (const IPv4& other) const;
+
+    ///
+    /// \brief operator >
+    /// \param other - other IPv4 address to compare
+    /// \return bool - whethet this IPv4 address is greater other IPv4
+    ///
+    bool operator> (const IPv4& other) const;
+
+    ///
+    /// \brief operator >=
+    /// \param other - other IPv4 address to compare
+    /// \return bool - whethet this IPv4 address is greater-equal other IPv4
+    ///
+    bool operator>= (const IPv4& other) const;
+
+    ///
+    /// \brief operator ==
+    /// \param other - other IPv4 address to compare
+    /// \return bool - whethet this IPv4 address is equal other IPv4
+    ///
+    bool operator== (const IPv4& other) const;
 };
 
 #endif // IPV4_H

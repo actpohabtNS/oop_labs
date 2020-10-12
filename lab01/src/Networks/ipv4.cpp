@@ -53,3 +53,35 @@ IA_t IPv4::type() {
 QTextStream& IPv4::operator<<(QTextStream &ostream) {
     return ostream << this->QStr();
 }
+
+bool IPv4::operator<(const IPv4 &other) const {
+    for (std::size_t octIdx = 0; octIdx < MAX_OCTETS; ++octIdx)
+        if (this->_octets[octIdx] > other._octets[octIdx])
+            return false;
+
+    return this->_octets[MAX_OCTETS-1] < other._octets[MAX_OCTETS-1];
+}
+
+bool IPv4::operator<=(const IPv4 &other) const {
+    return (*this < other || *this == other);
+}
+
+bool IPv4::operator>(const IPv4 &other) const {
+    for (std::size_t octIdx = 0; octIdx < MAX_OCTETS; ++octIdx)
+        if (this->_octets[octIdx] < other._octets[octIdx])
+            return false;
+
+    return this->_octets[MAX_OCTETS-1] > other._octets[MAX_OCTETS-1];
+}
+
+bool IPv4::operator>=(const IPv4 &other) const {
+    return (*this > other || *this == other);
+}
+
+bool IPv4::operator==(const IPv4 &other) const {
+    for (std::size_t octIdx = 0; octIdx < MAX_OCTETS; ++octIdx)
+        if (this->_octets[octIdx] != other._octets[octIdx])
+            return false;
+
+    return true;
+}
