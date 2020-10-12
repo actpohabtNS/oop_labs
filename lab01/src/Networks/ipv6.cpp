@@ -31,6 +31,30 @@ IPv6::IPv6(std::initializer_list<ushort> list) {
     }
 }
 
+IPv6::IPv6(QString data) {
+    std::fill(this->_blocks, this->_blocks + MAX_BLOCKS, 0);
+
+   data.replace(':', ' ');
+   data = data.simplified();       // remove repetitous whitespaces
+
+   QRegExp rx("[^(\\d| |[a-fA-F)]");
+
+   if (rx.indexIn(data) != -1)     // if encounters NOT a digit, a whitespace or NOT a letter a-e - create zero IPv6
+       return;
+
+   QStringList blocks = data.split(' ');
+
+   std::size_t blcIdx = 0;
+
+   for (auto oct : blocks) {         // chech whether numbers are lower-equal than FFFF
+       if (oct.length() >= 5 || blcIdx >= MAX_BLOCKS)
+           return;
+
+       this->_blocks[blcIdx] = oct.toUShort(nullptr, 16);
+       ++blcIdx;
+   }
+}
+
 
 
 // -------------------------------------- OTHER --------------------------------------

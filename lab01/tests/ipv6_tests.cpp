@@ -36,4 +36,13 @@ TEST_CASE("IPv6") {
         CHECK(IPv6(1,2,3,5) >= IPv6(1,2,3,4));
         CHECK(IPv6(1,2,3,5) > IPv6(1,2,3,4));
     }
+
+    SUBCASE("Parsing") {
+        CHECK(IPv6("") == IPv6());
+        CHECK(IPv6("1:4rt") == IPv6());
+        CHECK(IPv6("1:2:3:4").QStr() == "1:2:3:4:0:0:0:0");
+        CHECK(IPv6("1::22:3   44").QStr() == "1:22:3:44:0:0:0:0");
+        CHECK(IPv6("1:2:3:4:5:6:7:8:9:10").QStr() == "1:2:3:4:5:6:7:8");
+        CHECK(IPv6("1:FEFEFE:3:4:5:6") == IPv6(1));
+    }
 }
