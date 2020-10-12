@@ -2,8 +2,14 @@
 #define NETWORK_H
 
 #include "ipAddress.h"
+#include "IpAddress_types.h"
 
 #include <QString>
+#include <QTextStream>
+
+#include <memory>
+
+using sh_ptr_ip = std::shared_ptr<IpAddress>;
 
 ///
 /// \brief The Network class
@@ -13,7 +19,7 @@
 class Network
 {
 private:
-    IpAddress* _ip;
+    sh_ptr_ip _ip;
     uchar _mask;
 
 public:
@@ -26,14 +32,23 @@ public:
 
     ///
     /// \brief Network
-    /// \param ip - IpAddress to serve as a host
+    /// \param ip - Pointer to IpAddress to serve as a host
     /// \param mask - mask in CIDR notation
     ///
     /// Basic constructor
     ///
-    Network(IpAddress ip, uchar mask = 0);
+    Network(const IpAddress* ip, uchar mask = 0);
 
-    ~Network();
+    ///
+    /// \brief Network
+    /// \param ip - std::shared_ptr to IpAddress to serve as a host
+    /// \param mask - mask in CIDR notation
+    ///
+    /// Basic overloaded constructor for std::shared_ptr
+    ///
+    Network(sh_ptr_ip ip, uchar mask = 0);
+
+    ~Network() = default;
 
 
     ///
@@ -52,10 +67,27 @@ public:
 
     ///
     /// \brief includes
-    /// \param ip - IpAddress to check whether it is included into the Network
+    /// \param ip - Pointer to IpAddress to check whether it is included into the Network
     /// \return bool - Whether ip is included into the Network
     ///
-    bool includes(IpAddress ip) const;
+    bool includes(const IpAddress* ip) const;
+
+    ///
+    /// \brief maxMaskLength
+    /// \param type - type of IpAddress
+    /// \return uchar - max length of mask for this IpAddress type
+    ///
+    uchar maxMaskLength(IpAddress_type type) const;
+
+
+    ///
+    /// \brief operator <<
+    /// \param ostream - QTextStream
+    /// \return ostream& - reference to QTextSteam
+    ///
+    /// Operator overloading to perform output to QTextStream
+    ///
+    QTextStream& operator<<(QTextStream &ostream);
 };
 
 #endif // NETWORK_H
