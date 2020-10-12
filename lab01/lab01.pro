@@ -25,7 +25,8 @@ SOURCES += \
     tests/MGraph_tests.cpp \
     tests/doctest_main.cpp \
     tests/ipv4_tests.cpp \
-    tests/ipv6_tests.cpp
+    tests/ipv6_tests.cpp \
+    tests/network_tests.cpp
 
 HEADERS += \
     src/Graph/Graph.h \
