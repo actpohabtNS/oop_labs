@@ -34,7 +34,7 @@ IPv4::IPv4(std::initializer_list<uchar> list) {
 QString IPv4::QStr() const {
     QString qStr = "";
 
-    for (std::size_t octInd = 0; octInd < MAX_OCTETS; octInd++)
+    for (std::size_t octInd = 0; octInd < MAX_OCTETS; ++octInd)
         qStr.append(QString::number(this->_octets[octInd]) + '.');
 
     qStr.chop(1);
