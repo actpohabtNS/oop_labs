@@ -2,6 +2,7 @@
 #define IPV4_H
 
 #include "ipAddress.h"
+#include "IpAddress_types.h"
 
 #include <QString>
 #include <QTextStream>
@@ -68,6 +69,13 @@ public:
     /// \return QString - IPv4 translated into QString
     ///
     QString QStr() const override;
+
+    ///
+    /// \brief type
+    /// \return IpAddress_type
+    ///
+    static IA_t type();
+
 
     ///
     /// \brief operator <<

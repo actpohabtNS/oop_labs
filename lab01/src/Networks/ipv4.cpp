@@ -42,6 +42,10 @@ QString IPv4::QStr() const {
     return qStr;
 }
 
+IA_t IPv4::type() {
+    return IA_t::IPv4;
+}
+
 
 
 // -------------------------------------- OVERLOADED OPERATORS --------------------------------------
