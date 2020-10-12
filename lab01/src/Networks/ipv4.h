@@ -68,6 +68,7 @@ public:
 
     ///
     /// \brief QStr
+    /// \param base - octets output base
     /// \return QString - IPv4 translated into QString
     ///
     QString QStr(int base = 10) const override;
