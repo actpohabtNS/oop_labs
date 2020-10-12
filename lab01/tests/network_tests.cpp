@@ -34,4 +34,16 @@ TEST_CASE("Network") {
             CHECK(nt4.QStr() == "15:16:17:18:19:0:0:0/100");
         }
     }
+
+    SUBCASE("Set mask") {
+        IPv4 ipv4(1,2,3,4);
+        Network nt1(&ipv4, 16);
+        nt1.setMask(20);
+        CHECK(nt1.QStr() == "1.2.3.4/20");
+
+        IPv6 ipv6(10, 11, 12, 13, 14);
+        Network nt3(&ipv6, 100);
+        nt3.setMask(138);
+        CHECK(nt3.QStr() == "10:11:12:13:14:0:0:0/10");
+    }
 }

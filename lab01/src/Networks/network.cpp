@@ -1,7 +1,7 @@
 #include "network.h"
 #include "ipv4.h"
 
-
+#include <QDebug>
 
 // -------------------------------------- CONSTRUCTOR, DESTRUCTOR --------------------------------------
 
@@ -22,6 +22,9 @@ Network::Network(sh_ptr_ip ip, uchar mask) {
     this->_mask = mask % this->maxMaskLength(ip->type());
 }
 
+void Network::setMask(uchar mask) {
+    this->_mask = mask % this->maxMaskLength(this->_ip->type());
+}
 
 
 
