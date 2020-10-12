@@ -28,4 +28,12 @@ TEST_CASE("IPv6") {
             CHECK(ip2.QStr() == "feee:feee:0:0:0:0:0:0");
         }
     }
+
+    SUBCASE("Operators") {
+        CHECK(IPv6(1,2,1,0) < IPv6(1,2,3,4));
+        CHECK(IPv6() <= IPv6(0,0,0));
+        CHECK(IPv6(1,1,1,1) == IPv6(1,1,1,1));
+        CHECK(IPv6(1,2,3,5) >= IPv6(1,2,3,4));
+        CHECK(IPv6(1,2,3,5) > IPv6(1,2,3,4));
+    }
 }

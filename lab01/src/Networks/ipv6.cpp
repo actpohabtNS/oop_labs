@@ -57,3 +57,35 @@ IA_t IPv6::type() {
 QTextStream &IPv6::operator<<(QTextStream &ostream) {
     return ostream << this->QStr();
 }
+
+bool IPv6::operator<(const IPv6 &other) const {
+    for (std::size_t blcIdx = 0; blcIdx < MAX_BLOCKS; ++blcIdx)
+        if (this->_blocks[blcIdx] != other._blocks[blcIdx])
+            return this->_blocks[blcIdx] < other._blocks[blcIdx];
+
+    return false;
+}
+
+bool IPv6::operator<=(const IPv6 &other) const {
+    return (*this < other || *this == other);
+}
+
+bool IPv6::operator>(const IPv6 &other) const {
+    for (std::size_t blcIdx = 0; blcIdx < MAX_BLOCKS; ++blcIdx)
+        if (this->_blocks[blcIdx] != other._blocks[blcIdx])
+            return this->_blocks[blcIdx] > other._blocks[blcIdx];
+
+    return false;
+}
+
+bool IPv6::operator>=(const IPv6 &other) const {
+    return (*this > other || *this == other);
+}
+
+bool IPv6::operator==(const IPv6 &other) const {
+    for (std::size_t blcIdx = 0; blcIdx < MAX_BLOCKS; ++blcIdx)
+        if (this->_blocks[blcIdx] != other._blocks[blcIdx])
+            return false;
+
+    return true;
+}
