@@ -6,6 +6,8 @@
 
 #include <QTextStream>
 
+constexpr std::size_t MAX_BLOCKS {8};
+
 ///
 /// \brief The IPv6 class
 ///
