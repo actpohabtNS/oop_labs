@@ -57,9 +57,11 @@ public:
     /// \brief IPv4
     /// \param data - stores IPv4 address
     ///
-    /// Parse constructor
+    /// Parse constructor, accepts string in (\d| |.)+ (RegExp) or "n1{.| }n2{.| }..." (ni - numbers, {.| } sets of whitespaces or\and dots) form.
+    /// If parser encounters not digit, whitespace or dot, zero IPv4 returned.
+    /// Then octets are being attached numbers, if they are less-equal 256, otherwise parsion stops and the remaining octets initialize with 0.
     ///
-    IPv4(const QString& data);
+    IPv4(QString data);
 
     ~IPv4() = default;
 

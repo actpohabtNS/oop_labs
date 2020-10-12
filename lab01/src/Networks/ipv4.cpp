@@ -3,6 +3,8 @@
 #include <algorithm>
 
 #include <QDebug>
+#include <QRegExp>
+#include <QStringList>
 
 // -------------------------------------- CONSTRUCTOR, DESTRUCTOR --------------------------------------
 
@@ -22,6 +24,31 @@ IPv4::IPv4(std::initializer_list<uchar> list) {
             return;
 
         this->_octets[octIdx] = oct;
+        ++octIdx;
+    }
+}
+
+IPv4::IPv4(QString data) {
+     std::fill(this->_octets, this->_octets + MAX_OCTETS, 0);
+
+    data.replace('.', ' ');
+    data = data.simplified();       // remove repetitous whitespaces
+
+    QRegExp rx("[^(\\d| )]");
+    if (rx.indexIn(data) != -1)     // if encounters NOT a digit or a whitespace - create zero IPv4
+        return;
+
+    QStringList octs = data.split(' ');
+
+    std::size_t octIdx = 0;
+
+    for (auto oct : octs) {         // chech whether numbers are lower-equal than 256
+        if (oct.length() > 3 ||
+           (oct.length() == 3 && oct.compare("256") > 0) ||
+            octIdx >= MAX_OCTETS)
+            return;
+
+        this->_octets[octIdx] = static_cast<uchar>(oct.toUShort());
         ++octIdx;
     }
 }

@@ -38,4 +38,12 @@ TEST_CASE("IPv4") {
         CHECK(IPv4(1,2,3,5) >= IPv4(1,2,3,4));
         CHECK(IPv4(1,2,3,5) > IPv4(1,2,3,4));
     }
+
+    SUBCASE("Parsing") {
+        CHECK(IPv4("").QStr() == "0.0.0.0");
+        CHECK(IPv4("1.2.3.4").QStr() == "1.2.3.4");
+        CHECK(IPv4("1..22.3   44").QStr() == "1.22.3.44");
+        CHECK(IPv4("1.2.3.4.5.6").QStr() == "1.2.3.4");
+        CHECK(IPv4("1.400.3.4.5.6").QStr() == "1.0.0.0");
+    }
 }
