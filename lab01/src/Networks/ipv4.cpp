@@ -69,7 +69,7 @@ QString IPv4::QStr(int base) const {
     return qStr;
 }
 
-IA_t IPv4::type() {
+IA_t IPv4::type() const {
     return IA_t::IPv4;
 }
 

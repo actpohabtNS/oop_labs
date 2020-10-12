@@ -77,7 +77,7 @@ public:
     /// \brief type
     /// \return IpAddress_type
     ///
-    static IA_t type();
+    IA_t type() const override;
 
 
     ///

@@ -1,6 +1,8 @@
 #ifndef IPADDRESS_H
 #define IPADDRESS_H
 
+#include "IpAddress_types.h"
+
 #include <QString>
 
 ///
@@ -14,7 +16,9 @@ public:
     IpAddress(const QString& data);
     virtual ~IpAddress() = default;
 
-    virtual QString QStr(int base) const = 0;
+    virtual IA_t type() const = 0;
+
+    virtual QString QStr(int base = 10) const = 0;
 };
 
 #endif // IPADDRESS_H

@@ -70,7 +70,7 @@ QString IPv6::QStr(int base) const {
     return qStr;
 }
 
-IA_t IPv6::type() {
+IA_t IPv6::type() const {
     return IA_t::IPv6;
 }
 
