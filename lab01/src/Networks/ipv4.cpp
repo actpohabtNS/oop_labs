@@ -62,7 +62,7 @@ QString IPv4::QStr(int base) const {
     QString qStr = "";
 
     for (std::size_t octInd = 0; octInd < MAX_OCTETS; ++octInd)
-        qStr.append(QString("%1").arg(this->_octets[octInd], 0, base) + ':');
+        qStr.append(QString("%1").arg(this->_octets[octInd], 0, base) + '.');
 
     qStr.chop(1);
 
