@@ -83,10 +83,10 @@ QTextStream& IPv4::operator<<(QTextStream &ostream) {
 
 bool IPv4::operator<(const IPv4 &other) const {
     for (std::size_t octIdx = 0; octIdx < MAX_OCTETS; ++octIdx)
-        if (this->_octets[octIdx] > other._octets[octIdx])
-            return false;
+        if (this->_octets[octIdx] != other._octets[octIdx])
+            return this->_octets[octIdx] < other._octets[octIdx];
 
-    return this->_octets[MAX_OCTETS-1] < other._octets[MAX_OCTETS-1];
+    return false;
 }
 
 bool IPv4::operator<=(const IPv4 &other) const {
@@ -95,10 +95,10 @@ bool IPv4::operator<=(const IPv4 &other) const {
 
 bool IPv4::operator>(const IPv4 &other) const {
     for (std::size_t octIdx = 0; octIdx < MAX_OCTETS; ++octIdx)
-        if (this->_octets[octIdx] < other._octets[octIdx])
-            return false;
+        if (this->_octets[octIdx] != other._octets[octIdx])
+            return this->_octets[octIdx] > other._octets[octIdx];
 
-    return this->_octets[MAX_OCTETS-1] > other._octets[MAX_OCTETS-1];
+    return false;
 }
 
 bool IPv4::operator>=(const IPv4 &other) const {
