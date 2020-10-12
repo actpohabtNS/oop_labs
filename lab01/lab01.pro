@@ -28,6 +28,7 @@ HEADERS += \
     src/Graph/Graph.h \
     src/Graph/LGraph.h \
     src/Graph/MGraph.h \
+    src/Networks/IpAddress_types.h \
     src/Networks/ipAddress.h \
     src/Networks/ipv4.h \
     src/UI/mainwindow.h \
