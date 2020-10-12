@@ -70,7 +70,7 @@ public:
     /// \brief QStr
     /// \return QString - IPv4 translated into QString
     ///
-    QString QStr() const override;
+    QString QStr(int base = 10) const override;
 
     ///
     /// \brief type

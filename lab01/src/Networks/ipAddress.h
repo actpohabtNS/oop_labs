@@ -14,7 +14,7 @@ public:
     IpAddress(const QString& data);
     virtual ~IpAddress() = default;
 
-    virtual QString QStr() const = 0;
+    virtual QString QStr(int base) const = 0;
 };
 
 #endif // IPADDRESS_H
