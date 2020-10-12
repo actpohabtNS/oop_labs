@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/Networks/ipv4.cpp \
     src/Networks/ipv6.cpp \
+    src/Networks/network.cpp \
     src/main.cpp \
     src/UI/mainwindow.cpp \
     tests/LGraph_tests.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     src/Networks/ipAddress.h \
     src/Networks/ipv4.h \
     src/Networks/ipv6.h \
+    src/Networks/network.h \
     src/UI/mainwindow.h \
     tests/doctest.h
 
