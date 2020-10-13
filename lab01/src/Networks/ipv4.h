@@ -79,6 +79,27 @@ public:
     ///
     IA_t type() const override;
 
+    ///
+    /// \brief block_size
+    /// \return std::size_t - size of data block in bits
+    ///
+    std::size_t block_size() const override {
+        return 8;
+    }
+
+    ///
+    /// \brief data
+    /// \return std::vector<int> - vector of block values
+    ///
+    std::vector<int> data() const override {
+        std::vector<int> res {};
+
+        for (auto octet : this->_octets)
+            res.push_back(octet);
+
+        return res;
+    }
+
 
     ///
     /// \brief operator <<

@@ -74,6 +74,19 @@ IA_t IPv6::type() const {
     return IA_t::IPv6;
 }
 
+std::size_t IPv6::block_size() const {
+    return 16;
+}
+
+std::vector<int> IPv6::data() const {
+    std::vector<int> res {};
+
+    for (auto block : this->_blocks)
+        res.push_back(block);
+
+    return res;
+}
+
 
 
 // -------------------------------------- OVERLOADED OPERATORS --------------------------------------

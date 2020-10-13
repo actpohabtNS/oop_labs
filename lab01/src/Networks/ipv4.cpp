@@ -73,6 +73,19 @@ IA_t IPv4::type() const {
     return IA_t::IPv4;
 }
 
+std::size_t IPv4::block_size() const {
+    return 8;
+}
+
+std::vector<int> IPv4::data() const {
+    std::vector<int> res {};
+
+    for (auto octet : this->_octets)
+        res.push_back(octet);
+
+    return res;
+}
+
 
 
 // -------------------------------------- OVERLOADED OPERATORS --------------------------------------

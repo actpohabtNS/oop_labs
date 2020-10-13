@@ -5,6 +5,8 @@
 
 #include <QString>
 
+#include <vector>
+
 ///
 /// \brief The IpAddress class
 ///
@@ -17,6 +19,10 @@ public:
     virtual ~IpAddress() = default;
 
     virtual IA_t type() const = 0;
+
+    virtual std::size_t block_size() const = 0;
+
+    virtual std::vector<int> data() const = 0;
 
     virtual QString QStr(int base = 10) const = 0;
 };
