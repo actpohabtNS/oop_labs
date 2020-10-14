@@ -26,6 +26,17 @@ private:
     ///
     uchar _octets[4];
 
+    ///
+    /// \brief _blockWithMask
+    /// \param octet - number of octet to use mask to
+    /// \param mask - mask to use to octet
+    /// \param min - whether masked bits will be set to 0 or to 1
+    /// \return int - octet with mask used
+    ///
+    /// Use a mask for an octet specified
+    ///
+    int _blockWithMask(std::size_t octet, int mask, bool min = true) const override;
+
 public:
     ///
     /// \brief IPv4
@@ -81,7 +92,7 @@ public:
 
     ///
     /// \brief base
-    /// \return int - Number format representation of data blocks
+    /// \return int - Number format of data blocks
     ///
     int base() const override;
 

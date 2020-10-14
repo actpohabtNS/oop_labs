@@ -7,12 +7,20 @@
 
 #include <vector>
 
+class Network;
+
 ///
 /// \brief The IpAddress class
 ///
 /// Basic class of IpAddresses, intruduces general logic of IpAddresses.
 ///
 class IpAddress {
+
+    friend Network;
+
+private:
+    virtual int _blockWithMask(std::size_t block, int mask, bool min = true) const = 0;
+
 public:
     IpAddress() = default;
     IpAddress(const QString& data);

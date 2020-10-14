@@ -1,10 +1,29 @@
 #include "ipv4.h"
 
 #include <algorithm>
+#include <bitset>
 
 #include <QDebug>
 #include <QRegExp>
-#include <QStringList>
+
+
+
+// --------------------------------------  INTERNAL METHODS --------------------------------------
+
+int IPv4::_blockWithMask(std::size_t octet, int mask, bool min) const {
+    if (octet > MAX_OCTETS - 1)
+        return 0;
+
+    std::bitset<8> res_b(this->_octets[octet]);
+    std::bitset<8> mask_b(mask);
+
+    res_b &= mask_b;
+
+    if (!min)
+        res_b = ((~res_b) ^ mask_b);
+
+    return static_cast<int>(res_b.to_ulong());
+}
 
 // -------------------------------------- CONSTRUCTOR, DESTRUCTOR --------------------------------------
 

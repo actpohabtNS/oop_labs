@@ -1,14 +1,29 @@
 #include "ipv6.h"
 
 #include <algorithm>
+#include <bitset>
 
 #include <QDebug>
 #include <QRegExp>
-#include <QStringList>
 
 
 
 // -------------------------------------- CONSTRUCTOR, DESTRUCTOR --------------------------------------
+
+int IPv6::_blockWithMask(std::size_t block, int mask, bool min) const {
+    if (block > MAX_BLOCKS - 1)
+        return 0;
+
+    std::bitset<16> res_b(this->_blocks[block]);
+    std::bitset<16> mask_b(mask);
+
+    res_b &= mask_b;
+
+    if (!min)
+        res_b = ((~res_b) ^ mask_b);
+
+    return static_cast<int>(res_b.to_ulong());
+}
 
 IPv6::IPv6() {
     std::fill(this->_blocks, this->_blocks + MAX_BLOCKS, 0);

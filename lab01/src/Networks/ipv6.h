@@ -22,6 +22,17 @@ private:
     ///
     ushort _blocks[8];
 
+    ///
+    /// \brief _blockWithMask
+    /// \param block - number of block to use mask to
+    /// \param mask - mask to use to block
+    /// \param min - whether masked bits will be set to 0 or to 1
+    /// \return int - block with mask used
+    ///
+    /// Use a mask for an block specified
+    ///
+    int _blockWithMask(std::size_t block, int mask, bool min = true) const override;
+
 public:
     ///
     /// \brief IPv6
