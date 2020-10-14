@@ -88,17 +88,22 @@ bool Network::includes(sh_ptr_ip ip) const {
     if (this->_ip->type() != ip->type())
         return false;
 
-    if (this->_ip->type() == IA_t::IPv4) {
-        return *dynamic_cast<IPv4*>(this->min().get()) < *dynamic_cast<IPv4*>(ip.get()) &&
-                   *dynamic_cast<IPv4*>(ip.get()) < *dynamic_cast<IPv4*>(this->max().get());
-    }
+    std::vector<int> this_data = this->_ip->data();
+    std::vector<int> other_data = ip->data();
 
-    if (this->_ip->type() == IA_t::IPv6) {
-        return *dynamic_cast<IPv6*>(this->min().get()) < *dynamic_cast<IPv6*>(ip.get()) &&
-                   *dynamic_cast<IPv6*>(ip.get()) < *dynamic_cast<IPv6*>(this->max().get());
-    }
+    std::size_t block_size = this->_ip->block_size();
 
-    return false;
+    std::size_t sepBlockIdx = this->_mask / block_size;
+
+    for (std::size_t blcIdx = 0; blcIdx < sepBlockIdx; blcIdx++)
+        if (this_data[blcIdx] != other_data[blcIdx])
+            return false;
+
+    int mask = static_cast<int>(std::pow(2, this->_mask % block_size) - 1) << (block_size - this->_mask % block_size);
+    int ch_block_min = this->_ip->_blockWithMask(sepBlockIdx, mask, true);
+    int ch_block_max = this->_ip->_blockWithMask(sepBlockIdx, mask, false);
+
+    return (ch_block_min <= other_data[sepBlockIdx] && other_data[sepBlockIdx] <= ch_block_max);
 }
 
 uchar Network::maxMaskLength(IpAddress_type type) const {
