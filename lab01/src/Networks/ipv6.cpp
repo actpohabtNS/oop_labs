@@ -39,7 +39,7 @@ IPv6::IPv6(QString data) {
 
    QRegExp rx("[^(\\d| |[a-fA-F)]");
 
-   if (rx.indexIn(data) != -1)     // if encounters NOT a digit, a whitespace or NOT a letter a-e - create zero IPv6
+   if (rx.indexIn(data) != -1)     // if encounters NOT a digit, NOT a whitespace or NOT a letter a-e - create zero IPv6
        return;
 
    QStringList blocks = data.split(' ');
@@ -47,7 +47,7 @@ IPv6::IPv6(QString data) {
    std::size_t blcIdx = 0;
 
    for (auto oct : blocks) {         // chech whether numbers are lower-equal than FFFF
-       if (oct.length() >= 5 || blcIdx >= MAX_BLOCKS)
+       if (oct.length() > 4 || blcIdx >= MAX_BLOCKS)
            return;
 
        this->_blocks[blcIdx] = oct.toUShort(nullptr, 16);

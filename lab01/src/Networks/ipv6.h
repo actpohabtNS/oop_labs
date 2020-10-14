@@ -83,9 +83,13 @@ public:
     /// \brief block_size
     /// \return std::size_t - size of data block in bits
     ///
-    std::size_t block_size() const override {
-        return 16;
-    }
+    std::size_t block_size() const override;
+
+    ///
+    /// \brief data
+    /// \return std::vector<int> - vector of block values
+    ///
+    std::vector<int> data() const override;
 
 
     ///
