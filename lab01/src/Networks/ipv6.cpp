@@ -74,6 +74,10 @@ IA_t IPv6::type() const {
     return IA_t::IPv6;
 }
 
+int IPv6::base() const {
+    return 16;
+}
+
 std::size_t IPv6::block_size() const {
     return 16;
 }

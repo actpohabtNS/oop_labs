@@ -73,6 +73,10 @@ IA_t IPv4::type() const {
     return IA_t::IPv4;
 }
 
+int IPv4::base() const {
+    return 10;
+}
+
 std::size_t IPv4::block_size() const {
     return 8;
 }

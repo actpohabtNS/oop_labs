@@ -80,6 +80,12 @@ public:
     IA_t type() const override;
 
     ///
+    /// \brief base
+    /// \return int - Number format representation of data blocks
+    ///
+    int base() const override;
+
+    ///
     /// \brief block_size
     /// \return std::size_t - size of data block in bits
     ///

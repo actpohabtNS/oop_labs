@@ -20,6 +20,8 @@ public:
 
     virtual IA_t type() const = 0;
 
+    virtual int base() const = 0;
+
     virtual std::size_t block_size() const = 0;
 
     virtual std::vector<int> data() const = 0;
