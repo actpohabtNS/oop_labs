@@ -66,4 +66,16 @@ TEST_CASE("Network") {
         CHECK(nt2.min()->QStr(16) == "15:16:17:18:c0:0:0:0");
         CHECK(nt2.max()->QStr(16) == "15:16:17:18:ff:ffff:ffff:ffff");
     }
+
+    SUBCASE("Includes") {
+        sh_ptr_ip ipv4(new IPv4(1,2,3,4));
+        Network nt1(ipv4, 16); // 1.2.0.0 to 1.2.255.255
+        CHECK(nt1.includes(sh_ptr_ip(new IPv4(1,2,200,100))) == true);
+        CHECK(nt1.includes(sh_ptr_ip(new IPv4(1,4,0,0))) == false);
+
+        sh_ptr_ip ipv6_1(new IPv6(0x15, 0x16, 0x17, 0x18, 211));
+        Network nt2(ipv6_1, 74); // 15:16:17:18:c0:0:0:0 to 15:16:17:18:ff:ffff:ffff:ffff
+        CHECK(nt2.includes(sh_ptr_ip(new IPv6(0x15, 0x16, 0x17, 0x18, 0xdd, 0xaa))) == true);
+        CHECK(nt2.includes(sh_ptr_ip(new IPv6())) == false);
+    }
 }

@@ -83,8 +83,22 @@ sh_ptr_ip Network::max() const {
     return this->_minOrMax(false);
 }
 
-bool Network::includes(const IpAddress *ip) const {
+bool Network::includes(sh_ptr_ip ip) const {
 
+    if (this->_ip->type() != ip->type())
+        return false;
+
+    if (this->_ip->type() == IA_t::IPv4) {
+        return *dynamic_cast<IPv4*>(this->min().get()) < *dynamic_cast<IPv4*>(ip.get()) &&
+                   *dynamic_cast<IPv4*>(ip.get()) < *dynamic_cast<IPv4*>(this->max().get());
+    }
+
+    if (this->_ip->type() == IA_t::IPv6) {
+        return *dynamic_cast<IPv6*>(this->min().get()) < *dynamic_cast<IPv6*>(ip.get()) &&
+                   *dynamic_cast<IPv6*>(ip.get()) < *dynamic_cast<IPv6*>(this->max().get());
+    }
+
+    return false;
 }
 
 uchar Network::maxMaskLength(IpAddress_type type) const {

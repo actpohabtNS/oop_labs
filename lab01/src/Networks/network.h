@@ -80,7 +80,7 @@ public:
     /// \param ip - Pointer to IpAddress to check whether it is included into the Network
     /// \return bool - Whether ip is included into the Network
     ///
-    bool includes(const IpAddress* ip) const;
+    bool includes(sh_ptr_ip ip) const;
 
     ///
     /// \brief maxMaskLength
