@@ -22,6 +22,13 @@ private:
     sh_ptr_ip _ip;
     uchar _mask;
 
+    ///
+    /// \brief _minOrMax
+    /// \param min - Defines whether we look for min element or max
+    /// \return std::shared_ptr<IpAddress> - Pointer to min or max IpAddress of the Network
+    ///
+    sh_ptr_ip _minOrMax(bool min) const;
+
 public:
     ///
     /// \brief Network
@@ -29,15 +36,6 @@ public:
     /// Empty constructor
     ///
     Network();
-
-    ///
-    /// \brief Network
-    /// \param ip - Pointer to IpAddress to serve as a host
-    /// \param mask - mask in CIDR notation
-    ///
-    /// Basic constructor
-    ///
-    Network(const IpAddress* ip, uchar mask = 0);
 
     ///
     /// \brief Network
@@ -64,6 +62,18 @@ public:
     /// \return QStr - Network's CIDR notation converted into QString
     ///
     QString QStr() const;
+
+    ///
+    /// \brief min
+    /// \return std::shared_ptr<IpAddress> - Pointer to minimum IpAddress in this network
+    ///
+    sh_ptr_ip min() const;
+
+    ///
+    /// \brief min
+    /// \return std::shared_ptr<IpAddress> - Pointer to maximum IpAddress in this network
+    ///
+    sh_ptr_ip max() const;
 
     ///
     /// \brief includes
