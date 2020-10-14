@@ -13,56 +13,12 @@ sh_ptr_ip Network::_minOrMax(bool min) const {
     std::vector<int> data = this->_ip->data();
     std::size_t block_size = this->_ip->block_size();
 
-    int int_block {};
+    // edit block separated by position where 1s change to 0s in mask
+    int mask = static_cast<int>(std::pow(2, this->_mask % block_size) - 1) << (block_size - this->_mask % block_size);
+    int int_block = this->_ip->_blockWithMask(this->_mask / block_size, mask, min);
+    data[this->_mask / block_size] = int_block;
 
-    if (this->_mask % block_size != 0) {
-        if (this->_ip->type() == IA_t::IPv4) {
-            std::bitset<8> block (data[this->_mask / block_size]);
-
-            for (std::size_t b = 0; b < block_size - this->_mask % block_size; ++b) {
-                if (min)
-                    block.reset(b);
-                else
-                    block.set(b);
-            }
-
-            int_block = static_cast<int>(block.to_ulong());
-
-
-        } else if (this->_ip->type() == IA_t::IPv6) {
-
-            std::bitset<16> block (data[this->_mask / block_size]);
-
-            for (std::size_t b = 0; b < block_size - this->_mask % block_size; ++b) {
-                if (min)
-                    block.reset(b);
-                else
-                    block.set(b);
-            }
-
-            int_block = static_cast<int>(block.to_ulong());
-        }
-
-        data[this->_mask / block_size] = int_block;
-    } else {
-        std::size_t blcIdx = this->_mask / block_size;
-
-        if (blcIdx < data.size()) {
-            if (min)
-                data[blcIdx] = 0;
-            else
-                data[blcIdx] = std::pow(2, block_size) - 1;
-        }
-    }
-
-    int base {};
-
-    if (this->_ip->type() == IA_t::IPv4) {
-        base = 10;
-    } else if (this->_ip->type() == IA_t::IPv6) {
-        base = 16;
-    }
-
+    // min or max leftout blocks
     for (std::size_t blcIdx = this->_mask / block_size + 1; blcIdx < data.size(); blcIdx++) {
         if (min)
             data[blcIdx] = 0;
@@ -71,12 +27,10 @@ sh_ptr_ip Network::_minOrMax(bool min) const {
     }
 
     QString str = "";
-
     for (int block : data)
-        str += QString::number(block, base) + " ";
+        str += QString::number(block, this->_ip->base()) + " ";
 
     sh_ptr_ip res = nullptr;
-
     if (this->_ip->type() == IA_t::IPv4) {
         res.reset(new IPv4(str));
     } else if (this->_ip->type() == IA_t::IPv6) {
