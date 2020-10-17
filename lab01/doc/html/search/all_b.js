@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['querydata_36',['QueryData',['../structdoctest_1_1_query_data.html',1,'doctest']]]
+  ['print_33',['print',['../class_l_graph.html#a72e55737edddc5a25b4c873074cf8584',1,'LGraph']]]
 ];

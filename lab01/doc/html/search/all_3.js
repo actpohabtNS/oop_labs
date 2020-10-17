@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['edgeexist_6',['edgeExist',['../class_l_graph.html#ab7d1a3666369a9d0c9f1ecf1dd6bfe38',1,'LGraph::edgeExist()'],['../class_m_graph.html#a186a8db6fa236ef9baeb36469ba3224b',1,'MGraph::edgeExist()']]],
-  ['eraseedge_7',['eraseEdge',['../class_l_graph.html#ae315959ba002e56ed352431260ee126d',1,'LGraph::eraseEdge()'],['../class_m_graph.html#ae77a72b06219ba7fee9d9658ea4639d8',1,'MGraph::eraseEdge()']]],
-  ['eraseedges_8',['eraseEdges',['../class_l_graph.html#aea9a4efa2dcf1a3752be53d432815761',1,'LGraph::eraseEdges()'],['../class_m_graph.html#a78351563b3c99ca652cd98e99f1cdf15',1,'MGraph::eraseEdges()']]],
-  ['erasenode_9',['eraseNode',['../class_l_graph.html#a87afaaeafca402b1c0816c56a325de28',1,'LGraph::eraseNode()'],['../class_m_graph.html#a0055cfa2fea669e538234ce4c635b00c',1,'MGraph::eraseNode()']]]
+  ['data_6',['data',['../class_i_pv4.html#a9969a73ea6c84ccd5fbc15318f33ed68',1,'IPv4::data()'],['../class_i_pv6.html#ad9ac251a120604dc129b7185024d6ddc',1,'IPv6::data()']]],
+  ['dfs_7',['dfs',['../class_l_graph.html#a9039d5943fa318fb0e2bf5357121093c',1,'LGraph::dfs()'],['../class_m_graph.html#a0e8547742392f161c0ca87a26c063c11',1,'MGraph::dfs()']]],
+  ['distance_8',['distance',['../class_l_graph.html#acb914e3915f0cea9c09bb691083f0e06',1,'LGraph::distance()'],['../class_m_graph.html#a20033734d5e1f854b9c90c851f05fd4f',1,'MGraph::distance()']]]
 ];

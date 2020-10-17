@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['dfs_4',['dfs',['../class_l_graph.html#a9039d5943fa318fb0e2bf5357121093c',1,'LGraph::dfs()'],['../class_m_graph.html#a0e8547742392f161c0ca87a26c063c11',1,'MGraph::dfs()']]],
-  ['distance_5',['distance',['../class_l_graph.html#acb914e3915f0cea9c09bb691083f0e06',1,'LGraph::distance()'],['../class_m_graph.html#a20033734d5e1f854b9c90c851f05fd4f',1,'MGraph::distance()']]]
+  ['connected_4',['connected',['../class_l_graph.html#a7d455fb0f52315b5282ee2406dbe01a0',1,'LGraph::connected()'],['../class_m_graph.html#ae459613de00effffda4f189dd33d4e2c',1,'MGraph::connected()']]],
+  ['cyclic_5',['cyclic',['../class_l_graph.html#a9f7635cba5d23cbe48b206102ee5738d',1,'LGraph::cyclic()'],['../class_m_graph.html#a8027d8e46c1f6145442b23200ed28693',1,'MGraph::cyclic()']]]
 ];

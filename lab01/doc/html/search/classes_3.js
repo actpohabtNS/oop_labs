@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['deferred_5ffalse_77',['deferred_false',['../structdoctest_1_1detail_1_1deferred__false.html',1,'doctest::detail']]]
+  ['mainwindow_42',['MainWindow',['../class_main_window.html',1,'']]],
+  ['mgraph_43',['MGraph',['../class_m_graph.html',1,'']]]
 ];

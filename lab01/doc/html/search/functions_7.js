@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nodeexist_34',['nodeExist',['../class_l_graph.html#af8a038e0472d0c078a75aa12bd88633e',1,'LGraph::nodeExist()'],['../class_m_graph.html#ac21f13d66d4f5824e2081514931244c0',1,'MGraph::nodeExist()']]]
+  ['lgraph_62',['LGraph',['../class_l_graph.html#a683986687e5b442030463568019fdb25',1,'LGraph::LGraph()'],['../class_l_graph.html#a2277fb703a07c95892e946a9d457433b',1,'LGraph::LGraph(std::initializer_list&lt; NT &gt; list)']]]
 ];

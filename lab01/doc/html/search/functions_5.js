@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lgraph_32',['LGraph',['../class_l_graph.html#a683986687e5b442030463568019fdb25',1,'LGraph::LGraph()'],['../class_l_graph.html#a2277fb703a07c95892e946a9d457433b',1,'LGraph::LGraph(std::initializer_list&lt; NT &gt; list)']]]
+  ['getedge_58',['getEdge',['../class_l_graph.html#a41bbfbf4cdbbb0ea1507c4cc400985ef',1,'LGraph::getEdge()'],['../class_m_graph.html#afac763580b19a802b0204d4b839b2097',1,'MGraph::getEdge()']]]
 ];
