@@ -111,6 +111,13 @@ public:
     ///
     QTextStream& operator<<(QTextStream &ostream);
 
+    ///
+    /// \brief operator QString
+    ///
+    /// Operator to build QString from IPv4
+    ///
+    virtual operator QString() const;
+
     friend bool operator==(const Network& n1, const Network& n2) {
         return n1._ip == n2._ip && n1._mask == n2._mask;
     }

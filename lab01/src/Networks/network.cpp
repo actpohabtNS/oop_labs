@@ -131,3 +131,7 @@ sh_ptr_ip Network::ip() const {
 QTextStream &Network::operator<<(QTextStream &ostream) {
     return ostream << this->QStr();
 }
+
+Network::operator QString() const {
+    return this->QStr();
+}

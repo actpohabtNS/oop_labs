@@ -35,6 +35,8 @@ public:
     virtual std::vector<int> data() const = 0;
 
     virtual QString QStr(int base = 10) const = 0;
+
+    virtual operator QString() = 0;
 };
 
 #endif // IPADDRESS_H

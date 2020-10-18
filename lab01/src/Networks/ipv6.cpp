@@ -114,6 +114,10 @@ QTextStream &IPv6::operator<<(QTextStream &ostream) {
     return ostream << this->QStr();
 }
 
+IPv6::operator QString() {
+    return this->QStr();
+}
+
 bool IPv6::operator<(const IPv6 &other) const {
     for (std::size_t blcIdx = 0; blcIdx < MAX_BLOCKS; ++blcIdx)
         if (this->_blocks[blcIdx] != other._blocks[blcIdx])

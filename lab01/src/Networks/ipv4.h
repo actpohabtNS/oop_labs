@@ -119,6 +119,13 @@ public:
     QTextStream& operator<<(QTextStream &ostream);
 
     ///
+    /// \brief operator QString
+    ///
+    /// Operator to build QString from IPv4
+    ///
+    virtual operator QString() override;
+
+    ///
     /// \brief operator <
     /// \param other - other IPv4 address to compare
     /// \return bool - whethet this IPv4 address is less other IPv4
