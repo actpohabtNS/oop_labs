@@ -63,10 +63,6 @@ Network::Network(sh_ptr_ip ip, uchar mask) {
     this->_mask = mask % this->maxMaskLength(ip->type());
 }
 
-void Network::setMask(uchar mask) {
-    this->_mask = mask % this->maxMaskLength(this->_ip->type());
-}
-
 
 
 // -------------------------------------- OTHER --------------------------------------
@@ -116,6 +112,20 @@ uchar Network::maxMaskLength(IpAddress_type type) const {
     }
 
     return -1;
+}
+
+
+
+void Network::setMask(uchar mask) {
+    this->_mask = mask % this->maxMaskLength(this->_ip->type());
+}
+
+uchar Network::mask() const {
+    return this->_mask;
+}
+
+sh_ptr_ip Network::ip() const {
+    return this->_ip;
 }
 
 QTextStream &Network::operator<<(QTextStream &ostream) {

@@ -50,14 +50,6 @@ public:
 
 
     ///
-    /// \brief setMask
-    /// \param mask - new mask to be set
-    ///
-    /// Updates value of Network's mask
-    ///
-    void setMask(uchar mask);
-
-    ///
     /// \brief QStr
     /// \return QStr - Network's CIDR notation converted into QString
     ///
@@ -91,6 +83,26 @@ public:
 
 
     ///
+    /// \brief setMask
+    /// \param mask - new mask to be set
+    ///
+    /// Updates value of Network's mask
+    ///
+    void setMask(uchar mask);
+
+    ///
+    /// \brief mask
+    /// \return uchar - mask of this network
+    ///
+    uchar mask() const;
+
+    ///
+    /// \brief ip
+    /// \return std::shared_ptr to IpAddress
+    ///
+    sh_ptr_ip ip() const;
+
+    ///
     /// \brief operator <<
     /// \param ostream - QTextStream
     /// \return ostream& - reference to QTextSteam
@@ -98,6 +110,45 @@ public:
     /// Operator overloading to perform output to QTextStream
     ///
     QTextStream& operator<<(QTextStream &ostream);
+
+    friend bool operator==(const Network& n1, const Network& n2) {
+        return n1._ip == n2._ip && n1._mask == n2._mask;
+    }
+
+    friend bool operator<=(const Network& n1, const Network& n2) {
+        return n1.min() <= n2.min() && n1.max() <= n2.min();
+    }
+
+    friend bool operator<(const Network& n1, const Network& n2) {
+        return n1.min() < n2.min() && n1.max() < n2.min();
+    }
+
+    friend bool operator>=(const Network& n1, const Network& n2) {
+        return n1.min() >= n2.min() && n1.min() >= n2.max();
+    }
+
+    friend bool operator>(const Network& n1, const Network& n2) {
+        return n1.min() > n2.min() && n1.min() > n2.max();
+    }
 };
+
+namespace std {
+template <>
+class hash<Network> {
+ public:
+  size_t operator()(const Network &network) const
+  {
+    // computes the hash of an employee using a variant
+    // of the Fowler-Noll-Vo hash function
+    size_t result = 2166136261;
+
+    for (int e : network.ip()->data()) {
+      result = (result * 16777619) ^ e;
+    }
+
+    return result ^ (network.mask() << 1);
+  }
+};
+}
 
 #endif // NETWORK_H
