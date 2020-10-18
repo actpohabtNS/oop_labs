@@ -24,6 +24,7 @@ public:
 
     [[nodiscard]] virtual int distance(const NT& n1, const NT& n2) const = 0;
 
+    virtual QString QStr() const = 0;
     virtual QString typeStr() const = 0;
 
     virtual int nodes() const = 0;

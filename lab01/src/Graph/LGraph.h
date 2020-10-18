@@ -211,6 +211,12 @@ public:
     void print() const;
 
     ///
+    /// \brief QStr
+    /// \return QString - Graph representation in QString
+    ///
+    QString QStr() const override;
+
+    ///
     /// \brief typeStr
     /// \return QString - Graph type in QString
     ///
@@ -501,6 +507,24 @@ void LGraph<NT, ET>::print() const {
         for (const auto& edge : pair.second)
             qDebug() << "to" << *edge->toNode << "( data:" << edge->data << ")";
     }
+}
+
+template<typename NT, typename ET>
+QString LGraph<NT, ET>::QStr() const {
+    QString res;
+
+    QString oArr = " ----- ";
+
+    for (const auto& pair : this->_list) {
+        res += QString("Node ") + pair.first + ":\n";
+        for (auto* edge : pair.second)
+        {
+            res += QString("( ") + pair.first + " )" + oArr + edge->data + oArr + "( " + *edge->toNode + " )";
+            res += "\n";
+        }
+    }
+
+    return res;
 }
 
 template<typename NT, typename ET>

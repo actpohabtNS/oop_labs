@@ -201,6 +201,11 @@ public:
     ///
     [[nodiscard]] int distance(const NT& n1, const NT& n2) const override;
 
+    ///
+    /// \brief QStr
+    /// \return QString - Graph representation in QString
+    ///
+    QString QStr() const override;
 
     ///
     /// \brief typeStr
@@ -484,7 +489,28 @@ int MGraph<NT, ET>::distance(const NT &n1, const NT &n2) const {
     std::unordered_map<const NT*, int> distances = this->_bfsDistances(&this->_nodeList[node1Idx]);
 
     return ( distances.count(&this->_nodeList[node2Idx]) == 1 ) ? distances[&this->_nodeList[node2Idx]] : -1;
+}
+
+template<typename NT, typename ET>
+QString MGraph<NT, ET>::QStr() const {
+    QString res;
+
+    QString oArr = " ----- ";
+
+    for (int node = 0; node < this->_nodes; node++) {
+        res += QString("Node ") + this->_nodeList[node] + ":\n";
+        for (int toNode = 0; toNode < this->_nodes; toNode++)
+        {
+            if (this->_matrix[node][toNode] != nullptr)
+            {
+                res += QString("( ") + this->_nodeList[node] + " )" + oArr + this->_matrix[node][toNode]->data + oArr + "( " + this->_nodeList[toNode] + " )";
+                res += "\n";
+            }
+        }
     }
+
+    return res;
+}
 
 template<typename NT, typename ET>
 QString MGraph<NT, ET>::typeStr() const {
