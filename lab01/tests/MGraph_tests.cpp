@@ -118,4 +118,8 @@ TEST_CASE("MGraph") {
         CHECK(mg.distance(2, 3) == 2);
         CHECK(mg.distance(2, 2) == 0);
     }
+
+    SUBCASE("TypeStr") {
+        CHECK(mg.typeStr() == "MGraph");
+    }
 }

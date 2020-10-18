@@ -120,4 +120,8 @@ TEST_CASE("LGraph") {
         CHECK(lg.distance(2, 3) == 2);
         CHECK(lg.distance(2, 2) == 0);
     }
+
+    SUBCASE("TypeStr") {
+        CHECK(lg.typeStr() == "LGraph");
+    }
 }
