@@ -30,6 +30,8 @@ private slots:
 
     void on_adjListRadioButton_clicked();
 
+    void on_printGraphButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

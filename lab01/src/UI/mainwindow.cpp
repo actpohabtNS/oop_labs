@@ -51,7 +51,7 @@ void MainWindow::on_createNewGraphButton_clicked()
 
 
 
-// -------------------------------------- SLUTS --------------------------------------
+// -------------------------------------- SLOTS --------------------------------------
 
 void MainWindow::on_adjMatrixRadioButton_clicked() {
     this->_currGraph = dynamic_cast<Graph<Network, int>*>(this->_lgr);
@@ -61,4 +61,15 @@ void MainWindow::on_adjMatrixRadioButton_clicked() {
 void MainWindow::on_adjListRadioButton_clicked() {
     this->_currGraph = dynamic_cast<Graph<Network, int>*>(this->_mgr);
     this->_setGraphValues(*this->_currGraph);
+}
+
+void MainWindow::on_printGraphButton_clicked() {
+    this->_console->newPar();
+    this->_console->printTech(this->_currGraph->typeStr() + ": ");
+    this->_console->newLine();
+
+    if (this->_currGraph->nodes() == 0)
+        this->_console->print("Graph is empty!");
+    else
+        this->_console->print(this->_currGraph->QStr());
 }
