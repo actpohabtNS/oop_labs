@@ -165,7 +165,7 @@ public:
     void eraseEdges() override;
 
 
-    ////
+    ///
     /// \brief Deep First Search
     /// \param snode Pointer to starting node
     /// \param visited Pointer to set storing visited nodes
