@@ -118,6 +118,6 @@ uchar Network::maxMaskLength(IpAddress_type type) const {
     return -1;
 }
 
-QTextStream &Network::operator<<(QTextStream &ostream){
+QTextStream &Network::operator<<(QTextStream &ostream) {
     return ostream << this->QStr();
 }
