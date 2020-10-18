@@ -26,6 +26,10 @@ public:
 private slots:
     void on_createNewGraphButton_clicked();
 
+    void on_adjMatrixRadioButton_clicked();
+
+    void on_adjListRadioButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -39,5 +43,6 @@ private:
     IA_t _curr_IA_T;
 
     void _initGraphs();
+    void _setGraphValues(const Graph<Network, int>& graph);
 };
 #endif // MAINWINDOW_H

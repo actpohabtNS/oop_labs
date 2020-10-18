@@ -25,6 +25,11 @@ void MainWindow::_initGraphs()
     this->_curr_IA_T = IA_t::IPv4;
 }
 
+void MainWindow::_setGraphValues(const Graph<Network, int> &graph){
+    ui->nodesLabel->setText(QString::number(graph.nodes()));
+    ui->edgesLabel->setText(QString::number(graph.edges()));
+}
+
 
 void MainWindow::on_createNewGraphButton_clicked()
 {
@@ -42,4 +47,18 @@ void MainWindow::on_createNewGraphButton_clicked()
     this->_console->printTech(this->_currGraph->typeStr() + ": ");
     this->_console->newLine();
     this->_console->print("Created new graph!");
+}
+
+
+
+// -------------------------------------- SLUTS --------------------------------------
+
+void MainWindow::on_adjMatrixRadioButton_clicked() {
+    this->_currGraph = dynamic_cast<Graph<Network, int>*>(this->_lgr);
+    this->_setGraphValues(*this->_currGraph);
+}
+
+void MainWindow::on_adjListRadioButton_clicked() {
+    this->_currGraph = dynamic_cast<Graph<Network, int>*>(this->_mgr);
+    this->_setGraphValues(*this->_currGraph);
 }
