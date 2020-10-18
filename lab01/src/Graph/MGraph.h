@@ -202,6 +202,12 @@ public:
     [[nodiscard]] int distance(const NT& n1, const NT& n2) const override;
 
 
+    ///
+    /// \brief typeStr
+    /// \return QString - Graph type in QString
+    ///
+    QString typeStr() const override;
+
     int nodes() const override;
 
     int edges() const override;
@@ -478,6 +484,11 @@ int MGraph<NT, ET>::distance(const NT &n1, const NT &n2) const {
     std::unordered_map<const NT*, int> distances = this->_bfsDistances(&this->_nodeList[node1Idx]);
 
     return ( distances.count(&this->_nodeList[node2Idx]) == 1 ) ? distances[&this->_nodeList[node2Idx]] : -1;
+    }
+
+template<typename NT, typename ET>
+QString MGraph<NT, ET>::typeStr() const {
+    return "MGraph";
 }
 
 

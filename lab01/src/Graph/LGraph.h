@@ -210,6 +210,12 @@ public:
     ///
     void print() const;
 
+    ///
+    /// \brief typeStr
+    /// \return QString - Graph type in QString
+    ///
+    QString typeStr() const override;
+
     int nodes() const override;
 
     int edges() const override;
@@ -495,6 +501,11 @@ void LGraph<NT, ET>::print() const {
         for (const auto& edge : pair.second)
             qDebug() << "to" << *edge->toNode << "( data:" << edge->data << ")";
     }
+}
+
+template<typename NT, typename ET>
+QString LGraph<NT, ET>::typeStr() const {
+    return "LGraph";
 }
 
 
