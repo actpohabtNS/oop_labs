@@ -68,33 +68,105 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    ///
+    /// \brief _mgr
+    ///
+    /// Pointer to MGraph, that can be manipulated by used via GUI
+    ///
     MGraph<Network, int>* _mgr;
+
+    ///
+    /// \brief _lgr
+    ///
+    /// Pointer to LGraph, that can be manipulated by used via GUI
+    ///
     LGraph<Network, int>* _lgr;
 
+    ///
+    /// \brief _currGraph
+    ///
+    /// Pointer to current graph used in GUI
+    ///
     Graph<Network, int>* _currGraph;
 
+    ///
+    /// \brief _console
+    ///
+    /// Pointer to console Widget
+    ///
     Console* _console;
 
+    ///
+    /// \brief _curr_IA_T
+    ///
+    /// Current IpAddress type used in GUI
+    ///
     IA_t _curr_IA_T;
 
-    // inits during class obj creation
+    // ---------------------- inits during class obj creation ----------------------
+    ///
+    /// \brief _initGraphs
+    ///
+    /// Initializing graphs in MainWindow before user can interact with GUI
+    ///
     void _initGraphs();
 
 
-    // other
+    // ---------------------- other ----------------------
+    ///
+    /// \brief _printCallerToConsole
+    ///
+    /// Prints tyme, Graph type and IpAddress type last command was addressed to by user
+    ///
     void _printCallerToConsole();
 
-    // managing multiple objects in GUI
+
+    //---------------------- managing multiple objects in GUI ----------------------
+    ///
+    /// \brief _setGraphValues
+    /// \param graph - Graph which values to be
+    ///
+    /// Sets current graph's used parameters (nodes & edges number) below console
+    ///
     void _setGraphValues(const Graph<Network, int>& graph);
+
+    ///
+    /// \brief _manage2InputsButton
+    /// \param l1 - QLineEdit to get input from
+    /// \param l2 - QLineEdit to get input from
+    /// \param b - QPushButton to be controlled
+    ///
+    /// Set Button enable depending on input from l1 and l2
+    ///
     void _manage2InputsButton(const QLineEdit* l1, const QLineEdit* l2, QPushButton* b);
+
+    ///
+    /// \brief _setInputMasks
+    /// \param type - IpAddress type currently used in GUI
+    ///
+    /// Sets corresponding to IpAddress yupe InputMask to all inputs
+    ///
     void _setInputMasks(IA_t type);
 
 
-    // getters
+    //---------------------- getters ----------------------
+    ///
+    /// \brief _curr_IA_t_QStr
+    /// \return QString - QString representation of current IpAddress used in GUI
+    ///
+    /// Returns current IpAddress used in GUI in QString
+    ///
     QString _curr_IA_t_QStr() const;
 
 
-    // GUI getters
+    //---------------------- GUI getters ----------------------
+    ///
+    /// \brief _getNetwork
+    /// \param l - QLineEdit to get input from
+    /// \return Network* - Pointer to Network created of input
+    ///
+    /// Returns pointer to Network created from input of QLineEdit
+    ///
     Network* _getNetwork(const QLineEdit* l) const;
 };
 #endif // MAINWINDOW_H
