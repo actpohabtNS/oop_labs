@@ -156,7 +156,7 @@ font-family: Roboto;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="newEdgeButton">
+      <widget class="QPushButton" name="addEdgeButton">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -209,7 +209,7 @@ font-family: Roboto;</string>
        <string>To network:</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="newEdgeWeightInput">
+     <widget class="QSpinBox" name="addEdgeDataInput">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -282,7 +282,7 @@ font-weight: bold;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="addEdgeFromNodeInput">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -292,7 +292,7 @@ font-weight: bold;</string>
        </rect>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="addEdgeToNodeInput">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -307,11 +307,11 @@ font-weight: bold;</string>
      <zorder>label_145</zorder>
      <zorder>label_146</zorder>
      <zorder>label_147</zorder>
-     <zorder>newEdgeWeightInput</zorder>
+     <zorder>addEdgeDataInput</zorder>
      <zorder>label_93</zorder>
      <zorder>label_5</zorder>
-     <zorder>lineEdit_2</zorder>
-     <zorder>lineEdit_3</zorder>
+     <zorder>addEdgeFromNodeInput</zorder>
+     <zorder>addEdgeToNodeInput</zorder>
     </widget>
     <widget class="QGroupBox" name="FileSystemConsole_2">
      <property name="geometry">
@@ -591,7 +591,7 @@ font-family: Roboto;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="newEdgeButton_2">
+      <widget class="QPushButton" name="addNodeButton">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -626,7 +626,7 @@ font-family: Roboto;</string>
        <string>Network to add:</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="addNodeInput">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -726,9 +726,9 @@ font-family: Roboto;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="minDist2Button">
+      <widget class="QPushButton" name="minDistanceButton">
        <property name="enabled">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -778,7 +778,7 @@ font-family: Roboto;</string>
         <string>From network</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_4">
+      <widget class="QLineEdit" name="minDistanceFromNodeInput">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -788,7 +788,7 @@ font-family: Roboto;</string>
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_5">
+      <widget class="QLineEdit" name="minDistanceToNodeInput">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1177,7 +1177,7 @@ font-family: Roboto;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="newEdgeButton_4">
+      <widget class="QPushButton" name="removeNodeButton">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1212,7 +1212,7 @@ font-family: Roboto;</string>
        <string>Network to remove:</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_7">
+     <widget class="QLineEdit" name="removeNodeInput">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1308,7 +1308,7 @@ font-family: Roboto;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="newEdgeButton_5">
+      <widget class="QPushButton" name="removeEdgeButton">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1361,7 +1361,7 @@ font-family: Roboto;</string>
        <string>To network:</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_8">
+     <widget class="QLineEdit" name="removeEdgeFromNodeInput">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1371,7 +1371,7 @@ font-family: Roboto;</string>
        </rect>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_9">
+     <widget class="QLineEdit" name="removeEdgeToNodeInput">
       <property name="geometry">
        <rect>
         <x>10</x>

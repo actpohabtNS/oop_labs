@@ -10,6 +10,9 @@
 #include "console.h"
 
 #include <QMainWindow>
+#include <QLineEdit>
+#include <QPushButton>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,6 +35,22 @@ private slots:
 
     void on_printGraphButton_clicked();
 
+    void on_addNodeInput_textChanged(const QString &arg1);
+
+    void on_addEdgeFromNodeInput_textChanged(const QString &arg1);
+
+    void on_addEdgeToNodeInput_textChanged(const QString &arg1);
+
+    void on_removeNodeInput_textChanged(const QString &arg1);
+
+    void on_removeEdgeFromNodeInput_textChanged(const QString &arg1);
+
+    void on_removeEdgeToNodeInput_textChanged(const QString &arg1);
+
+    void on_minDistanceFromNodeInput_textChanged(const QString &arg1);
+
+    void on_minDistanceToNodeInput_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 
@@ -46,5 +65,6 @@ private:
 
     void _initGraphs();
     void _setGraphValues(const Graph<Network, int>& graph);
+    void _manage2InputsButton(const QLineEdit* l1, const QLineEdit* l2, QPushButton* b);
 };
 #endif // MAINWINDOW_H

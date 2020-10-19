@@ -30,6 +30,10 @@ void MainWindow::_setGraphValues(const Graph<Network, int> &graph){
     ui->edgesLabel->setText(QString::number(graph.edges()));
 }
 
+void MainWindow::_manage2InputsButton(const QLineEdit *l1, const QLineEdit *l2, QPushButton *b) {
+    b->setEnabled(!l1->text().isEmpty() && !l2->text().isEmpty());
+}
+
 
 void MainWindow::on_createNewGraphButton_clicked()
 {
@@ -72,4 +76,46 @@ void MainWindow::on_printGraphButton_clicked() {
         this->_console->print("Graph is empty!");
     else
         this->_console->print(this->_currGraph->QStr());
+}
+
+
+
+// -------------------------------------- MANAGING BUTTONS ENABLED/DISABLED --------------------------------------
+
+void MainWindow::on_addNodeInput_textChanged(const QString &arg1) {
+    ui->addNodeButton->setEnabled(!arg1.isEmpty());
+}
+
+void MainWindow::on_addEdgeFromNodeInput_textChanged(const QString &arg1) {
+    arg1.isEmpty();
+    this->_manage2InputsButton(ui->addEdgeFromNodeInput, ui->addEdgeToNodeInput, ui->addEdgeButton);
+}
+
+void MainWindow::on_addEdgeToNodeInput_textChanged(const QString &arg1) {
+    arg1.isEmpty();
+    this->_manage2InputsButton(ui->addEdgeFromNodeInput, ui->addEdgeToNodeInput, ui->addEdgeButton);
+}
+
+void MainWindow::on_removeNodeInput_textChanged(const QString &arg1) {
+    ui->removeNodeButton->setEnabled(!arg1.isEmpty());
+}
+
+void MainWindow::on_removeEdgeFromNodeInput_textChanged(const QString &arg1){
+    arg1.isEmpty();
+    this->_manage2InputsButton(ui->removeEdgeFromNodeInput, ui->removeEdgeToNodeInput, ui->removeEdgeButton);
+}
+
+void MainWindow::on_removeEdgeToNodeInput_textChanged(const QString &arg1) {
+    arg1.isEmpty();
+    this->_manage2InputsButton(ui->removeEdgeFromNodeInput, ui->removeEdgeToNodeInput, ui->removeEdgeButton);
+}
+
+void MainWindow::on_minDistanceFromNodeInput_textChanged(const QString &arg1) {
+    arg1.isEmpty();
+    this->_manage2InputsButton(ui->minDistanceFromNodeInput, ui->minDistanceToNodeInput, ui->minDistanceButton);
+}
+
+void MainWindow::on_minDistanceToNodeInput_textChanged(const QString &arg1) {
+    arg1.isEmpty();
+    this->_manage2InputsButton(ui->minDistanceFromNodeInput, ui->minDistanceToNodeInput, ui->minDistanceButton);
 }
