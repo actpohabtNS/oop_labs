@@ -215,7 +215,6 @@ void MainWindow::on_addEdgeButton_clicked() {
     Network* to = this->_getNetwork(ui->addEdgeToNodeInput);
 
     if (!this->_currGraph->nodeExist(*from) || !this->_currGraph->nodeExist(*to)) {
-        qDebug() << from->QStr() << to->QStr() << !this->_currGraph->nodeExist(*from) << !this->_currGraph->nodeExist(*to);
         this->_console->printError("ERROR: One of nodes is NOT presented in graph!");
         return;
     }
@@ -225,4 +224,19 @@ void MainWindow::on_addEdgeButton_clicked() {
     this->_currGraph->addEdge(*from, *to, edgeData);
 
     this->_console->print("An edge with value " + QString::number(edgeData) + " added successfully!");
+}
+
+void MainWindow::on_removeNodeButton_clicked() {
+    this->_printCallerToConsole();
+
+    Network* network = this->_getNetwork(ui->removeNodeInput);
+
+     if (!this->_currGraph->nodeExist(*network)) {
+        this->_console->printError("ERROR: This node is NOT presented in graph!");
+        return;
+    }
+
+    this->_currGraph->eraseNode(*network);
+
+    this->_console->print(*network + " network removed successfully!");
 }

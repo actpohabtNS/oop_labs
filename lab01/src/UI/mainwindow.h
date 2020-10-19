@@ -55,6 +55,8 @@ private slots:
 
     void on_addEdgeButton_clicked();
 
+    void on_removeNodeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
