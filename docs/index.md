@@ -1,3 +1,5 @@
+Trying link: [first lab documentation](https://github.com/actpohabtNS/oop_labs/lab1/doc/html/index.html)
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/actpohabtNS/oop_labs/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
