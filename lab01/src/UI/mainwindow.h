@@ -77,5 +77,9 @@ private:
 
     // getters
     QString _curr_IA_t_QStr() const;
+
+
+    // GUI getters
+    Network* _getNetwork(const QLineEdit* l) const;
 };
 #endif // MAINWINDOW_H

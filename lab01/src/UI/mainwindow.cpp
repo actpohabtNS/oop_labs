@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "../Networks/ipv4.h"
+#include "../Networks/ipv6.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -48,6 +51,27 @@ QString MainWindow::_curr_IA_t_QStr() const {
     }
 }
 
+Network *MainWindow::_getNetwork(const QLineEdit *l) const {
+
+    QStringList list = l->text().split('/');
+
+    Network* res = new Network();
+
+    switch (this->_curr_IA_T) {
+        case IA_t::IPv4:
+            res = new Network(sh_ptr_ip(new IPv4(list[0])));
+        break;
+
+        case IA_t::IPv6:
+            res = new Network(sh_ptr_ip(new IPv6(list[0])));
+        break;
+    }
+
+    res->setMask(list[1].toInt());
+
+    return res;
+}
+
 void MainWindow::_manage2InputsButton(const QLineEdit *l1, const QLineEdit *l2, QPushButton *b) {
     b->setEnabled(l1->hasAcceptableInput() && l2->hasAcceptableInput());
 }
@@ -57,7 +81,7 @@ void MainWindow::_setInputMasks(IA_t type) {
 
     switch (type) {
         case IA_t::IPv4:
-            mask = "000.000.000.000/00;_";
+            mask = "009.009.009.009/09;_";
         break;
 
         case IA_t::IPv6:
@@ -92,7 +116,7 @@ void MainWindow::on_createNewGraphButton_clicked()
     }
 
     this->_console->newPar();
-    this->_console->printTech(this->_currGraph->typeStr() + ": ");
+    this->_console->printTech(this->_currGraph->typeStr() + " & " + this->_curr_IA_t_QStr() + ": ");
     this->_console->newLine();
     this->_console->print("Created new graph!");
 }
@@ -117,7 +141,7 @@ void MainWindow::on_adjListRadioButton_clicked() {
 
 void MainWindow::on_printGraphButton_clicked() {
     this->_console->newPar();
-    this->_console->printTech(this->_currGraph->typeStr() + ": ");
+    this->_console->printTech(this->_currGraph->typeStr() + " & " + this->_curr_IA_t_QStr() + ": ");
     this->_console->newLine();
 
     if (this->_currGraph->nodes() == 0)
@@ -176,7 +200,10 @@ void MainWindow::on_minDistanceToNodeInput_textChanged(const QString &arg1) {
 
 void MainWindow::on_addNodeButton_clicked() {
     this->_console->newPar();
-    this->_console->printTech(this->_currGraph->typeStr() + ": ");
+    this->_console->printTech(this->_currGraph->typeStr() + " & " + this->_curr_IA_t_QStr() + ": ");
     this->_console->newLine();
 
+    this->_currGraph->addNode(*this->_getNetwork(ui->addNodeInput));
+
+    this->_console->print(ui->addNodeInput->text() + " network added successfully!");
 }
