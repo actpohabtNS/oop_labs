@@ -1,4 +1,4 @@
-Trying link: [first lab documentation](https://github.com/actpohabtNS/oop_labs/lab1/doc/html/index.html)
+Trying link: [first lab documentation](https://github.com/actpohabtNS/oop_labs/tree/master/lab01/doc/html/index.html)
 
 ## Welcome to GitHub Pages
 
