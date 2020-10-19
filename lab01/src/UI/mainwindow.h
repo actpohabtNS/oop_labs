@@ -57,6 +57,8 @@ private slots:
 
     void on_removeNodeButton_clicked();
 
+    void on_removeEdgeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
