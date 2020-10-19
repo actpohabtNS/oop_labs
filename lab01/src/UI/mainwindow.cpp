@@ -261,3 +261,21 @@ void MainWindow::on_removeEdgeButton_clicked() {
 
     this->_console->print("An edge between " + *from + " and " + *to + " removed successfully!");
 }
+
+void MainWindow::on_isConnectedButton_clicked() {
+    this->_printCallerToConsole();
+
+    if (this->_currGraph->connected())
+        this->_console->print("Graph is connected!");
+    else
+        this->_console->print("Graph is NOT connected!");
+}
+
+void MainWindow::on_isCyclicButton_clicked() {
+    this->_printCallerToConsole();
+
+    if (this->_currGraph->cyclic())
+        this->_console->print("Graph is cyclic!");
+    else
+        this->_console->print("Graph is NOT cyclic!");
+}
