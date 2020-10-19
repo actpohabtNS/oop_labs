@@ -119,7 +119,7 @@ public:
     virtual operator QString() const;
 
     friend bool operator==(const Network& n1, const Network& n2) {
-        return n1._ip == n2._ip && n1._mask == n2._mask;
+        return n1._ip->data() == n2._ip->data() && n1._mask == n2._mask;
     }
 
     friend bool operator<=(const Network& n1, const Network& n2) {
