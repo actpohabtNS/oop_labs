@@ -33,6 +33,12 @@ void MainWindow::_initGraphs()
     this->_curr_IA_T = IA_t::IPv4;
 }
 
+void MainWindow::_printCallerToConsole() {
+    this->_console->newPar();
+    this->_console->printTech(this->_currGraph->typeStr() + " & " + this->_curr_IA_t_QStr() + ": ");
+    this->_console->newLine();
+}
+
 void MainWindow::_setGraphValues(const Graph<Network, int> &graph){
     ui->nodesLabel->setText(QString::number(graph.nodes()));
     ui->edgesLabel->setText(QString::number(graph.edges()));
@@ -115,9 +121,7 @@ void MainWindow::on_createNewGraphButton_clicked()
             break;
     }
 
-    this->_console->newPar();
-    this->_console->printTech(this->_currGraph->typeStr() + " & " + this->_curr_IA_t_QStr() + ": ");
-    this->_console->newLine();
+    this->_printCallerToConsole();
     this->_console->print("Created new graph!");
 }
 
@@ -140,9 +144,7 @@ void MainWindow::on_adjListRadioButton_clicked() {
 }
 
 void MainWindow::on_printGraphButton_clicked() {
-    this->_console->newPar();
-    this->_console->printTech(this->_currGraph->typeStr() + " & " + this->_curr_IA_t_QStr() + ": ");
-    this->_console->newLine();
+    this->_printCallerToConsole();
 
     if (this->_currGraph->nodes() == 0)
         this->_console->print("Graph is empty!");
@@ -199,11 +201,28 @@ void MainWindow::on_minDistanceToNodeInput_textChanged(const QString &arg1) {
 // -------------------------------------- MANAGING BUTTONS CLICKS --------------------------------------
 
 void MainWindow::on_addNodeButton_clicked() {
-    this->_console->newPar();
-    this->_console->printTech(this->_currGraph->typeStr() + " & " + this->_curr_IA_t_QStr() + ": ");
-    this->_console->newLine();
+    this->_printCallerToConsole();
 
     this->_currGraph->addNode(*this->_getNetwork(ui->addNodeInput));
 
     this->_console->print(ui->addNodeInput->text() + " network added successfully!");
+}
+
+void MainWindow::on_addEdgeButton_clicked() {
+    this->_printCallerToConsole();
+
+    Network* from = this->_getNetwork(ui->addEdgeFromNodeInput);
+    Network* to = this->_getNetwork(ui->addEdgeToNodeInput);
+
+    if (!this->_currGraph->nodeExist(*from) || !this->_currGraph->nodeExist(*to)) {
+        qDebug() << from->QStr() << to->QStr() << !this->_currGraph->nodeExist(*from) << !this->_currGraph->nodeExist(*to);
+        this->_console->printError("ERROR: One of nodes is NOT presented in graph!");
+        return;
+    }
+
+    int edgeData = ui->addEdgeDataInput->value();
+
+    this->_currGraph->addEdge(*from, *to, edgeData);
+
+    this->_console->print("An edge with value " + QString::number(edgeData) + " added successfully!");
 }

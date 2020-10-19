@@ -53,6 +53,8 @@ private slots:
 
     void on_addNodeButton_clicked();
 
+    void on_addEdgeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -68,6 +70,9 @@ private:
     // inits during class obj creation
     void _initGraphs();
 
+
+    // other
+    void _printCallerToConsole();
 
     // managing multiple objects in GUI
     void _setGraphValues(const Graph<Network, int>& graph);
