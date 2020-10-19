@@ -119,3 +119,11 @@ void MainWindow::on_minDistanceToNodeInput_textChanged(const QString &arg1) {
     arg1.isEmpty();
     this->_manage2InputsButton(ui->minDistanceFromNodeInput, ui->minDistanceToNodeInput, ui->minDistanceButton);
 }
+
+
+
+// -------------------------------------- MANAGING BUTTONS CLICKS --------------------------------------
+
+void MainWindow::on_addNodeButton_clicked() {
+
+}
