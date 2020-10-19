@@ -75,9 +75,9 @@ background-color: #ffffff;
      <property name="geometry">
       <rect>
        <x>740</x>
-       <y>310</y>
+       <y>470</y>
        <width>371</width>
-       <height>351</height>
+       <height>341</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -118,7 +118,7 @@ background-color: #ffffff;
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>300</y>
+        <y>290</y>
         <width>371</width>
         <height>51</height>
        </rect>
@@ -510,9 +510,9 @@ p, li { white-space: pre-wrap; }
      <property name="geometry">
       <rect>
        <x>740</x>
-       <y>120</y>
+       <y>290</y>
        <width>371</width>
-       <height>171</height>
+       <height>161</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -553,7 +553,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>120</y>
+        <y>110</y>
         <width>371</width>
         <height>51</height>
        </rect>
@@ -1379,6 +1379,125 @@ font-family: Roboto;</string>
         <width>351</width>
         <height>31</height>
        </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="CreateNewGraph_2">
+     <property name="geometry">
+      <rect>
+       <x>740</x>
+       <y>120</y>
+       <width>371</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+	background-color: #fcfcfc;
+}
+</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="label_171">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>371</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: #4a455c;
+	font-size: 19px;
+	background-color: #d1d1d1;
+	padding: 2px;
+
+}</string>
+      </property>
+      <property name="text">
+       <string>IpAddress input formats</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_158">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>361</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+      </property>
+      <property name="text">
+       <string>x1.x2.x3.x4/mask, 0 &lt; xi &lt; 255, 0 &lt; mask &lt; 32</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_172">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+      </property>
+      <property name="text">
+       <string>IPv6:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_173">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+      </property>
+      <property name="text">
+       <string>IPv4:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_174">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>351</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #4a455c;
+font-size: 18px;
+font-family: Roboto;</string>
+      </property>
+      <property name="text">
+       <string>a1:a2:a3:a4:a5:a6:a7:a8/mask, 0 &lt; ai &lt; FFFF, 0 &lt; mask &lt; 128</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
