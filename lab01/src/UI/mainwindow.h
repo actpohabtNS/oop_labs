@@ -51,6 +51,8 @@ private slots:
 
     void on_minDistanceToNodeInput_textChanged(const QString &arg1);
 
+    void on_addNodeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -63,8 +65,17 @@ private:
 
     IA_t _curr_IA_T;
 
+    // inits during class obj creation
     void _initGraphs();
+
+
+    // managing multiple objects in GUI
     void _setGraphValues(const Graph<Network, int>& graph);
     void _manage2InputsButton(const QLineEdit* l1, const QLineEdit* l2, QPushButton* b);
+    void _setInputMasks(IA_t type);
+
+
+    // getters
+    QString _curr_IA_t_QStr() const;
 };
 #endif // MAINWINDOW_H
