@@ -279,3 +279,22 @@ void MainWindow::on_isCyclicButton_clicked() {
     else
         this->_console->print("Graph is NOT cyclic!");
 }
+
+void MainWindow::on_minDistanceButton_clicked() {
+    this->_printCallerToConsole();
+
+    Network* from = this->_getNetwork(ui->minDistanceFromNodeInput);
+    Network* to = this->_getNetwork(ui->minDistanceToNodeInput);
+
+    if (!this->_currGraph->nodeExist(*from) || !this->_currGraph->nodeExist(*to)) {
+        this->_console->printError("ERROR: One of nodes is NOT presented in graph!");
+        return;
+    }
+
+    int dist = this->_currGraph->distance(*from, *to);
+
+    if (dist != -1)
+        this->_console->print("Distance between " + *from + " and " + *to + " is " + QString::number(dist) + " !");
+    else
+        this->_console->print("Nodes " + *from + " and " + *to + " are not connected!");
+}

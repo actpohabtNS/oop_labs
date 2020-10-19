@@ -59,6 +59,12 @@ private slots:
 
     void on_removeEdgeButton_clicked();
 
+    void on_isConnectedButton_clicked();
+
+    void on_isCyclicButton_clicked();
+
+    void on_minDistanceButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
