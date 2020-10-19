@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['ipaddress_38',['IpAddress',['../class_ip_address.html',1,'']]],
-  ['ipv4_39',['IPv4',['../class_i_pv4.html',1,'']]],
-  ['ipv6_40',['IPv6',['../class_i_pv6.html',1,'']]]
+  ['graph_47',['Graph',['../class_graph.html',1,'']]],
+  ['graph_3c_20network_2c_20int_20_3e_48',['Graph&lt; Network, int &gt;',['../class_graph.html',1,'']]]
 ];

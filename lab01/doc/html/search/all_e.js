@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_36',['type',['../class_i_pv4.html#a7c53fb45b99846a16ddb5d93d3663cae',1,'IPv4::type()'],['../class_i_pv6.html#a92a0bdac86280ed3cd03d3e98962d0bb',1,'IPv6::type()']]]
+  ['setmask_43',['setMask',['../class_network.html#a9d376e0fdeb1d55fe0b97814496fc3bf',1,'Network']]]
 ];

@@ -130,6 +130,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a20033734d5e1f854b9c90c851f05fd4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a20033734d5e1f854b9c90c851f05fd4f">distance</a> (const NT &amp;n1, const NT &amp;n2) const override</td></tr>
 <tr class="memdesc:a20033734d5e1f854b9c90c851f05fd4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get distance between 2 nodes.  <a href="class_m_graph.html#a20033734d5e1f854b9c90c851f05fd4f">More...</a><br /></td></tr>
 <tr class="separator:a20033734d5e1f854b9c90c851f05fd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa894845da34206a5913af2f111bcba27"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#aa894845da34206a5913af2f111bcba27">QStr</a> () const override</td></tr>
+<tr class="memdesc:aa894845da34206a5913af2f111bcba27"><td class="mdescLeft">&#160;</td><td class="mdescRight">QStr.  <a href="class_m_graph.html#aa894845da34206a5913af2f111bcba27">More...</a><br /></td></tr>
+<tr class="separator:aa894845da34206a5913af2f111bcba27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a36ddf9d889bb380820db405427af3f"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_graph.html#a3a36ddf9d889bb380820db405427af3f">typeStr</a> () const override</td></tr>
+<tr class="memdesc:a3a36ddf9d889bb380820db405427af3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">typeStr  <a href="class_m_graph.html#a3a36ddf9d889bb380820db405427af3f">More...</a><br /></td></tr>
+<tr class="separator:a3a36ddf9d889bb380820db405427af3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a581d6a2ce557103b1584e1d7cab6094c"><td class="memItemLeft" align="right" valign="top"><a id="a581d6a2ce557103b1584e1d7cab6094c"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>nodes</b> () const override</td></tr>
 <tr class="separator:a581d6a2ce557103b1584e1d7cab6094c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -691,6 +697,64 @@ template&lt;typename NT , typename ET &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool Whether node with [ data ] exists</dd></dl>
 <p>Checks whether node with [ data ] is presented in <a class="el" href="class_m_graph.html" title="Matrix graph class.">MGraph</a>. </p>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="aa894845da34206a5913af2f111bcba27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa894845da34206a5913af2f111bcba27">&#9670;&nbsp;</a></span>QStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::QStr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>QStr. </p>
+<dl class="section return"><dt>Returns</dt><dd>QString - <a class="el" href="class_graph.html">Graph</a> representation in QString </dd></dl>
+
+<p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a3a36ddf9d889bb380820db405427af3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a36ddf9d889bb380820db405427af3f">&#9670;&nbsp;</a></span>typeStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename NT , typename ET &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString <a class="el" href="class_m_graph.html">MGraph</a>&lt; NT, ET &gt;::typeStr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>typeStr </p>
+<dl class="section return"><dt>Returns</dt><dd>QString - <a class="el" href="class_graph.html">Graph</a> type in QString </dd></dl>
 
 <p>Implements <a class="el" href="class_graph.html">Graph&lt; NT, ET &gt;</a>.</p>
 
