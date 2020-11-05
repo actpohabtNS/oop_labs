@@ -11,6 +11,7 @@ Provides such greatful capabilities as:
 • Can be snoozed
 • Can be changed or deleted
 • The first alarm to go on is shown
+• All the data is saved to a file
 
 ○ TIMER
 • Create non-repeated timers for certain lenght (e.g. for 30 mins)
@@ -21,6 +22,7 @@ Provides such greatful capabilities as:
 • Pause, Resume
 • Can be changed or deleted
 • One-time timer can be created
+• All the data is saved to a file
 
 
 ○ STOPWATCH
@@ -31,6 +33,7 @@ Provides such greatful capabilities as:
 • All statistics is stored
 • Pause and end stopwatch
 • Change, delete groups
+• All the data is saved to a file
 
 
 
@@ -53,6 +56,8 @@ Provides such greatful capabilities as:
 • Can be sorted by name, rate, length
 • Can be edited, deleted
 • Total number of time watched is calculated for the whole list
+• All the data is saved to a file
+• Export one film or all list into a text / file
 
 
 ○ TO WATCH MOVIES
@@ -68,3 +73,5 @@ Provides such greatful capabilities as:
 • Can be edited, deleted
 • Total number of time to watch is calculated for the whole list
 • Move movie from TO WATCH to WATCHED with one click
+• All the data is saved to a file
+• Export one film or all list into a text / file
