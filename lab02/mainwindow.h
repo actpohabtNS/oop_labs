@@ -15,7 +15,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void showEvent(QShowEvent *ev);
+    void resizeEvent(QResizeEvent* event);
+
 private:
     Ui::MainWindow *ui;
+
+
+    void _stretchTabs();
+    void _setRelativeTabsHeight(float percent);
 };
 #endif // MAINWINDOW_H
