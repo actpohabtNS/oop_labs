@@ -44,7 +44,7 @@ Provides such greatful capabilities as:
 
 ○ WATCHED MOVIES
 • Specify:
-	• A name
+	• The title
 	• Your rate (1 - 10)
 	• Genre (from predefined list that can be searched) !can be more that 1 genre!
 	• Short description
@@ -58,11 +58,12 @@ Provides such greatful capabilities as:
 • Total number of time watched is calculated for the whole list
 • All the data is saved to a file
 • Export one film or all list into a text / file
+• Import films from a text / textfile with predifined or set markdown (if smth is not clear - it is left infulled)
 
 
 ○ TO WATCH MOVIES
 • Specify:
-	• A name
+	• The title
 	• Genre (from predefined list that can be searched) !can be more that 1 genre! (optional)
 	• Short description  (optional)
 	• Length (optional)
@@ -75,3 +76,4 @@ Provides such greatful capabilities as:
 • Move movie from TO WATCH to WATCHED with one click
 • All the data is saved to a file
 • Export one film or all list into a text / file
+• Import films from a text / textfile with predifined or set markdown (if smth is not clear - it is left infulled)
