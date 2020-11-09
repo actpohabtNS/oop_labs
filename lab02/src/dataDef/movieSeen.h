@@ -11,8 +11,8 @@ struct MovieSeen {
     QString genre;
     QString description;
     QString group;
-    QTime length;
     QDate added;
+    QTime length;
 };
 
 #endif // MOVIESEEN_H

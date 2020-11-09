@@ -9,8 +9,8 @@ struct MovieToSee {
     QString title;
     QString genre;
     QString description;
-    QTime length;
     QDate added;
+    QTime length;
 };
 
 #endif // MOVIETOSEE_H
