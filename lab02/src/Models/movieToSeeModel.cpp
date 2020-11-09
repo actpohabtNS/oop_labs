@@ -1,9 +1,9 @@
 #include "movieToSeeModel.h"
 
-movieToSeeModel::movieToSeeModel(QObject *parent)
+MovieToSeeModel::MovieToSeeModel(QObject *parent)
     : QAbstractTableModel(parent) {}
 
-QVariant movieToSeeModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant MovieToSeeModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole)
         {
@@ -21,7 +21,7 @@ QVariant movieToSeeModel::headerData(int section, Qt::Orientation orientation, i
     return QVariant();
 }
 
-int movieToSeeModel::rowCount(const QModelIndex &parent) const
+int MovieToSeeModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return 0;
@@ -29,7 +29,7 @@ int movieToSeeModel::rowCount(const QModelIndex &parent) const
     return moviesToSee.size();
 }
 
-int movieToSeeModel::columnCount(const QModelIndex &parent) const
+int MovieToSeeModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return 0;
@@ -37,7 +37,7 @@ int movieToSeeModel::columnCount(const QModelIndex &parent) const
     return 5;
 }
 
-QVariant movieToSeeModel::data(const QModelIndex &index, int role) const
+QVariant MovieToSeeModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
             return QVariant();
@@ -70,7 +70,7 @@ QVariant movieToSeeModel::data(const QModelIndex &index, int role) const
         return QVariant();
 }
 
-bool movieToSeeModel::insertRows(int row, int count, const QModelIndex &parent)
+bool MovieToSeeModel::insertRows(int row, int count, const QModelIndex &parent)
 {
     beginInsertRows(parent, row, row + count - 1);
     // Insertion not implemented
@@ -78,7 +78,7 @@ bool movieToSeeModel::insertRows(int row, int count, const QModelIndex &parent)
     return true;
 }
 
-void movieToSeeModel::sort(int column, Qt::SortOrder order)
+void MovieToSeeModel::sort(int column, Qt::SortOrder order)
 {
     switch(column) {
             case 0:
@@ -104,7 +104,7 @@ void movieToSeeModel::sort(int column, Qt::SortOrder order)
     emit dataChanged(index(0,0),index(moviesToSee.size(),5));
 }
 
-void movieToSeeModel::addMovie(const MovieToSee &movie)
+void MovieToSeeModel::addMovie(const MovieToSee &movie)
 {
     this->insertRow(moviesToSee.size());
     moviesToSee.push_back(movie);

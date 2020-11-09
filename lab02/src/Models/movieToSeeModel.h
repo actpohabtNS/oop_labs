@@ -6,12 +6,12 @@
 #include <QAbstractTableModel>
 #include <vector>
 
-class movieToSeeModel : public QAbstractTableModel
+class MovieToSeeModel : public QAbstractTableModel
 {
     Q_OBJECT
 
 public:
-    explicit movieToSeeModel(QObject *parent = nullptr);
+    explicit MovieToSeeModel(QObject *parent = nullptr);
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
