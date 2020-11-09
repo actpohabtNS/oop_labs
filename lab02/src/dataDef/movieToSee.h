@@ -5,7 +5,7 @@
 #include <QDate>
 #include <QString>
 
-struct MovieSeen {
+struct MovieToSee {
     QString title;
     QString genre;
     QString description;
