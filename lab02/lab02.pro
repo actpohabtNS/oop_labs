@@ -20,7 +20,9 @@ SOURCES += \
     src/main.cpp
 
 HEADERS += \
-    src/UI/mainwindow.h
+    src/UI/mainwindow.h \
+    src/dataDef/movieSeen.h \
+    src/dataDef/movieToSee.h
 
 FORMS += \
     src/UI/mainwindow.ui
