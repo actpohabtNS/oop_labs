@@ -75,7 +75,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -595,6 +595,424 @@ color: #5b5c5c;
        <attribute name="title">
         <string>Movies to see</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,18,1">
+        <item>
+         <layout class="QHBoxLayout" name="addMovieLayout_2" stretch="0,7,10,16,0,1">
+          <property name="spacing">
+           <number>50</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="btn_addToSee">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Add movie</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+width: 25px;
+height: 25px;
+color: #5b5c5c;
+font-weight: 900;
+font-size: 20px;
+border: 1.5px solid #5b5c5c;
+    border-radius: 12.5px;
+}
+
+QPushButton::hover {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="le_toSeeTitle">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+height: 25px;
+border-bottom: 1.5px solid #5b5c5c;
+font-size: 20px;
+color: #5b5c5c;
+font-family: Roboto;
+}
+
+QLineEdit::hover {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}
+
+QLineEdit::focus {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}</string>
+            </property>
+            <property name="text">
+             <string>title</string>
+            </property>
+            <property name="maxLength">
+             <number>168</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="le_toSeeGenre">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+height: 25px;
+border-bottom: 1.5px solid #5b5c5c;
+font-size: 20px;
+color: #5b5c5c;
+font-family: Roboto;
+}
+
+QLineEdit::hover {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}
+
+QLineEdit::focus {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}</string>
+            </property>
+            <property name="text">
+             <string>genre</string>
+            </property>
+            <property name="maxLength">
+             <number>170</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="le_toSeeDesc">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+height: 25px;
+border-bottom: 1.5px solid #5b5c5c;
+font-size: 20px;
+color: #5b5c5c;
+font-family: Roboto;
+}
+
+QLineEdit::hover {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}
+
+QLineEdit::focus {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}</string>
+            </property>
+            <property name="text">
+             <string>description</string>
+            </property>
+            <property name="maxLength">
+             <number>400</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QTimeEdit" name="te_toSeeLength">
+            <property name="styleSheet">
+             <string notr="true">QTimeEdit {
+height: 25px;
+border-bottom: 1.5px solid #5b5c5c;
+font-size: 20px;
+color: #5b5c5c;
+font-family: Roboto;
+}
+
+QTimeEdit::up-button {
+ width: 0px;
+}
+
+QTimeEdit::down-button {
+ width: 0px;
+}
+
+
+QTimeEdit::hover {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}
+
+QTimeEdit::focus {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableView" name="tv_toSeeTable">
+          <property name="cursor" stdset="0">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="footerLayout_2" stretch="0,7,5,7,0">
+          <item>
+           <layout class="QHBoxLayout" name="manipButtonsLayout_2">
+            <item>
+             <widget class="QPushButton" name="btn_copyAllToSee">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>Copy all list to clipboard</string>
+              </property>
+              <property name="toolTipDuration">
+               <number>0</number>
+              </property>
+              <property name="statusTip">
+               <string/>
+              </property>
+              <property name="whatsThis">
+               <string/>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+width: 35px;
+height: 35px;
+color: #5b5c5c;
+font-weight: 900;
+font-size: 30px;
+}
+
+QPushButton::hover {
+color: #b3b3b3;
+}</string>
+              </property>
+              <property name="text">
+               <string>⎘</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_exportToSee">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>Save list to file</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+width: 35px;
+height: 35px;
+color: #5b5c5c;
+font-weight: 900;
+font-size: 30px;
+}
+
+QPushButton::hover {
+color: #b3b3b3;
+}</string>
+              </property>
+              <property name="text">
+               <string>⇩</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_importToSee">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>Add from file</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+width: 35px;
+height: 35px;
+color: #5b5c5c;
+font-weight: 900;
+font-size: 30px;
+}
+
+QPushButton::hover {
+color: #b3b3b3;
+}</string>
+              </property>
+              <property name="text">
+               <string>⇧</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="searchLayout_2" stretch="0,1">
+            <item>
+             <widget class="QPushButton" name="btn_searchToSee">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>Search in list </string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+width: 35px;
+height: 35px;
+color: #5b5c5c;
+font-weight: 900;
+font-size: 30px;
+}
+
+QPushButton::hover {
+color: #b3b3b3;
+}</string>
+              </property>
+              <property name="text">
+               <string>⌕</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="le_searchToSee">
+              <property name="whatsThis">
+               <string/>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+height: 25px;
+border-bottom: 1.5px solid #5b5c5c;
+font-size: 20px;
+color: #5b5c5c;
+font-family: Roboto;
+}
+
+QLineEdit::hover {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}
+
+QLineEdit::focus {
+color: #b3b3b3;
+border-color: #b3b3b3;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Search</string>
+              </property>
+              <property name="clearButtonEnabled">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="totalTimeLayout_2" stretch="0,0">
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="toolTip">
+               <string>Total time watched</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+width: 35px;
+height: 35px;
+color: #5b5c5c;
+font-weight: 900;
+font-size: 20px;
+}
+</string>
+              </property>
+              <property name="text">
+               <string>∑</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_toSeeTotalLength">
+              <property name="toolTip">
+               <string>Total time watched</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	min-width: 80px;
+font-size: 17px;
+font-family: Roboto;
+font-weight: 600;
+color: #5b5c5c;
+}</string>
+              </property>
+              <property name="text">
+               <string>20h 37m</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
