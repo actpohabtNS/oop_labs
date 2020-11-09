@@ -89,7 +89,7 @@ QTabBar::tab:selected {
       <property name="movable">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="moviesSeen">
+      <widget class="QWidget" name="seenTab">
        <attribute name="title">
         <string>Movies seen</string>
        </attribute>
@@ -112,7 +112,7 @@ QTabBar::tab:selected {
            <number>50</number>
           </property>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="btn_addSeen">
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
@@ -141,7 +141,7 @@ border-color: #b3b3b3;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="le_seenTitle">
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -170,7 +170,7 @@ border-color: #b3b3b3;
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox">
+           <widget class="QSpinBox" name="sb_seenRate">
             <property name="styleSheet">
              <string notr="true">QSpinBox {
 height: 25px;
@@ -208,7 +208,7 @@ border-color: #b3b3b3;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_3">
+           <widget class="QLineEdit" name="le_seenGenre">
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -237,7 +237,7 @@ border-color: #b3b3b3;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_4">
+           <widget class="QLineEdit" name="le_seenDesc">
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -266,7 +266,7 @@ border-color: #b3b3b3;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_5">
+           <widget class="QLineEdit" name="le_seenGroup">
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -308,7 +308,7 @@ border-color: #b3b3b3;
            </spacer>
           </item>
           <item>
-           <widget class="QTimeEdit" name="timeEdit">
+           <widget class="QTimeEdit" name="te_seenLength">
             <property name="styleSheet">
              <string notr="true">QTimeEdit {
 height: 25px;
@@ -356,7 +356,7 @@ border-color: #b3b3b3;
           <item>
            <layout class="QHBoxLayout" name="manipButtonsLayout">
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="btn_seenCopyAll">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -391,7 +391,7 @@ color: #b3b3b3;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="btn_seenExport">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -417,7 +417,7 @@ color: #b3b3b3;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="btn_seenImport">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -460,7 +460,7 @@ color: #b3b3b3;
           <item>
            <layout class="QHBoxLayout" name="searchLayout" stretch="0,1">
             <item>
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="btn_seenSearch">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -486,7 +486,7 @@ color: #b3b3b3;
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_7">
+             <widget class="QLineEdit" name="le_seenSearch">
               <property name="whatsThis">
                <string/>
               </property>
@@ -564,7 +564,7 @@ font-size: 20px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="lbl_seenTotalLength">
               <property name="toolTip">
                <string>Total time watched</string>
               </property>
@@ -591,11 +591,23 @@ color: #5b5c5c;
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="moviesToSee">
+      <widget class="QWidget" name="toSeeTab">
        <attribute name="title">
         <string>Movies to see</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,18,1">
+        <property name="leftMargin">
+         <number>15</number>
+        </property>
+        <property name="topMargin">
+         <number>15</number>
+        </property>
+        <property name="rightMargin">
+         <number>15</number>
+        </property>
+        <property name="bottomMargin">
+         <number>15</number>
+        </property>
         <item>
          <layout class="QHBoxLayout" name="addMovieLayout_2" stretch="0,7,10,16,0,1">
           <property name="spacing">
@@ -779,7 +791,7 @@ border-color: #b3b3b3;
           <item>
            <layout class="QHBoxLayout" name="manipButtonsLayout_2">
             <item>
-             <widget class="QPushButton" name="btn_copyAllToSee">
+             <widget class="QPushButton" name="btn_toSeeCopyAll">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -814,7 +826,7 @@ color: #b3b3b3;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="btn_exportToSee">
+             <widget class="QPushButton" name="btn_toSeeExport">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -840,7 +852,7 @@ color: #b3b3b3;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="btn_importToSee">
+             <widget class="QPushButton" name="btn_toSeeImport">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -883,7 +895,7 @@ color: #b3b3b3;
           <item>
            <layout class="QHBoxLayout" name="searchLayout_2" stretch="0,1">
             <item>
-             <widget class="QPushButton" name="btn_searchToSee">
+             <widget class="QPushButton" name="btn_toSeeSearch">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -909,7 +921,7 @@ color: #b3b3b3;
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="le_searchToSee">
+             <widget class="QLineEdit" name="le_toSeeSearch">
               <property name="whatsThis">
                <string/>
               </property>
