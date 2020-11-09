@@ -17,14 +17,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/Models/movieSeenModel.cpp \
+    src/Models/movieToSeeModel.cpp \
     src/UI/mainwindow.cpp \
     src/main.cpp
 
 HEADERS += \
-    src/Models/movieSeenModel.h \
-    src/UI/mainwindow.h \
     src/dataDef/movieSeen.h \
-    src/dataDef/movieToSee.h
+    src/dataDef/movieToSee.h \
+    src/Models/movieSeenModel.h \
+    src/Models/movieToSeeModel.h \
+    src/UI/mainwindow.h
 
 FORMS += \
     src/UI/mainwindow.ui
