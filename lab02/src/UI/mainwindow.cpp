@@ -13,12 +13,15 @@ MainWindow::MainWindow(QWidget *parent)
     _movieSeenModel = std::make_shared<MovieSeenModel>();
     _movieToSeeModel = std::make_shared<MovieToSeeModel>();
 
+    _movieSeenModel->setFilepath("moviesSeen.mvf");
+    _movieSeenModel->loadData();
+
     ui->tv_seenTable->setModel(_movieSeenModel.get());
 
     _setupMovieSeenTable();
 
-    _movieSeenModel->addMovie({"test1", 5, "Genre", "Description", "Group", });
-    _movieSeenModel->addMovie({"test2", 5, "et", "ewwewef", "efe", });
+//    _movieSeenModel->addMovie({"test1", 5, "Genre", "Description", "Group", });
+//    _movieSeenModel->addMovie({"test2", 5, "et", "ewwewef", "efe", });
 
 }
 

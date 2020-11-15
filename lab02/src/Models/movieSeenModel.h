@@ -4,6 +4,7 @@
 #include "../dataDef/movieSeen.h"
 
 #include <QAbstractTableModel>
+#include <QFile>
 #include <vector>
 
 class MovieSeenModel : public QAbstractTableModel
@@ -26,13 +27,20 @@ public:
     bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 
     void sort(int column, Qt::SortOrder order) override;
-public:
+
+
+    void loadData();
+
+    void addToFile(const MovieSeen& movie) const;
+
     void addMovie(const MovieSeen& movie);
 
+    void setFilepath(QString path);
+
 private:
-    std::vector<MovieSeen> moviesSeen;
+    std::vector<MovieSeen> _moviesSeen;
 
-
+    QString _filepath;
 
 };
 

@@ -31,6 +31,8 @@ private slots:
 
     void on_le_seenTitle_textChanged(const QString &arg1);
 
+    void on_le_seenGenre_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<MovieSeenModel> _movieSeenModel;

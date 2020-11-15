@@ -15,4 +15,7 @@ struct MovieSeen {
     QTime length;
 };
 
+QDataStream & operator<<(QDataStream & str, const MovieSeen & movie);
+QDataStream & operator>>(QDataStream & str, MovieSeen & movie);
+
 #endif // MOVIESEEN_H

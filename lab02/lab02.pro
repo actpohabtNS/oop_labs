@@ -19,6 +19,7 @@ SOURCES += \
     src/Models/movieSeenModel.cpp \
     src/Models/movieToSeeModel.cpp \
     src/UI/mainwindow.cpp \
+    src/dataDef/movieSeen.cpp \
     src/main.cpp
 
 HEADERS += \
