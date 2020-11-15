@@ -122,7 +122,7 @@ void MovieSeenModel::sort(int column, Qt::SortOrder order)
 
 void MovieSeenModel::loadData()
 {
-    MovieSeen movie;
+    MovieSeen movie;MovieSeen movie1;
 
     QFile file(_filepath);
     file.open(QIODevice::ReadOnly);
@@ -133,10 +133,13 @@ void MovieSeenModel::loadData()
     }
 
     QDataStream stream(&file);
+    stream.setVersion(QDataStream::Qt_5_1);
 
     while(!stream.atEnd()) {
-        qDebug() << file.pos();
+        QString rate;
+
         stream >> movie;
+
         this->insertRow(_moviesSeen.size());
         _moviesSeen.push_back(movie);
     }
@@ -155,8 +158,15 @@ void MovieSeenModel::addToFile(const MovieSeen &movie) const
     }
 
     QDataStream stream(&file);
+    stream.setVersion(QDataStream::Qt_5_1);
 
-    stream << movie;
+    stream << movie.title
+        << movie.rate
+        << movie.genre
+        << movie.description
+        << movie.group
+        << movie.added
+        << movie.length;
 
     file.close();
 }
