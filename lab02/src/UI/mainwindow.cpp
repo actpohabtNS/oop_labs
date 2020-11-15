@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <algorithm>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tv_seenTable->setModel(_movieSeenModel.get());
 
     _setupMovieSeenTable();
-
 }
 
 MainWindow::~MainWindow()
@@ -77,6 +77,8 @@ void MainWindow::_setupMovieSeenTable()
 
      ui->tv_seenTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
+     ui->tv_seenTable->horizontalHeader()->setSortIndicator(5 ,Qt::AscendingOrder) ;
+
     _setTableColumnWidths(ui->tv_seenTable, {7,1,10,16,7,2,2});
 }
 
@@ -99,11 +101,13 @@ void MainWindow::_setTableColumnWidths(QTableView* table, const std::vector<int>
 
 void MainWindow::on_btn_addSeen_clicked()
 {
-    if (!_checkHighlightEmpty({ui->le_seenTitle,
-                    ui->le_seenGenre}, {"#cc1616"}) )
+    if (_checkHighlightIsEmpty({ui->le_seenTitle,
+                    ui->le_seenGenre}) || !_checkHighlightIsUniqueSeen(ui->le_seenTitle))
         return;
 
-    _movieSeenModel->addMovie({ // TODO: add TITLE UNIQUEness check || add isEditing check
+    ui->tv_seenTable->setSortingEnabled(false);
+
+    _movieSeenModel->addMovie({ // TODO: add isEditing check
                                   ui->le_seenTitle->text(),
                                   static_cast<char>(ui->sb_seenRate->value()),
                                   ui->le_seenGenre->text(),
@@ -112,6 +116,10 @@ void MainWindow::on_btn_addSeen_clicked()
                                   QDate::currentDate(),
                                   ui->te_seenLength->time()
                               });
+
+    ui->tv_seenTable->setSortingEnabled(true);
+
+    _clearSeenMovieInputs();
 }
 
 void MainWindow::_enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineEdit*> lineEdits)
@@ -126,25 +134,58 @@ void MainWindow::_enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineE
     button->setEnabled(isEnabled);
 }
 
-bool MainWindow::_checkHighlightEmpty(std::vector<QLineEdit *> lineEdits, QColor color)
+bool MainWindow::_checkHighlightIsEmpty(std::vector<QLineEdit *> lineEdits, QColor color)
 {
-    bool allNotEmpty = true;
+    bool anyEmpty = false;
 
-    std::for_each(lineEdits.begin(), lineEdits.end(), [color, &allNotEmpty](QLineEdit *lineEdit){
+    std::for_each(lineEdits.begin(), lineEdits.end(), [color, &anyEmpty](QLineEdit *lineEdit){
         if (lineEdit && lineEdit->text().isEmpty()) {
             lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
                                                              "border-bottom-color: " + color.name(QColor::HexRgb) + ";}");
-            allNotEmpty = false;
+            anyEmpty = true;
         }
     });
 
-    return allNotEmpty;
+    return anyEmpty;
+}
+
+bool MainWindow::_checkHighlightIsUniqueSeen(QLineEdit *lineEdit, QColor color)
+{
+    bool unique = true;
+
+    std::vector<MovieSeen> movies = _movieSeenModel->moviesSeen();
+
+    for (const auto& movie : movies) {
+        if (movie.title.toUpper() == lineEdit->text().simplified().toUpper()) { // simplified - chech if "Title" != " Title  "
+            lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
+                                                             "border-bottom-color: " + color.name(QColor::HexRgb) + ";}");
+            unique = false;
+            break;
+        }
+    }
+
+    return unique;
 }
 
 void MainWindow::_setBorderBottomColor(QLineEdit *lineEdit, QColor color)
 {
     lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
                                                      "border-bottom-color: " + color.name(QColor::HexRgb) + ";}");
+}
+
+void MainWindow::_clearQLineEdits(std::vector<QLineEdit *> lineEdits)
+{
+    for (auto lineEdit : lineEdits) {
+        if (lineEdit)
+            lineEdit->clear();
+    }
+}
+
+void MainWindow::_clearSeenMovieInputs()
+{
+    _clearQLineEdits({ui->le_seenTitle, ui->le_seenGenre, ui->le_seenDesc, ui->le_seenGroup});
+    ui->sb_seenRate->setValue(0);
+    ui->te_seenLength->clear();
 }
 
 void MainWindow::on_le_seenTitle_textChanged(const QString &arg1)

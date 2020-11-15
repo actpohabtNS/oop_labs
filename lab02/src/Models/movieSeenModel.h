@@ -37,6 +37,8 @@ public:
 
     void setFilepath(QString path);
 
+    const std::vector<MovieSeen>& moviesSeen() const;
+
 private:
     std::vector<MovieSeen> _moviesSeen;
 

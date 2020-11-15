@@ -182,3 +182,8 @@ void MovieSeenModel::setFilepath(QString path)
 {
     _filepath = path;
 }
+
+const std::vector<MovieSeen> &MovieSeenModel::moviesSeen() const
+{
+    return _moviesSeen;
+}

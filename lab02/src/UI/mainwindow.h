@@ -39,8 +39,12 @@ private:
     std::shared_ptr<MovieToSeeModel> _movieToSeeModel;
 
     void _enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineEdit *> lineEdits);
-    bool _checkHighlightEmpty(std::vector<QLineEdit*> lineEdits, QColor color);
+    bool _checkHighlightIsEmpty(std::vector<QLineEdit*> lineEdits, QColor color = {"#cc1616"});
+    bool _checkHighlightIsUniqueSeen(QLineEdit* lineEdit, QColor color = {"#cc1616"});
     void _setBorderBottomColor(QLineEdit* lineEdit, QColor color = {"#5b5c5c"});
+
+    void _clearQLineEdits(std::vector<QLineEdit*> lineEdits);
+    void _clearSeenMovieInputs();
 
     void _stretchTabs();
     void _setRelativeTabsHeight(float percent);
