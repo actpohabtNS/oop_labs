@@ -8,6 +8,8 @@
 
 #include <QMainWindow>
 #include <QTableView>
+#include <QPushButton>
+#include <QLineEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,16 +26,25 @@ public:
     void showEvent(QShowEvent *ev);
     void resizeEvent(QResizeEvent* event);
 
+private slots:
+    void on_btn_addSeen_clicked();
+
+    void on_le_seenTitle_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<MovieSeenModel> _movieSeenModel;
     std::shared_ptr<MovieToSeeModel> _movieToSeeModel;
 
+    void _enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineEdit *> lineEdits);
+    bool _checkHighlightEmpty(std::vector<QLineEdit*> lineEdits, QColor color);
+    void _setBorderBottomColor(QLineEdit* lineEdit, QColor color = {"#5b5c5c"});
+
     void _stretchTabs();
     void _setRelativeTabsHeight(float percent);
 
     void _setupMovieSeenTable();
-    void _setTableColumnWidths(QTableView* table, std::vector<int> proportions);
+    void _setTableColumnWidths(QTableView* table, const std::vector<int>& proportions);
 
 };
 #endif // MAINWINDOW_H

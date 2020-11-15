@@ -116,6 +116,9 @@ QTabBar::tab:selected {
           </property>
           <item>
            <widget class="QPushButton" name="btn_addSeen">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
