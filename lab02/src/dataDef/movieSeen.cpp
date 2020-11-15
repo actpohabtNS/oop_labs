@@ -1,6 +1,6 @@
 #include "movieSeen.h"
 
-QDataStream & operator<<(QDataStream & str, const MovieSeen & movie)
+QDataStream & operator<<(QDataStream & str, const MovieSeen & movie) // this overload is NOT working somehow!!
 {
     str << movie.title
         << movie.rate

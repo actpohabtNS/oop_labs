@@ -34,7 +34,7 @@ void MainWindow::showEvent(QShowEvent *ev)
 {
     this->_stretchTabs();
     this->_setRelativeTabsHeight(0.05);
-    _setTableColumnWidths(ui->tv_seenTable, {7,1,10,16,7,2,2});
+    _setTableColumnWidths(ui->tv_seenTable, {7,1,10,14,7,4,2});
 }
 
 void MainWindow::resizeEvent(QResizeEvent* event)
@@ -42,7 +42,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
    QMainWindow::resizeEvent(event);
    this->_stretchTabs();
    this->_setRelativeTabsHeight(0.05);
-   _setTableColumnWidths(ui->tv_seenTable, {7,1,10,16,7,2,2});
+   _setTableColumnWidths(ui->tv_seenTable, {7,1,10,14,7,4,2});
 }
 
 void MainWindow::_stretchTabs()
@@ -76,6 +76,8 @@ void MainWindow::_setupMovieSeenTable()
     QHeaderView *verticalHeader = ui->tv_seenTable->verticalHeader();
     verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
     verticalHeader->setDefaultSectionSize(60);
+
+     ui->tv_seenTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
     _setTableColumnWidths(ui->tv_seenTable, {7,1,10,16,7,2,2});
 }
