@@ -20,9 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     _setupMovieSeenTable();
 
-//    _movieSeenModel->addMovie({"test1", 5, "Genre", "Description", "Group", });
-//    _movieSeenModel->addMovie({"test2", 5, "et", "ewwewef", "efe", });
-
 }
 
 MainWindow::~MainWindow()
@@ -32,6 +29,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::showEvent(QShowEvent *ev)
 {
+    QMainWindow::showEvent(ev);
     this->_stretchTabs();
     this->_setRelativeTabsHeight(0.05);
     _setTableColumnWidths(ui->tv_seenTable, {7,1,10,14,7,4,2});
