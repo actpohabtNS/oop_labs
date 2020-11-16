@@ -75,7 +75,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -532,26 +532,20 @@ color: #b3b3b3;
           </item>
           <item>
            <layout class="QHBoxLayout" name="searchLayout" stretch="0,1">
+            <property name="spacing">
+             <number>0</number>
+            </property>
             <item>
-             <widget class="QPushButton" name="btn_seenSearch">
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="toolTip">
-               <string>Search in list </string>
-              </property>
+             <widget class="QLabel" name="label">
               <property name="styleSheet">
-               <string notr="true">QPushButton {
-width: 35px;
+               <string notr="true">QLabel {
+width: 25px;
 height: 35px;
 color: #5b5c5c;
 font-weight: 900;
 font-size: 30px;
 }
-
-QPushButton::hover {
-color: #b3b3b3;
-}</string>
+</string>
               </property>
               <property name="text">
                <string>⌕</string>
@@ -623,7 +617,7 @@ border-color: #b3b3b3;
               </property>
               <property name="styleSheet">
                <string notr="true">QLabel {
-width: 35px;
+width: 25px;
 height: 35px;
 color: #5b5c5c;
 font-weight: 900;
@@ -970,26 +964,20 @@ color: #b3b3b3;
           </item>
           <item>
            <layout class="QHBoxLayout" name="searchLayout_2" stretch="0,1">
+            <property name="spacing">
+             <number>0</number>
+            </property>
             <item>
-             <widget class="QPushButton" name="btn_toSeeSearch">
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="toolTip">
-               <string>Search in list </string>
-              </property>
+             <widget class="QLabel" name="label_3">
               <property name="styleSheet">
-               <string notr="true">QPushButton {
-width: 35px;
+               <string notr="true">QLabel {
+width: 25px;
 height: 35px;
 color: #5b5c5c;
 font-weight: 900;
 font-size: 30px;
 }
-
-QPushButton::hover {
-color: #b3b3b3;
-}</string>
+</string>
               </property>
               <property name="text">
                <string>⌕</string>
