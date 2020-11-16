@@ -4,10 +4,11 @@
 #include <QTime>
 #include <QDate>
 #include <QString>
+//#include <QDataStream>
 
 struct MovieSeen {
     QString title;
-    char rate;
+    quint8 rate;
     QString genre;
     QString description;
     QString group;

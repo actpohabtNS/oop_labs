@@ -109,7 +109,7 @@ void MainWindow::on_btn_addSeen_clicked()
 
     _movieSeenModel->addMovie({ // TODO: add isEditing check
                                   ui->le_seenTitle->text(),
-                                  static_cast<char>(ui->sb_seenRate->value()),
+                                  static_cast<quint8>(ui->sb_seenRate->value()),
                                   ui->le_seenGenre->text(),
                                   ui->le_seenDesc->text(),
                                   ui->le_seenGroup->text(),
