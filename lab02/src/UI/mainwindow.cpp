@@ -17,7 +17,11 @@ MainWindow::MainWindow(QWidget *parent)
     _movieSeenModel->setFilepath("moviesSeen.mvf");
     _movieSeenModel->loadData();
 
-    ui->tv_seenTable->setModel(_movieSeenModel.get());
+
+    _moviesSeenFilter = new MoviesSeenFilterProxyModel(this);
+    _moviesSeenFilter->setSourceModel(_movieSeenModel.get());
+
+    ui->tv_seenTable->setModel(_moviesSeenFilter);
 
     _setupMovieSeenTable();
 }
@@ -200,4 +204,10 @@ void MainWindow::on_le_seenGenre_textChanged(const QString &arg1)
     if (!arg1.isEmpty()) {
         _setBorderBottomColor(ui->le_seenGenre);
     }
+}
+
+void MainWindow::on_le_seenSearch_textChanged(const QString &arg1)
+{
+    QRegExp regExp(arg1, Qt::CaseInsensitive);
+    _moviesSeenFilter->setFilterRegExp(regExp);
 }

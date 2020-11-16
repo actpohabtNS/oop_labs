@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/Models/movieSeenModel.cpp \
     src/Models/movieToSeeModel.cpp \
+    src/Models/moviesseenfilterproxymodel.cpp \
     src/UI/mainwindow.cpp \
     src/dataDef/movieSeen.cpp \
     src/main.cpp
 
 HEADERS += \
+    src/Models/moviesseenfilterproxymodel.h \
     src/dataDef/movieSeen.h \
     src/dataDef/movieToSee.h \
     src/Models/movieSeenModel.h \

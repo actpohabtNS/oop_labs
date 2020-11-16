@@ -3,6 +3,7 @@
 
 #include "../Models/movieSeenModel.h"
 #include "../Models/movieToSeeModel.h"
+#include "../Models/moviesseenfilterproxymodel.h"
 
 #include <memory>
 
@@ -33,10 +34,13 @@ private slots:
 
     void on_le_seenGenre_textChanged(const QString &arg1);
 
+    void on_le_seenSearch_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<MovieSeenModel> _movieSeenModel;
     std::shared_ptr<MovieToSeeModel> _movieToSeeModel;
+    MoviesSeenFilterProxyModel* _moviesSeenFilter;
 
     void _enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineEdit *> lineEdits);
     bool _checkHighlightIsEmpty(std::vector<QLineEdit*> lineEdits, QColor color = {"#cc1616"});
