@@ -75,7 +75,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -351,7 +351,7 @@ border-color: #b3b3b3;
          </layout>
         </item>
         <item>
-         <widget class="QTableView" name="tv_seenTable">
+         <widget class="HoverTableView" name="tv_seenTable">
           <property name="cursor" stdset="0">
            <cursorShape>ArrowCursor</cursorShape>
           </property>
@@ -850,7 +850,7 @@ border-color: #b3b3b3;
          </layout>
         </item>
         <item>
-         <widget class="QTableView" name="tv_toSeeTable">
+         <widget class="HoverTableView" name="tv_toSeeTable">
           <property name="cursor" stdset="0">
            <cursorShape>ArrowCursor</cursorShape>
           </property>
@@ -1095,6 +1095,13 @@ color: #5b5c5c;
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HoverTableView</class>
+   <extends>QTableView</extends>
+   <header>hovertableview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

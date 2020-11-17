@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 
 #include <algorithm>
-#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,11 +16,23 @@ MainWindow::MainWindow(QWidget *parent)
     _movieSeenModel->setFilepath("moviesSeen.mvf");
     _movieSeenModel->loadData();
 
-
     _moviesSeenFilter = new MoviesSeenFilterProxyModel(this);
     _moviesSeenFilter->setSourceModel(_movieSeenModel.get());
 
     ui->tv_seenTable->setModel(_moviesSeenFilter);
+
+    _hoverRowDelegate = new HoverRowDelegate(this);
+
+    connect(ui->tv_seenTable,
+            SIGNAL(hoverIndexChanged(const QModelIndex&)),
+            _hoverRowDelegate,
+            SLOT(onHoverIndexChanged(const QModelIndex&)));
+    connect(ui->tv_seenTable,
+            SIGNAL(leaveTableEvent()),
+            _hoverRowDelegate,
+            SLOT(onLeaveTableEvent()));
+
+    ui->tv_seenTable->setItemDelegate(_hoverRowDelegate);
 
     _setupMovieSeenTable();
 }

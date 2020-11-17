@@ -4,6 +4,8 @@
 #include "../Models/movieSeenModel.h"
 #include "../Models/movieToSeeModel.h"
 #include "../Models/moviesseenfilterproxymodel.h"
+#include "../Delegates/hoverrowdelegate.h"
+#include "hovertableview.h"
 
 #include <memory>
 
@@ -41,6 +43,7 @@ private:
     std::shared_ptr<MovieSeenModel> _movieSeenModel;
     std::shared_ptr<MovieToSeeModel> _movieToSeeModel;
     MoviesSeenFilterProxyModel* _moviesSeenFilter;
+    HoverRowDelegate* _hoverRowDelegate;
 
     void _enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineEdit *> lineEdits);
     bool _checkHighlightIsEmpty(std::vector<QLineEdit*> lineEdits, QColor color = {"#cc1616"});

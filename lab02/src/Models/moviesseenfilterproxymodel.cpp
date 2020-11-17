@@ -1,7 +1,5 @@
 #include "moviesseenfilterproxymodel.h"
 
-#include <QDebug>
-
 MoviesSeenFilterProxyModel::MoviesSeenFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent) {}
 

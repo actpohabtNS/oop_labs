@@ -16,15 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/Delegates/hoverrowdelegate.cpp \
     src/Models/movieSeenModel.cpp \
     src/Models/movieToSeeModel.cpp \
     src/Models/moviesseenfilterproxymodel.cpp \
+    src/UI/hovertableview.cpp \
     src/UI/mainwindow.cpp \
     src/dataDef/movieSeen.cpp \
     src/main.cpp
 
 HEADERS += \
+    src/Delegates/hoverrowdelegate.h \
     src/Models/moviesseenfilterproxymodel.h \
+    src/UI/hovertableview.h \
     src/dataDef/movieSeen.h \
     src/dataDef/movieToSee.h \
     src/Models/movieSeenModel.h \
@@ -33,6 +37,8 @@ HEADERS += \
 
 FORMS += \
     src/UI/mainwindow.ui
+
+INCLUDEPATH += src/UI
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
