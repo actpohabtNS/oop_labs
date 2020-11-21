@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <property name="minimumSize">
     <size>
-     <width>1000</width>
+     <width>1300</width>
      <height>600</height>
     </size>
    </property>
@@ -645,7 +645,7 @@ color: #5b5c5c;
 }</string>
               </property>
               <property name="text">
-               <string>20h 37m</string>
+               <string>0h 0m</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
