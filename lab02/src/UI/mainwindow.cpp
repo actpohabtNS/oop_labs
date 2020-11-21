@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     _movieSeenModel->setFilepath("moviesSeen.mvf");
     _movieSeenModel->loadData();
 
-    _moviesSeenFilter = new MoviesSeenFilterProxyModel(this);
+    _moviesSeenFilter = new MoviesSeenFilterProxyModel({}, ui->lbl_seenTotalLength,this);
     _moviesSeenFilter->setSourceModel(_movieSeenModel.get());
 
     ui->tv_seenTable->setModel(_moviesSeenFilter);
