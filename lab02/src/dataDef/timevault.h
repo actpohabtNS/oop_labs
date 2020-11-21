@@ -15,7 +15,7 @@ public:
 
     void nullify();
 
-    QString QString() const;
+    QString toString() const;
 
     bool empty() const;
 

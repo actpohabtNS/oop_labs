@@ -13,7 +13,7 @@ void TimeVault::nullify()
 
 QString TimeVault::QString() const
 {
-    return QString::number(_hours) + " h " + QString::number(_minutes) + " m";
+    return QString::number(_hours) + "h " + QString::number(_minutes) + "m";
 }
 
 bool TimeVault::empty() const
