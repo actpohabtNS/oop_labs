@@ -11,7 +11,7 @@ void TimeVault::nullify()
     _minutes = 0;
 }
 
-QString TimeVault::QString() const
+QString TimeVault::toString() const
 {
     return QString::number(_hours) + "h " + QString::number(_minutes) + "m";
 }
