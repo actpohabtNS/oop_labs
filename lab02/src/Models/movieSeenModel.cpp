@@ -69,10 +69,7 @@ QVariant MovieSeenModel::data(const QModelIndex &index, int role) const
                     return result.added.toString(Qt::ISODate);
                 case 6:
                     QString qres = "";
-                    if (result.length.hour() > 0)
-                        qres.append(QString::number(result.length.hour()) + "h");
-
-                    qres.append(QString::number(result.length.minute()) + "m");
+                    qres.append(QString::number(result.length.hour() * 60 + result.length.minute()) + " min");
 
                     return qres;
             }
