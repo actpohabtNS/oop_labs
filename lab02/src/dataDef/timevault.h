@@ -27,8 +27,8 @@ public:
 
     TimeVault operator+(const TimeVault& other) const;
     TimeVault operator-(const TimeVault& other) const;
-    void operator+=(const TimeVault& other);
-    void operator-=(const TimeVault& other);
+    TimeVault& operator+=(const TimeVault& other);
+    TimeVault& operator-=(const TimeVault& other);
     bool operator==(const TimeVault& other);
 };
 

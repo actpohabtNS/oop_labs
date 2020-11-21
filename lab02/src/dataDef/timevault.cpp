@@ -72,7 +72,7 @@ TimeVault TimeVault::operator-(const TimeVault &other) const
     return {hSum, mSum};
 }
 
-void TimeVault::operator+=(const TimeVault &other)
+TimeVault& TimeVault::operator+=(const TimeVault &other)
 {
     _hours += other._hours;
     _minutes += other._minutes;
@@ -81,9 +81,11 @@ void TimeVault::operator+=(const TimeVault &other)
         _minutes -= 60;
         _hours++;
     }
+
+    return *this;
 }
 
-void TimeVault::operator-=(const TimeVault &other)
+TimeVault& TimeVault::operator-=(const TimeVault &other)
 {
     if (_hours <= other._hours)
         _hours = 0;
@@ -98,6 +100,8 @@ void TimeVault::operator-=(const TimeVault &other)
     }
     else
         _minutes -= other._minutes;
+
+    return *this;
 }
 
 bool TimeVault::operator==(const TimeVault &other)
