@@ -23,6 +23,7 @@ SOURCES += \
     src/UI/hovertableview.cpp \
     src/UI/mainwindow.cpp \
     src/dataDef/movieSeen.cpp \
+    src/dataDef/timevault.cpp \
     src/main.cpp
 
 HEADERS += \
@@ -33,7 +34,8 @@ HEADERS += \
     src/dataDef/movieToSee.h \
     src/Models/movieSeenModel.h \
     src/Models/movieToSeeModel.h \
-    src/UI/mainwindow.h
+    src/UI/mainwindow.h \
+    src/dataDef/timevault.h
 
 FORMS += \
     src/UI/mainwindow.ui
