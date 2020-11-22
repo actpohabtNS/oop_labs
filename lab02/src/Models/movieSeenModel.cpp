@@ -97,24 +97,24 @@ void MovieSeenModel::sort(int column, Qt::SortOrder order)
     switch(column) {
             case 1:
                 std::sort(_moviesSeen.begin(),_moviesSeen.end(), [order](const MovieSeen& a, const MovieSeen& b) {
-                return order == Qt::AscendingOrder ? a.title < b.title : a.title > b.title;
+                return order == Qt::AscendingOrder ? a.title > b.title : a.title < b.title;
                 });
                 break;
             case 2:
                 std::sort(_moviesSeen.begin(),_moviesSeen.end(), [order](const MovieSeen& a, const MovieSeen& b) {
-                return order == Qt::AscendingOrder ? a.rate < b.rate : a.rate > b.rate;
+                return order == Qt::AscendingOrder ? a.rate > b.rate : a.rate < b.rate;
                 });
                 break;
 
             case 6:
                 std::sort(_moviesSeen.begin(),_moviesSeen.end(), [order](const MovieSeen& a, const MovieSeen& b) {
-                return order == Qt::AscendingOrder ? a.added < b.added : a.added > b.added;
+                return order == Qt::AscendingOrder ? a.added > b.added : a.added < b.added;
                 });
                 break;
 
             case 8:
                 std::sort(_moviesSeen.begin(),_moviesSeen.end(), [order](const MovieSeen& a, const MovieSeen& b) {
-                return order == Qt::AscendingOrder ? a.length < b.length : a.length > b.length;
+                return order == Qt::AscendingOrder ? a.length > b.length : a.length < b.length;
                 });
                 break;
 

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <algorithm>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -92,7 +93,7 @@ void MainWindow::_setupMovieSeenTable()
 
      ui->tv_seenTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
-     ui->tv_seenTable->horizontalHeader()->setSortIndicator(6, Qt::DescendingOrder) ;
+     ui->tv_seenTable->sortByColumn(6, Qt::DescendingOrder);
 
     _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
 }
@@ -121,7 +122,7 @@ void MainWindow::on_btn_addSeen_clicked()
                     ui->le_seenGenre}) || !_checkHighlightIsUniqueSeen(ui->le_seenTitle))
         return;
 
-    ui->tv_seenTable->setSortingEnabled(false);
+    _moviesSeenFilter->setDynamicSortFilter(false);
 
     _movieSeenModel->addMovie({ // TODO: add isEditing check
                                   ui->le_seenTitle->text(),
@@ -133,7 +134,7 @@ void MainWindow::on_btn_addSeen_clicked()
                                   ui->te_seenLength->time()
                               });
 
-    ui->tv_seenTable->setSortingEnabled(true);
+    _moviesSeenFilter->setDynamicSortFilter(true);
 
     _clearSeenMovieInputs();
 }
@@ -172,7 +173,7 @@ bool MainWindow::_checkHighlightIsUniqueSeen(QLineEdit *lineEdit, QColor color)
     std::vector<MovieSeen> movies = _movieSeenModel->moviesSeen();
 
     for (const auto& movie : movies) {
-        if (movie.title.toUpper() == lineEdit->text().simplified().toUpper()) { // simplified - chech if "Title" != " Title  "
+        if (movie.title.toUpper() == lineEdit->text().simplified().toUpper()) { // simplified - check if "Title" == " Title  "
             lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
                                                              "border-bottom-color: " + color.name(QColor::HexRgb) + ";}");
             unique = false;
