@@ -40,6 +40,9 @@ border-top: 0px solid #C2C7CB;
     <property name="bottomMargin">
      <number>0</number>
     </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <item row="0" column="0">
      <widget class="QTabWidget" name="moviesTabs">
       <property name="styleSheet">
@@ -110,9 +113,12 @@ QTabBar::tab:selected {
          <number>15</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="addMovieLayout" stretch="0,7,1,10,14,7,4,2">
+         <layout class="QHBoxLayout" name="addMovieLayout" stretch="2,1,14,1,2,1,20,1,28,1,14,1,8,1,4">
           <property name="spacing">
            <number>0</number>
+          </property>
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
           </property>
           <item>
            <widget class="QPushButton" name="btn_addSeen">
@@ -132,8 +138,6 @@ height: 25px;
 color: #5b5c5c;
 font-weight: 900;
 font-size: 20px;
-border: 1.5px solid #5b5c5c;
-    border-radius: 12.5px;
 }
 
 QPushButton::hover {
@@ -145,6 +149,19 @@ border-color: #b3b3b3;
              <string>+</string>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>15</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QLineEdit" name="le_seenTitle">
@@ -168,12 +185,25 @@ border-color: #b3b3b3;
 }</string>
             </property>
             <property name="text">
-             <string>title</string>
+             <string/>
             </property>
             <property name="maxLength">
-             <number>168</number>
+             <number>85</number>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>15</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QSpinBox" name="sb_seenRate">
@@ -206,12 +236,25 @@ border-color: #b3b3b3;
 }</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
             <property name="maximum">
              <number>10</number>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_9">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>15</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QLineEdit" name="le_seenGenre">
@@ -235,12 +278,25 @@ border-color: #b3b3b3;
 }</string>
             </property>
             <property name="text">
-             <string>genre</string>
+             <string/>
             </property>
             <property name="maxLength">
-             <number>170</number>
+             <number>120</number>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_10">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>15</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QLineEdit" name="le_seenDesc">
@@ -264,12 +320,25 @@ border-color: #b3b3b3;
 }</string>
             </property>
             <property name="text">
-             <string>description</string>
+             <string/>
             </property>
             <property name="maxLength">
-             <number>400</number>
+             <number>180</number>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_11">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>15</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QLineEdit" name="le_seenGroup">
@@ -293,21 +362,50 @@ border-color: #b3b3b3;
 }</string>
             </property>
             <property name="text">
-             <string>group</string>
+             <string/>
             </property>
             <property name="maxLength">
-             <number>160</number>
+             <number>100</number>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_12">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>15</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <spacer name="horizontalSpacer_3">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>40</width>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_13">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>15</width>
               <height>20</height>
              </size>
             </property>
@@ -315,6 +413,15 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QTimeEdit" name="te_seenLength">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
             <property name="styleSheet">
              <string notr="true">QTimeEdit {
 height: 25px;
@@ -322,6 +429,7 @@ border-bottom: 1.5px solid #5b5c5c;
 font-size: 20px;
 color: #5b5c5c;
 font-family: Roboto;
+width: 18px;
 }
 
 QTimeEdit::up-button {
@@ -344,7 +452,14 @@ border-color: #b3b3b3;
 }</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+            <property name="time">
+             <time>
+              <hour>0</hour>
+              <minute>0</minute>
+              <second>0</second>
+             </time>
             </property>
            </widget>
           </item>
@@ -382,7 +497,7 @@ QHeaderView::section {
 	border-bottom: 1px solid #5b5c5c;
 }
 
-QHeaderView::down-arrow {
+QHeaderView::up-arrow {
 image: url(up_arrow.png);
 width: 15px;
 subcontrol-origin: border;
@@ -390,7 +505,7 @@ subcontrol-position: top center;
 margin-bottom: 15px;
 }
 
-QHeaderView::up-arrow {
+QHeaderView::down-arrow {
 image: url(down_arrow.png);
 width: 15px;
 subcontrol-origin: border;
@@ -399,16 +514,25 @@ margin-bottom: 15px;
 }
 
 QTableView::item {
+	border: 0px solid #5b5c5c;
 	border-bottom: 1px solid #5b5c5c;
 }
 
 QTableView::item::selected {
     background-color: transparent;
-	border: none;
 	color: #cfd0d0;
 }
 
 </string>
+          </property>
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
+          <property name="autoScroll">
+           <bool>true</bool>
+          </property>
+          <property name="autoScrollMargin">
+           <number>0</number>
           </property>
           <property name="showGrid">
            <bool>false</bool>
@@ -422,6 +546,12 @@ QTableView::item::selected {
           <property name="cornerButtonEnabled">
            <bool>false</bool>
           </property>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>0</number>
+          </attribute>
+          <attribute name="verticalHeaderMinimumSectionSize">
+           <number>0</number>
+          </attribute>
          </widget>
         </item>
         <item>

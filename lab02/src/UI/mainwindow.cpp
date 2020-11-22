@@ -47,7 +47,7 @@ void MainWindow::showEvent(QShowEvent *ev)
     QMainWindow::showEvent(ev);
     this->_stretchTabs();
     this->_setRelativeTabsHeight(0.05);
-    _setTableColumnWidths(ui->tv_seenTable, {7,1,10,14,7,4,2});
+    _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
 }
 
 void MainWindow::resizeEvent(QResizeEvent* event)
@@ -55,7 +55,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
    QMainWindow::resizeEvent(event);
    this->_stretchTabs();
    this->_setRelativeTabsHeight(0.05);
-   _setTableColumnWidths(ui->tv_seenTable, {7,1,10,14,7,4,2});
+   _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
 }
 
 void MainWindow::_stretchTabs()
@@ -92,9 +92,9 @@ void MainWindow::_setupMovieSeenTable()
 
      ui->tv_seenTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
-     ui->tv_seenTable->horizontalHeader()->setSortIndicator(5 ,Qt::AscendingOrder) ;
+     ui->tv_seenTable->horizontalHeader()->setSortIndicator(6, Qt::DescendingOrder) ;
 
-    _setTableColumnWidths(ui->tv_seenTable, {7,1,10,16,7,2,2});
+    _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
 }
 
 void MainWindow::_setTableColumnWidths(QTableView* table, const std::vector<int>& proportions)
@@ -104,13 +104,14 @@ void MainWindow::_setTableColumnWidths(QTableView* table, const std::vector<int>
 
     int propSum = std::accumulate(proportions.begin(), proportions.end(), 0);
     int tableWidth = table->width();
-    double partialWidth = static_cast<double>(tableWidth)/propSum - 1; // - 1 is done for TabScroll not to appear
+    double partialWidth = static_cast<double>(tableWidth)/propSum;
 
     uint columnCount = table->model()->columnCount();
 
     for (uint idx = 0; idx < proportions.size() && idx < columnCount; idx++) {
         table->setColumnWidth(idx, partialWidth * proportions[idx]);
     }
+
 }
 
 
@@ -200,7 +201,7 @@ void MainWindow::_clearSeenMovieInputs()
 {
     _clearQLineEdits({ui->le_seenTitle, ui->le_seenGenre, ui->le_seenDesc, ui->le_seenGroup});
     ui->sb_seenRate->setValue(0);
-    ui->te_seenLength->clear();
+    ui->te_seenLength->setTime({0,0});
 }
 
 void MainWindow::on_le_seenTitle_textChanged(const QString &arg1)

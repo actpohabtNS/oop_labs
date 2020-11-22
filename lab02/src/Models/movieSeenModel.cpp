@@ -14,12 +14,14 @@ QVariant MovieSeenModel::headerData(int section, Qt::Orientation orientation, in
         {
             if (orientation == Qt::Horizontal) {
                 QStringList headers{
+                                   "",
                                    "Title",
                                    "Rate",
                                    "Genre",
                                    "Description",
                                    "Group",
                                    "Added",
+                                   "",
                                    "Length",
                                     };
                 return headers[section];
@@ -41,7 +43,7 @@ int MovieSeenModel::columnCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    return 7;
+    return 9;
 }
 
 QVariant MovieSeenModel::data(const QModelIndex &index, int role) const
@@ -56,18 +58,22 @@ QVariant MovieSeenModel::data(const QModelIndex &index, int role) const
             const MovieSeen& result = _moviesSeen[_moviesSeen.size() - 1 - row]; //movies order is reversed in _moviesSeen due to higher performance in writing to file
             switch(column) {
                 case 0:
-                    return result.title;
+                    return "";
                 case 1:
-                    return QString::number(result.rate);
+                    return result.title;
                 case 2:
-                    return result.genre;
+                    return QString::number(result.rate);
                 case 3:
-                    return result.description;
+                    return result.genre;
                 case 4:
-                    return result.group;
+                    return result.description;
                 case 5:
-                    return result.added.toString(Qt::ISODate);
+                    return result.group;
                 case 6:
+                    return result.added.toString(Qt::ISODate);
+                case 7:
+                    return "";
+                case 8:
                     QString qres = "";
                     qres.append(QString::number(result.length.hour() * 60 + result.length.minute()) + " min");
 
@@ -89,24 +95,24 @@ bool MovieSeenModel::insertRows(int row, int count, const QModelIndex &parent)
 void MovieSeenModel::sort(int column, Qt::SortOrder order)
 {
     switch(column) {
-            case 0:
+            case 1:
                 std::sort(_moviesSeen.begin(),_moviesSeen.end(), [order](const MovieSeen& a, const MovieSeen& b) {
                 return order == Qt::AscendingOrder ? a.title < b.title : a.title > b.title;
                 });
                 break;
-            case 1:
+            case 2:
                 std::sort(_moviesSeen.begin(),_moviesSeen.end(), [order](const MovieSeen& a, const MovieSeen& b) {
                 return order == Qt::AscendingOrder ? a.rate < b.rate : a.rate > b.rate;
                 });
                 break;
 
-            case 5:
+            case 6:
                 std::sort(_moviesSeen.begin(),_moviesSeen.end(), [order](const MovieSeen& a, const MovieSeen& b) {
                 return order == Qt::AscendingOrder ? a.added < b.added : a.added > b.added;
                 });
                 break;
 
-            case 6:
+            case 8:
                 std::sort(_moviesSeen.begin(),_moviesSeen.end(), [order](const MovieSeen& a, const MovieSeen& b) {
                 return order == Qt::AscendingOrder ? a.length < b.length : a.length > b.length;
                 });
@@ -114,7 +120,7 @@ void MovieSeenModel::sort(int column, Qt::SortOrder order)
 
         }
 
-    emit dataChanged(index(0,0),index(_moviesSeen.size(),7));
+    emit dataChanged(index(0,0),index(_moviesSeen.size(),columnCount()));
 }
 
 void MovieSeenModel::loadData()
