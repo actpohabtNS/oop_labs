@@ -135,6 +135,7 @@ void MainWindow::on_btn_addSeen_clicked()
                               });
 
     _moviesSeenFilter->setDynamicSortFilter(true);
+    on_le_seenSearch_textChanged(ui->le_seenSearch->text()); // TODO: other fix of malfuncture when adding Movie when filter is applied
 
     _clearSeenMovieInputs();
 }
