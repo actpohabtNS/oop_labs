@@ -78,7 +78,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -454,10 +454,17 @@ border-color: #b3b3b3;
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
+            <property name="minimumTime">
+             <time>
+              <hour>0</hour>
+              <minute>1</minute>
+              <second>0</second>
+             </time>
+            </property>
             <property name="time">
              <time>
               <hour>0</hour>
-              <minute>0</minute>
+              <minute>1</minute>
               <second>0</second>
              </time>
             </property>
@@ -527,6 +534,12 @@ QTableView::item::selected {
           </property>
           <property name="lineWidth">
            <number>0</number>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
           </property>
           <property name="autoScroll">
            <bool>true</bool>
@@ -975,6 +988,13 @@ border-color: #b3b3b3;
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
+            <property name="minimumTime">
+             <time>
+              <hour>0</hour>
+              <minute>1</minute>
+              <second>0</second>
+             </time>
+            </property>
            </widget>
           </item>
          </layout>
@@ -984,6 +1004,18 @@ border-color: #b3b3b3;
           <property name="cursor" stdset="0">
            <cursorShape>ArrowCursor</cursorShape>
           </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>1</number>
+          </attribute>
+          <attribute name="verticalHeaderMinimumSectionSize">
+           <number>1</number>
+          </attribute>
          </widget>
         </item>
         <item>
