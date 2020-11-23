@@ -153,11 +153,11 @@ void MoviesSeenModel::loadFromFile()
     loadFromFile(_filepath);
 }
 
-void MoviesSeenModel::loadFromFile(const QString &filename)
+void MoviesSeenModel::loadFromFile(const QString &filepath)
 {
     MovieSeen movie;
 
-    QFile file(filename);
+    QFile file(filepath);
     file.open(QIODevice::ReadOnly);
 
     if (!file.isOpen()) {
@@ -169,12 +169,41 @@ void MoviesSeenModel::loadFromFile(const QString &filename)
     stream.setVersion(QDataStream::Qt_5_1);
 
     while(!stream.atEnd()) {
-        QString rate;
-
         stream >> movie;
+
+        if (containsTitle(movie.title))
+            continue;
 
         this->insertRow(_moviesSeen.size());
         _moviesSeen.push_back(movie);
+    }
+
+    file.close();
+}
+
+void MoviesSeenModel::importFromFile(const QString &filepath)
+{
+    MovieSeen movie;
+
+    QFile file(filepath);
+    file.open(QIODevice::ReadOnly);
+
+    if (!file.isOpen()) {
+        qDebug() << "loadData: file can Not be opened!";
+        return;
+    }
+
+    QDataStream stream(&file);
+    stream.setVersion(QDataStream::Qt_5_1);
+
+    while(!stream.atEnd()) {
+        stream >> movie;
+
+        if (containsTitle(movie.title))
+            continue;
+
+        movie.added = QDate::currentDate();
+        addMovie(movie);
     }
 
     file.close();
@@ -244,6 +273,16 @@ void MoviesSeenModel::removeMovie(int row)
 void MoviesSeenModel::setFilepath(QString path)
 {
     _filepath = path;
+}
+
+bool MoviesSeenModel::containsTitle(const QString& title) const
+{
+    for (const auto& movie : _moviesSeen) {
+        if (movie.title.toUpper() == title.toUpper())
+             return true;
+    }
+
+    return false;
 }
 
 const MovieSeen &MoviesSeenModel::movie(int row) const

@@ -170,21 +170,14 @@ bool MainWindow::_checkHighlightIsEmpty(std::vector<QLineEdit *> lineEdits, QCol
 }
 
 bool MainWindow::_checkHighlightIsUniqueSeen(QLineEdit *lineEdit, QColor color)
-{
-    bool unique = true;
-
-    std::vector<MovieSeen> movies = _moviesSeenModel->moviesSeen();
-
-    for (const auto& movie : movies) {
-        if (movie.title.toUpper() == lineEdit->text().simplified().toUpper()) { // simplified - check if "Title" == " Title  "
-            lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
-                                                             "border-bottom-color: " + color.name(QColor::HexRgb) + ";}");
-            unique = false;
-            break;
-        }
+{   
+    if (_moviesSeenModel->containsTitle(lineEdit->text().simplified())) {
+        lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
+                                                         "border-bottom-color: " + color.name(QColor::HexRgb) + ";}");
+        return false;
     }
 
-    return unique;
+    return true;;
 }
 
 void MainWindow::_setBorderBottomColor(QLineEdit *lineEdit, QColor color)
@@ -269,4 +262,14 @@ void MainWindow::on_btn_seenExport_clicked()
                         ),
                     filepath
                     );
+}
+
+void MainWindow::on_btn_seenImport_clicked()
+{
+    QString filepath = QFileDialog::getOpenFileName(this,
+           tr("Load Movies Seen list"), "",
+           tr("Moviefy Movies Seen (*.mfsn);;All Files (*)"));
+
+    _moviesSeenModel->importFromFile(filepath);
+    _moviesSeenFilter->invalidate();
 }

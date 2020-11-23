@@ -25,34 +25,31 @@ public:
 
     // Add data:
     bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-
     bool removeRows(int row, int count, const QModelIndex& parent) override;
-
     void sort(int column, Qt::SortOrder order) override;
 
 
     QString toString(int row) const;
 
     void loadFromFile();
-
     void loadFromFile(const QString& filepath);
 
-    void addToFile(const MovieSeen& movie) const;
+    void importFromFile(const QString& filepath);
 
+    void addToFile(const MovieSeen& movie) const;
     void addToFile(const MovieSeen& movie, const QString& filepath) const;
 
     void flushToFile() const;
-
     void flushToFile(const QString& filepath) const;
 
     void addMovie(const MovieSeen& movie);
-
     void removeMovie(int row);
 
     void setFilepath(QString path);
 
-    const MovieSeen& movie(int row) const;
+    bool containsTitle(const QString& title) const;
 
+    const MovieSeen& movie(int row) const;
     const std::vector<MovieSeen>& moviesSeen() const;
 
 private:
