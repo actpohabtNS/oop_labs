@@ -113,7 +113,7 @@ QTabBar::tab:selected {
          <number>15</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="addMovieLayout" stretch="2,1,14,1,2,1,20,1,28,1,14,1,8,1,4">
+         <layout class="QHBoxLayout" name="addMovieLayout" stretch="3,14,1,2,1,20,1,28,1,14,1,8,1,4">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -149,19 +149,6 @@ border-color: #b3b3b3;
              <string>+</string>
             </property>
            </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_7">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>15</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
           <item>
            <widget class="QLineEdit" name="le_seenTitle">
