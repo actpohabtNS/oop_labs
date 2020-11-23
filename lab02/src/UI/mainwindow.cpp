@@ -41,6 +41,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tv_seenTable->setItemDelegate(_moviesSeenDelegate);
 
     _setupMovieSeenTable();
+
+    _editSeenRow = -1;
 }
 
 MainWindow::~MainWindow()
@@ -127,18 +129,28 @@ void MainWindow::on_btn_addSeen_clicked()
                     ui->le_seenGenre}) || !_checkHighlightIsUniqueSeen(ui->le_seenTitle))
         return;
 
-    _moviesSeenModel->addMovie({ // TODO: add isEditing check
-                                  ui->le_seenTitle->text(),
-                                  static_cast<quint8>(ui->sb_seenRate->value()),
-                                  ui->le_seenGenre->text(),
-                                  ui->le_seenDesc->text(),
-                                  ui->le_seenGroup->text(),
-                                  QDate::currentDate(),
-                                  ui->te_seenLength->time()
-                              });
+    MovieSeen movie = { ui->le_seenTitle->text(),
+                   static_cast<quint8>(ui->sb_seenRate->value()),
+                   ui->le_seenGenre->text(),
+                   ui->le_seenDesc->text(),
+                   ui->le_seenGroup->text(),
+                   QDate(),
+                   ui->te_seenLength->time()
+               };
+
+    if (_editSeenRow == -1) {
+        movie.added = QDate::currentDate();
+        _moviesSeenModel->addMovie(movie);
+    } else {
+        movie.added = _moviesSeenModel->movie(_editSeenRow).added;
+        _moviesSeenModel->editMovie(_editSeenRow, movie);
+
+        _editSeenRow = -1;
+        ui->btn_addSeen->setText("+");
+        ui->btn_addSeen->setToolTip("Add movie");
+    }
 
     _moviesSeenFilter->invalidate();
-
     _clearSeenMovieInputs();
 }
 
@@ -171,7 +183,9 @@ bool MainWindow::_checkHighlightIsEmpty(std::vector<QLineEdit *> lineEdits, QCol
 
 bool MainWindow::_checkHighlightIsUniqueSeen(QLineEdit *lineEdit, QColor color)
 {   
-    if (_moviesSeenModel->containsTitle(lineEdit->text().simplified())) {
+    int titleRow = _moviesSeenModel->titleRow(lineEdit->text().simplified());
+
+    if (titleRow != -1 && titleRow != _editSeenRow) {
         lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
                                                          "border-bottom-color: " + color.name(QColor::HexRgb) + ";}");
         return false;
@@ -223,17 +237,43 @@ void MainWindow::on_le_seenSearch_textChanged(const QString &arg1)
 
 void MainWindow::on_tv_seenTable_clicked(const QModelIndex &index)
 {
-    switch (index.column()) {
-        case 0:
-        QGuiApplication::clipboard()->setText(
-                    _moviesSeenModel->toString(_moviesSeenFilter->mapToSource(index).row())
-                    );
-        break;
+    int sourceRow = _moviesSeenFilter->mapToSource(index).row();
 
-        case 7:
-        _moviesSeenModel->removeMovie(_moviesSeenFilter->mapToSource(index).row());
-        _moviesSeenFilter->invalidate();
-        break;
+    switch (index.column()) {
+        case 0: {
+            _editSeenRow = sourceRow;
+            ui->btn_addSeen->setText("✓");
+            ui->btn_addSeen->setToolTip("Confirm edits");
+
+            auto movie = _moviesSeenModel->movie(sourceRow);
+            ui->le_seenTitle->setText(movie.title);
+            ui->sb_seenRate->setValue(movie.rate);
+            ui->le_seenGenre->setText(movie.genre);
+            ui->le_seenDesc->setText(movie.description);
+            ui->le_seenGroup->setText(movie.group);
+            ui->te_seenLength->setTime(movie.length);
+            break;
+        }
+
+        case 7: {
+
+        if (_editSeenRow == sourceRow) {
+            _editSeenRow = -1;
+            ui->btn_addSeen->setText("+");
+            ui->btn_addSeen->setToolTip("Add movie");
+
+            _clearSeenMovieInputs();
+        }
+            _moviesSeenModel->removeMovie(sourceRow);
+            _moviesSeenFilter->invalidate();
+            break;
+        }
+
+        default: {
+            QGuiApplication::clipboard()->setText(
+                        _moviesSeenModel->toString(sourceRow)
+                        );
+        }
     }
 }
 

@@ -44,10 +44,11 @@ public:
 
     void addMovie(const MovieSeen& movie);
     void removeMovie(int row);
+    void editMovie(int row, const MovieSeen& movie);
 
     void setFilepath(QString path);
 
-    bool containsTitle(const QString& title) const;
+    int titleRow(const QString& title) const;
 
     const MovieSeen& movie(int row) const;
     const std::vector<MovieSeen>& moviesSeen() const;

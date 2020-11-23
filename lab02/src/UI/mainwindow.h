@@ -53,6 +53,8 @@ private:
     MoviesSeenFilterProxyModel* _moviesSeenFilter;
     MoviesDelegate* _moviesSeenDelegate;
 
+    int _editSeenRow;
+
     void _enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineEdit *> lineEdits);
     bool _checkHighlightIsEmpty(std::vector<QLineEdit*> lineEdits, QColor color = {"#cc1616"});
     bool _checkHighlightIsUniqueSeen(QLineEdit* lineEdit, QColor color = {"#cc1616"});

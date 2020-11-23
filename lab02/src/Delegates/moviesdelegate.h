@@ -10,7 +10,7 @@ class MoviesDelegate : public HoverRowDelegate
 
 protected:
     int _moveColumn;
-    int _copyColumn;
+    int _editColumn;
     int _deleteColumn;
 
 public:

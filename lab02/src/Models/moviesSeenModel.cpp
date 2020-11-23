@@ -171,7 +171,7 @@ void MoviesSeenModel::loadFromFile(const QString &filepath)
     while(!stream.atEnd()) {
         stream >> movie;
 
-        if (containsTitle(movie.title))
+        if (titleRow(movie.title) != -1)
             continue;
 
         this->insertRow(_moviesSeen.size());
@@ -199,7 +199,7 @@ void MoviesSeenModel::importFromFile(const QString &filepath)
     while(!stream.atEnd()) {
         stream >> movie;
 
-        if (containsTitle(movie.title))
+        if (titleRow(movie.title) != -1)
             continue;
 
         movie.added = QDate::currentDate();
@@ -270,19 +270,26 @@ void MoviesSeenModel::removeMovie(int row)
     flushToFile();
 }
 
+void MoviesSeenModel::editMovie(int row, const MovieSeen &movie)
+{
+    _moviesSeen[_moviesSeen.size() - 1 - row] = movie;
+    flushToFile();
+    emit dataChanged(index(row,0),index(row,columnCount()));
+}
+
 void MoviesSeenModel::setFilepath(QString path)
 {
     _filepath = path;
 }
 
-bool MoviesSeenModel::containsTitle(const QString& title) const
+int MoviesSeenModel::titleRow(const QString& title) const
 {
-    for (const auto& movie : _moviesSeen) {
-        if (movie.title.toUpper() == title.toUpper())
-             return true;
+    for (int row = 0; row < rowCount(); row++) {
+        if (_moviesSeen[row].title.toUpper() == title.toUpper())
+             return _moviesSeen.size() - 1 - row;
     }
 
-    return false;
+    return -1;
 }
 
 const MovieSeen &MoviesSeenModel::movie(int row) const
