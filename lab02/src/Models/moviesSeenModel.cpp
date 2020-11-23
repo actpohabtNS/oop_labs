@@ -4,6 +4,8 @@
 #include <QDebug>
 #include <string>
 #include <QFile>
+#include <QClipboard>
+#include <QGuiApplication>
 
 MoviesSeenModel::MoviesSeenModel(QObject *parent)
     : QAbstractTableModel(parent) {}
@@ -121,6 +123,20 @@ void MoviesSeenModel::sort(int column, Qt::SortOrder order)
         }
 
     emit dataChanged(index(0,0),index(_moviesSeen.size(),columnCount()));
+}
+
+void MoviesSeenModel::toClipboard(int row) const
+{
+    auto movie = _moviesSeen[_moviesSeen.size() - 1 - row];
+    QString copyText = "";
+    copyText += "Title: " + movie.title + "\n";
+    copyText += "Rate: " + QString::number(movie.rate) + "\n";
+    copyText += "Genre: " + movie.genre + "\n";
+    copyText += "Description: " + movie.description + "\n";
+    copyText += "Group: " + movie.group + "\n";
+    copyText += "Length: " + movie.length.toString("HH:mm");
+
+    QGuiApplication::clipboard()->setText(copyText);
 }
 
 void MoviesSeenModel::loadData()

@@ -29,6 +29,8 @@ public:
     void sort(int column, Qt::SortOrder order) override;
 
 
+    void toClipboard(int row) const;
+
     void loadData();
 
     void addToFile(const MovieSeen& movie) const;

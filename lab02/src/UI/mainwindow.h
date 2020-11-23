@@ -38,6 +38,8 @@ private slots:
 
     void on_le_seenSearch_textChanged(const QString &arg1);
 
+    void on_tv_seenTable_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<MoviesSeenModel> _moviesSeenModel;

@@ -223,3 +223,16 @@ void MainWindow::on_le_seenSearch_textChanged(const QString &arg1)
     QRegExp regExp(arg1, Qt::CaseInsensitive);
     _moviesSeenFilter->setFilterRegExp(regExp);
 }
+
+void MainWindow::on_tv_seenTable_clicked(const QModelIndex &index)
+{
+    switch (index.column()) {
+        case 0:
+        _moviesSeenModel->toClipboard(_moviesSeenFilter->mapToSource(index).row());
+        break;
+
+        case 7:
+
+        break;
+    }
+}
