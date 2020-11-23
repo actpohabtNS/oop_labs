@@ -48,8 +48,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    std::shared_ptr<MoviesSeenModel> _moviesSeenModel;
-    std::shared_ptr<MoviesToSeeModel> _moviesToSeeModel;
+    MoviesSeenModel* _moviesSeenModel;
+    MoviesToSeeModel* _moviesToSeeModel;
     MoviesSeenFilterProxyModel* _moviesSeenFilter;
     MoviesDelegate* _moviesSeenDelegate;
 

@@ -1,12 +1,12 @@
-#include "movieToSeeModel.h"
+#include "moviesToSeeModel.h"
 
 #include <QFile>
 #include <QDebug>
 
-MovieToSeeModel::MovieToSeeModel(QObject *parent)
+MoviesToSeeModel::MoviesToSeeModel(QObject *parent)
     : QAbstractTableModel(parent) {}
 
-QVariant MovieToSeeModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant MoviesToSeeModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole)
         {
@@ -24,7 +24,7 @@ QVariant MovieToSeeModel::headerData(int section, Qt::Orientation orientation, i
     return QVariant();
 }
 
-int MovieToSeeModel::rowCount(const QModelIndex &parent) const
+int MoviesToSeeModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return 0;
@@ -32,7 +32,7 @@ int MovieToSeeModel::rowCount(const QModelIndex &parent) const
     return _moviesToSee.size();
 }
 
-int MovieToSeeModel::columnCount(const QModelIndex &parent) const
+int MoviesToSeeModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return 0;
@@ -40,7 +40,7 @@ int MovieToSeeModel::columnCount(const QModelIndex &parent) const
     return 5;
 }
 
-QVariant MovieToSeeModel::data(const QModelIndex &index, int role) const
+QVariant MoviesToSeeModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
             return QVariant();
@@ -67,7 +67,7 @@ QVariant MovieToSeeModel::data(const QModelIndex &index, int role) const
         return QVariant();
 }
 
-bool MovieToSeeModel::insertRows(int row, int count, const QModelIndex &parent)
+bool MoviesToSeeModel::insertRows(int row, int count, const QModelIndex &parent)
 {
     beginInsertRows(parent, row, row + count - 1);
     // Insertion not implemented
@@ -75,7 +75,7 @@ bool MovieToSeeModel::insertRows(int row, int count, const QModelIndex &parent)
     return true;
 }
 
-bool MovieToSeeModel::removeRows(int row, int count, const QModelIndex &parent)
+bool MoviesToSeeModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     beginRemoveRows(parent, row, row + count - 1);
     // Removal not implemented
@@ -83,7 +83,7 @@ bool MovieToSeeModel::removeRows(int row, int count, const QModelIndex &parent)
     return true;
 }
 
-void MovieToSeeModel::sort(int column, Qt::SortOrder order)
+void MoviesToSeeModel::sort(int column, Qt::SortOrder order)
 {
     switch(column) {
             case 0:
@@ -109,7 +109,7 @@ void MovieToSeeModel::sort(int column, Qt::SortOrder order)
     emit dataChanged(index(0,0),index(_moviesToSee.size(),5));
 }
 
-QString MovieToSeeModel::toString(int row) const
+QString MoviesToSeeModel::toString(int row) const
 {
     auto movie = _moviesToSee[_moviesToSee.size() - 1 - row];
 
@@ -122,12 +122,12 @@ QString MovieToSeeModel::toString(int row) const
     return str;
 }
 
-void MovieToSeeModel::loadFromFile()
+void MoviesToSeeModel::loadFromFile()
 {
     loadFromFile(_filepath);
 }
 
-void MovieToSeeModel::loadFromFile(const QString &filepath)
+void MoviesToSeeModel::loadFromFile(const QString &filepath)
 {
     MovieToSee movie;
 
@@ -155,7 +155,7 @@ void MovieToSeeModel::loadFromFile(const QString &filepath)
     file.close();
 }
 
-void MovieToSeeModel::importFromFile(const QString &filepath)
+void MoviesToSeeModel::importFromFile(const QString &filepath)
 {
     MovieToSee movie;
 
@@ -183,12 +183,12 @@ void MovieToSeeModel::importFromFile(const QString &filepath)
     file.close();
 }
 
-void MovieToSeeModel::addToFile(const MovieToSee &movie) const
+void MoviesToSeeModel::addToFile(const MovieToSee &movie) const
 {
     addToFile(movie, _filepath);
 }
 
-void MovieToSeeModel::addToFile(const MovieToSee &movie, const QString &filepath) const
+void MoviesToSeeModel::addToFile(const MovieToSee &movie, const QString &filepath) const
 {
     QFile file(filepath);
     file.open(QIODevice::Append | QIODevice::WriteOnly);
@@ -206,12 +206,12 @@ void MovieToSeeModel::addToFile(const MovieToSee &movie, const QString &filepath
     file.close();
 }
 
-void MovieToSeeModel::flushToFile() const
+void MoviesToSeeModel::flushToFile() const
 {
     flushToFile(_filepath);
 }
 
-void MovieToSeeModel::flushToFile(const QString &filepath) const
+void MoviesToSeeModel::flushToFile(const QString &filepath) const
 {
     QFile file(filepath);
     file.open(QIODevice::Truncate | QIODevice::WriteOnly);
@@ -230,33 +230,33 @@ void MovieToSeeModel::flushToFile(const QString &filepath) const
     file.close();
 }
 
-void MovieToSeeModel::addMovie(const MovieToSee &movie)
+void MoviesToSeeModel::addMovie(const MovieToSee &movie)
 {
     this->insertRow(_moviesToSee.size());
     _moviesToSee.push_back(movie);
     addToFile(movie);
 }
 
-void MovieToSeeModel::removeMovie(int row)
+void MoviesToSeeModel::removeMovie(int row)
 {
     this->removeRow(row);
     _moviesToSee.erase(_moviesToSee.end() - 1 - row);
     flushToFile();
 }
 
-void MovieToSeeModel::editMovie(int row, const MovieToSee &movie)
+void MoviesToSeeModel::editMovie(int row, const MovieToSee &movie)
 {
     _moviesToSee[_moviesToSee.size() - 1 - row] = movie;
     flushToFile();
     emit dataChanged(index(row,0),index(row,columnCount()));
 }
 
-void MovieToSeeModel::setFilepath(QString path)
+void MoviesToSeeModel::setFilepath(QString path)
 {
     _filepath = path;
 }
 
-int MovieToSeeModel::titleRow(const QString &title) const
+int MoviesToSeeModel::titleRow(const QString &title) const
 {
     for (int row = 0; row < rowCount(); row++) {
         if (_moviesToSee[row].title.toUpper() == title.toUpper())
@@ -266,12 +266,12 @@ int MovieToSeeModel::titleRow(const QString &title) const
     return -1;
 }
 
-const MovieToSee &MovieToSeeModel::movie(int row) const
+const MovieToSee &MoviesToSeeModel::movie(int row) const
 {
     return _moviesToSee[_moviesToSee.size() - 1 - row];
 }
 
-const std::vector<MovieToSee> &MovieToSeeModel::moviesSeen() const
+const std::vector<MovieToSee> &MoviesToSeeModel::moviesSeen() const
 {
     return _moviesToSee;
 }

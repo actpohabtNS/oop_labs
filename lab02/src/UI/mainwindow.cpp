@@ -16,14 +16,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
-    _moviesSeenModel = std::make_shared<MoviesSeenModel>();
-    _moviesToSeeModel = std::make_shared<MovieToSeeModel>();
+    _moviesSeenModel = new MoviesSeenModel();
+    _moviesToSeeModel = new MoviesToSeeModel();
 
     _moviesSeenModel->setFilepath("moviesSeen.mfsn");
     _moviesSeenModel->loadFromFile();
 
     _moviesSeenFilter = new MoviesSeenFilterProxyModel({}, ui->lbl_seenTotalLength,this);
-    _moviesSeenFilter->setSourceModel(_moviesSeenModel.get());
+    _moviesSeenFilter->setSourceModel(_moviesSeenModel);
 
     ui->tv_seenTable->setModel(_moviesSeenFilter);
 
