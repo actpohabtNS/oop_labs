@@ -97,7 +97,7 @@ bool MoviesSeenModel::insertRows(int row, int count, const QModelIndex &parent)
 bool MoviesSeenModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     beginRemoveRows(parent, row, row + count - 1);
-    // Insertion not implemented
+    // Removal not implemented
     endRemoveRows();
     return true;
 }
@@ -133,18 +133,19 @@ void MoviesSeenModel::sort(int column, Qt::SortOrder order)
     emit dataChanged(index(0,0),index(_moviesSeen.size(),columnCount()));
 }
 
-void MoviesSeenModel::toClipboard(int row) const
+QString MoviesSeenModel::toString(int row) const
 {
     auto movie = _moviesSeen[_moviesSeen.size() - 1 - row];
-    QString copyText = "";
-    copyText += "Title: " + movie.title + "\n";
-    copyText += "Rate: " + QString::number(movie.rate) + "\n";
-    copyText += "Genre: " + movie.genre + "\n";
-    copyText += "Description: " + movie.description + "\n";
-    copyText += "Group: " + movie.group + "\n";
-    copyText += "Length: " + movie.length.toString("HH:mm");
 
-    QGuiApplication::clipboard()->setText(copyText);
+    QString str = "";
+    str += "Title: " + movie.title + "\n";
+    str += "Rate: " + QString::number(movie.rate) + "\n";
+    str += "Genre: " + movie.genre + "\n";
+    str += "Description: " + movie.description + "\n";
+    str += "Group: " + movie.group + "\n";
+    str += "Length: " + QString::number(movie.length.hour() * 60 + movie.length.minute()) + " min";
+
+    return str;
 }
 
 void MoviesSeenModel::loadData()

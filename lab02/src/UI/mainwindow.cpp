@@ -1,9 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <algorithm>
 #include "../dataDef/movieTypes.h"
+
+#include <algorithm>
 #include <QDebug>
+#include <QGuiApplication>
+#include <QClipboard>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -228,7 +231,9 @@ void MainWindow::on_tv_seenTable_clicked(const QModelIndex &index)
 {
     switch (index.column()) {
         case 0:
-        _moviesSeenModel->toClipboard(_moviesSeenFilter->mapToSource(index).row());
+        QGuiApplication::clipboard()->setText(
+                    _moviesSeenModel->toString(_moviesSeenFilter->mapToSource(index).row())
+                    );
         break;
 
         case 7:
@@ -236,4 +241,16 @@ void MainWindow::on_tv_seenTable_clicked(const QModelIndex &index)
         _moviesSeenFilter->invalidate();
         break;
     }
+}
+
+void MainWindow::on_btn_seenCopyAll_clicked()
+{
+    QString str;
+
+    for (int row = 0; row < _moviesSeenFilter->rowCount(); row++)
+        str += ((row == 0) ? "" : "\n\n") + _moviesSeenModel->toString(
+                    _moviesSeenFilter->mapToSource(_moviesSeenFilter->index(row, 0)).row()
+                    );
+
+    QGuiApplication::clipboard()->setText(str);
 }

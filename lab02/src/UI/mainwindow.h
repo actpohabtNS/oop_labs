@@ -40,6 +40,8 @@ private slots:
 
     void on_tv_seenTable_clicked(const QModelIndex &index);
 
+    void on_btn_seenCopyAll_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<MoviesSeenModel> _moviesSeenModel;

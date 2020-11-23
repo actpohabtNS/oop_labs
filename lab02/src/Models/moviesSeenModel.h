@@ -26,12 +26,12 @@ public:
     // Add data:
     bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 
-    bool removeRows(int row, int count, const QModelIndex& parent);
+    bool removeRows(int row, int count, const QModelIndex& parent) override;
 
     void sort(int column, Qt::SortOrder order) override;
 
 
-    void toClipboard(int row) const;
+    QString toString(int row) const;
 
     void loadData();
 
