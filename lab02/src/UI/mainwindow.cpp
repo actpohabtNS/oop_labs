@@ -122,8 +122,6 @@ void MainWindow::on_btn_addSeen_clicked()
                     ui->le_seenGenre}) || !_checkHighlightIsUniqueSeen(ui->le_seenTitle))
         return;
 
-    _moviesSeenFilter->setDynamicSortFilter(false);
-
     _movieSeenModel->addMovie({ // TODO: add isEditing check
                                   ui->le_seenTitle->text(),
                                   static_cast<quint8>(ui->sb_seenRate->value()),
@@ -134,8 +132,7 @@ void MainWindow::on_btn_addSeen_clicked()
                                   ui->te_seenLength->time()
                               });
 
-    _moviesSeenFilter->setDynamicSortFilter(true);
-    on_le_seenSearch_textChanged(ui->le_seenSearch->text()); // TODO: other fix of malfuncture when adding Movie when filter is applied
+    _moviesSeenFilter->invalidate();
 
     _clearSeenMovieInputs();
 }
