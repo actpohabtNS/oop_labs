@@ -42,6 +42,12 @@ void MainWindow::resizeEvent(QResizeEvent* event)
    _setTableColumnWidths(ui->tv_toSeeTable, {3,3,15,28,32,8,2,8});
 }
 
+void MainWindow::on_moviesTabs_currentChanged(int)
+{
+    _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
+    _setTableColumnWidths(ui->tv_toSeeTable, {3,3,15,28,32,8,2,8});
+}
+
 void MainWindow::_stretchTabs()
 {
     int width = ui->moviesTabs->width();
@@ -141,6 +147,35 @@ void MainWindow::on_btn_addSeen_clicked()
     _clearSeenMovieInputs();
 }
 
+void MainWindow::on_btn_addToSee_clicked()
+{
+    if (_checkHighlightIsEmpty({ui->le_toSeeTitle,
+                    ui->le_toSeeGenre}) || !_checkHighlightIsUniqueToSee(ui->le_toSeeTitle))
+        return;
+
+    MovieToSee movie = { ui->le_toSeeTitle->text(),
+                   ui->le_toSeeGenre->text(),
+                   ui->le_toSeeDesc->text(),
+                   QDate(),
+                   static_cast<quint16>(ui->sb_toSeeLength->value())
+               };
+
+    if (_editToSeeRow == -1) {
+        movie.added = QDate::currentDate();
+        _moviesToSeeModel->addMovie(movie);
+    } else {
+        movie.added = _moviesToSeeModel->movie(_editToSeeRow).added;
+        _moviesToSeeModel->editMovie(_editToSeeRow, movie);
+
+        _editToSeeRow = -1;
+        ui->btn_addToSee->setText("+");
+        ui->btn_addToSee->setToolTip("Add movie");
+    }
+
+    _moviesToSeeFilter->invalidate();
+    _clearToSeeMovieInputs();
+}
+
 void MainWindow::_enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineEdit*> lineEdits)
 {
     bool isEnabled = true;
@@ -181,6 +216,19 @@ bool MainWindow::_checkHighlightIsUniqueSeen(QLineEdit *lineEdit, QColor color)
     return true;;
 }
 
+bool MainWindow::_checkHighlightIsUniqueToSee(QLineEdit *lineEdit, QColor color)
+{
+    int titleRow = _moviesToSeeModel->titleRow(lineEdit->text().simplified());
+
+    if (titleRow != -1 && titleRow != _editToSeeRow) {
+        lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
+                                                         "border-bottom-color: " + color.name(QColor::HexRgb) + ";}");
+        return false;
+    }
+
+    return true;;
+}
+
 void MainWindow::_setBorderBottomColor(QLineEdit *lineEdit, QColor color)
 {
     lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
@@ -202,6 +250,12 @@ void MainWindow::_clearSeenMovieInputs()
     ui->sb_seenLength->setValue(1);
 }
 
+void MainWindow::_clearToSeeMovieInputs()
+{
+    _clearQLineEdits({ui->le_toSeeTitle, ui->le_toSeeGenre, ui->le_toSeeDesc});
+    ui->sb_seenLength->setValue(1);
+}
+
 void MainWindow::on_le_seenTitle_textChanged(const QString &arg1)
 {
     if (!arg1.isEmpty()) {
@@ -209,10 +263,24 @@ void MainWindow::on_le_seenTitle_textChanged(const QString &arg1)
     }
 }
 
+void MainWindow::on_le_toSeeTitle_textChanged(const QString &arg1)
+{
+    if (!arg1.isEmpty()) {
+        _setBorderBottomColor(ui->le_toSeeTitle);
+    }
+}
+
 void MainWindow::on_le_seenGenre_textChanged(const QString &arg1)
 {
     if (!arg1.isEmpty()) {
         _setBorderBottomColor(ui->le_seenGenre);
+    }
+}
+
+void MainWindow::on_le_toSeeGenre_textChanged(const QString &arg1)
+{
+    if (!arg1.isEmpty()) {
+        _setBorderBottomColor(ui->le_toSeeGenre);
     }
 }
 
@@ -359,10 +427,4 @@ void MainWindow::_setUpToSee()
     _setupMovieToSeeTable();
 
     _editToSeeRow = -1;
-}
-
-void MainWindow::on_moviesTabs_currentChanged(int)
-{
-    _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
-    _setTableColumnWidths(ui->tv_toSeeTable, {3,3,15,28,32,8,2,8});
 }

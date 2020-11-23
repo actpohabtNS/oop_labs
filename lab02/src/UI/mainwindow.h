@@ -48,6 +48,12 @@ private slots:
 
     void on_moviesTabs_currentChanged(int);
 
+    void on_btn_addToSee_clicked();
+
+    void on_le_toSeeTitle_textChanged(const QString &arg1);
+
+    void on_le_toSeeGenre_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 
@@ -73,6 +79,7 @@ private:
 
     void _clearQLineEdits(std::vector<QLineEdit*> lineEdits);
     void _clearSeenMovieInputs();
+    void _clearToSeeMovieInputs();
 
     void _stretchTabs();
     void _setRelativeTabsHeight(float percent);

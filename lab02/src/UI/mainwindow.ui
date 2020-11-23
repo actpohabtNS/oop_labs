@@ -78,7 +78,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -881,7 +881,7 @@ border-color: #b3b3b3;
 }</string>
             </property>
             <property name="text">
-             <string>title</string>
+             <string/>
             </property>
             <property name="maxLength">
              <number>168</number>
@@ -923,7 +923,7 @@ border-color: #b3b3b3;
 }</string>
             </property>
             <property name="text">
-             <string>genre</string>
+             <string/>
             </property>
             <property name="maxLength">
              <number>170</number>
@@ -965,7 +965,7 @@ border-color: #b3b3b3;
 }</string>
             </property>
             <property name="text">
-             <string>description</string>
+             <string/>
             </property>
             <property name="maxLength">
              <number>400</number>
