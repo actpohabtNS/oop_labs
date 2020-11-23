@@ -37,6 +37,7 @@ HEADERS += \
     src/dataDef/movieToSee.h \
     src/Models/movieToSeeModel.h \
     src/UI/mainwindow.h \
+    src/dataDef/movieTypes.h \
     src/dataDef/timevault.h
 
 FORMS += \
