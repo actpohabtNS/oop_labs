@@ -12,10 +12,13 @@ QVariant MoviesToSeeModel::headerData(int section, Qt::Orientation orientation, 
         {
             if (orientation == Qt::Horizontal) {
                 QStringList headers{
+                                   "",
+                                   "",
                                    "Title",
                                    "Genre",
                                    "Description",
                                    "Added",
+                                   "",
                                    "Length",
                                     };
                 return headers[section];
@@ -37,7 +40,7 @@ int MoviesToSeeModel::columnCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    return 5;
+    return 8;
 }
 
 QVariant MoviesToSeeModel::data(const QModelIndex &index, int role) const
@@ -51,15 +54,15 @@ QVariant MoviesToSeeModel::data(const QModelIndex &index, int role) const
             int column = index.column();
             const MovieToSee& result = _moviesToSee[row];
             switch(column) {
-                case 0:
-                    return result.title;
-                case 1:
-                    return result.genre;
                 case 2:
-                    return result.description;
+                    return result.title;
                 case 3:
-                    return result.added.toString(Qt::ISODate);
+                    return result.genre;
                 case 4:
+                    return result.description;
+                case 5:
+                    return result.added.toString(Qt::ISODate);
+                case 7:
                     return QString::number(result.length) + " min";
             }
         }
@@ -86,7 +89,7 @@ bool MoviesToSeeModel::removeRows(int row, int count, const QModelIndex &parent)
 void MoviesToSeeModel::sort(int column, Qt::SortOrder order)
 {
     switch(column) {
-            case 0:
+            case 2:
                 std::sort(_moviesToSee.begin(),_moviesToSee.end(), [order](const MovieToSee& a, const MovieToSee& b) {
                 return order == Qt::AscendingOrder ? a.title < b.title : a.title > b.title;
                 });
@@ -98,7 +101,7 @@ void MoviesToSeeModel::sort(int column, Qt::SortOrder order)
                 });
                 break;
 
-            case 6:
+            case 7:
                 std::sort(_moviesToSee.begin(),_moviesToSee.end(), [order](const MovieToSee& a, const MovieToSee& b) {
                 return order == Qt::AscendingOrder ? a.length < b.length : a.length > b.length;
                 });
