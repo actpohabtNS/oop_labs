@@ -16,7 +16,7 @@ void HoverTableView::mouseMoveEvent(QMouseEvent *event)
     viewport()->update();
 }
 
-void HoverTableView::leaveEvent(QEvent *event)
+void HoverTableView::leaveEvent(QEvent*)
 {
     emit leaveTableEvent();
     viewport()->update();

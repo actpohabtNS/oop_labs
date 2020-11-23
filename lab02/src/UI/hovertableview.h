@@ -11,7 +11,7 @@ class HoverTableView : public QTableView
 public:
     HoverTableView(QWidget *parent);
     void mouseMoveEvent(QMouseEvent *event);
-    void leaveEvent(QEvent *event);
+    void leaveEvent(QEvent*);
 
 signals:
     void hoverIndexChanged(const QModelIndex& item);
