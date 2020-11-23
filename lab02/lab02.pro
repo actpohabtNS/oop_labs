@@ -20,7 +20,7 @@ SOURCES += \
     src/Delegates/moviesdelegate.cpp \
     src/Models/moviesSeenModel.cpp \
     src/Models/moviesToSeeModel.cpp \
-    src/Models/moviesseenfilterproxymodel.cpp \
+    src/Models/moviesfilterproxymodel.cpp \
     src/UI/hovertableview.cpp \
     src/UI/mainwindow.cpp \
     src/dataDef/movieSeen.cpp \
@@ -33,7 +33,7 @@ HEADERS += \
     src/Delegates/moviesdelegate.h \
     src/Models/moviesSeenModel.h \
     src/Models/moviesToSeeModel.h \
-    src/Models/moviesseenfilterproxymodel.h \
+    src/Models/moviesfilterproxymodel.h \
     src/UI/hovertableview.h \
     src/dataDef/movie.h \
     src/dataDef/movieSeen.h \

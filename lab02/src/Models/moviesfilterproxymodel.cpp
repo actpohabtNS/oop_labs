@@ -1,25 +1,25 @@
-#include "moviesseenfilterproxymodel.h"
+#include "moviesfilterproxymodel.h"
 
-MoviesSeenFilterProxyModel::MoviesSeenFilterProxyModel(QObject *parent)
+MoviesFilterProxyModel::MoviesFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent), _timeVault{}, _timeLabel {nullptr} {}
 
-MoviesSeenFilterProxyModel::MoviesSeenFilterProxyModel(const TimeVault &timeVault, QLabel *label, QObject *parent)
+MoviesFilterProxyModel::MoviesFilterProxyModel(const TimeVault &timeVault, QLabel *label, QObject *parent)
  : QSortFilterProxyModel(parent), _timeLabel {label}
 {
     setTimeVault(timeVault);
 }
 
-void MoviesSeenFilterProxyModel::setTimeVault(const TimeVault &timeVault)
+void MoviesFilterProxyModel::setTimeVault(const TimeVault &timeVault)
 {
     _timeVault = TimeVault{timeVault.hours(), timeVault.minutes()};
 }
 
-void MoviesSeenFilterProxyModel::setTimeDisplay(QLabel *label)
+void MoviesFilterProxyModel::setTimeDisplay(QLabel *label)
 {
     _timeLabel = label;
 }
 
-void MoviesSeenFilterProxyModel::setFilterRegExp(const QRegExp &regExp)
+void MoviesFilterProxyModel::setFilterRegExp(const QRegExp &regExp)
 {
     _timeVault.nullify();
     _timeLabel->setText(_timeVault.toString());
@@ -27,7 +27,7 @@ void MoviesSeenFilterProxyModel::setFilterRegExp(const QRegExp &regExp)
     QSortFilterProxyModel::setFilterRegExp(regExp);
 }
 
-void MoviesSeenFilterProxyModel::invalidate()
+void MoviesFilterProxyModel::invalidate()
 {
     _timeVault.nullify();
     _timeLabel->setText(_timeVault.toString());
@@ -35,7 +35,7 @@ void MoviesSeenFilterProxyModel::invalidate()
     QSortFilterProxyModel::invalidate();
 }
 
-bool MoviesSeenFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool MoviesFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     bool accepts = false;
 

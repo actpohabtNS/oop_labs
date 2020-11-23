@@ -1,5 +1,5 @@
-#ifndef MOVIESSEENFILTERPROXYMODEL_H
-#define MOVIESSEENFILTERPROXYMODEL_H
+#ifndef MOVIESFILTERPROXYMODEL_H
+#define MOVIESFILTERPROXYMODEL_H
 
 #include "../dataDef/timevault.h"
 
@@ -7,13 +7,13 @@
 #include <QRegExp>
 #include <QLabel>
 
-class MoviesSeenFilterProxyModel : public QSortFilterProxyModel
+class MoviesFilterProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    MoviesSeenFilterProxyModel(QObject *parent = nullptr);
-    MoviesSeenFilterProxyModel(const TimeVault& timeVault, QLabel *label, QObject *parent = nullptr);
+    MoviesFilterProxyModel(QObject *parent = nullptr);
+    MoviesFilterProxyModel(const TimeVault& timeVault, QLabel *label, QObject *parent = nullptr);
 
     void setTimeVault(const TimeVault& timeVault);
     void setTimeDisplay(QLabel *label);
@@ -30,4 +30,4 @@ protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 };
 
-#endif // MOVIESSEENFILTERPROXYMODEL_H
+#endif // MOVIESFILTERPROXYMODEL_H
