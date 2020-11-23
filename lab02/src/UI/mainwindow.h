@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include "../Models/moviesSeenModel.h"
-#include "../Models/movieToSeeModel.h"
+#include "../Models/moviesToSeeModel.h"
 #include "../Models/moviesseenfilterproxymodel.h"
 #include "../Delegates/moviesdelegate.h"
 #include "hovertableview.h"
@@ -49,7 +49,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<MoviesSeenModel> _moviesSeenModel;
-    std::shared_ptr<MovieToSeeModel> _moviesToSeeModel;
+    std::shared_ptr<MoviesToSeeModel> _moviesToSeeModel;
     MoviesSeenFilterProxyModel* _moviesSeenFilter;
     MoviesDelegate* _moviesSeenDelegate;
 
