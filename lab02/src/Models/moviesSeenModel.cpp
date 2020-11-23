@@ -1,14 +1,14 @@
-#include "movieSeenModel.h"
+#include "moviesSeenModel.h"
 
 #include <QDataStream>
 #include <QDebug>
 #include <string>
 #include <QFile>
 
-MovieSeenModel::MovieSeenModel(QObject *parent)
+MoviesSeenModel::MoviesSeenModel(QObject *parent)
     : QAbstractTableModel(parent) {}
 
-QVariant MovieSeenModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant MoviesSeenModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole)
         {
@@ -30,7 +30,7 @@ QVariant MovieSeenModel::headerData(int section, Qt::Orientation orientation, in
     return QVariant();
 }
 
-int MovieSeenModel::rowCount(const QModelIndex &parent) const
+int MoviesSeenModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return 0;
@@ -38,7 +38,7 @@ int MovieSeenModel::rowCount(const QModelIndex &parent) const
     return _moviesSeen.size();
 }
 
-int MovieSeenModel::columnCount(const QModelIndex &parent) const
+int MoviesSeenModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return 0;
@@ -46,7 +46,7 @@ int MovieSeenModel::columnCount(const QModelIndex &parent) const
     return 9;
 }
 
-QVariant MovieSeenModel::data(const QModelIndex &index, int role) const
+QVariant MoviesSeenModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
             return QVariant();
@@ -84,7 +84,7 @@ QVariant MovieSeenModel::data(const QModelIndex &index, int role) const
         return QVariant();
 }
 
-bool MovieSeenModel::insertRows(int row, int count, const QModelIndex &parent)
+bool MoviesSeenModel::insertRows(int row, int count, const QModelIndex &parent)
 {
     beginInsertRows(parent, row, row + count - 1);
     // Insertion not implemented
@@ -92,7 +92,7 @@ bool MovieSeenModel::insertRows(int row, int count, const QModelIndex &parent)
     return true;
 }
 
-void MovieSeenModel::sort(int column, Qt::SortOrder order)
+void MoviesSeenModel::sort(int column, Qt::SortOrder order)
 {
     switch(column) {
             case 1:
@@ -123,7 +123,7 @@ void MovieSeenModel::sort(int column, Qt::SortOrder order)
     emit dataChanged(index(0,0),index(_moviesSeen.size(),columnCount()));
 }
 
-void MovieSeenModel::loadData()
+void MoviesSeenModel::loadData()
 {
     MovieSeen movie;MovieSeen movie1;
 
@@ -150,7 +150,7 @@ void MovieSeenModel::loadData()
     file.close();
 }
 
-void MovieSeenModel::addToFile(const MovieSeen &movie) const
+void MoviesSeenModel::addToFile(const MovieSeen &movie) const
 {
     QFile file(_filepath);
     file.open(QIODevice::Append | QIODevice::WriteOnly);
@@ -174,19 +174,19 @@ void MovieSeenModel::addToFile(const MovieSeen &movie) const
     file.close();
 }
 
-void MovieSeenModel::addMovie(const MovieSeen &movie)
+void MoviesSeenModel::addMovie(const MovieSeen &movie)
 {
     this->insertRow(_moviesSeen.size());
     _moviesSeen.push_back(movie);
     addToFile(movie);
 }
 
-void MovieSeenModel::setFilepath(QString path)
+void MoviesSeenModel::setFilepath(QString path)
 {
     _filepath = path;
 }
 
-const std::vector<MovieSeen> &MovieSeenModel::moviesSeen() const
+const std::vector<MovieSeen> &MoviesSeenModel::moviesSeen() const
 {
     return _moviesSeen;
 }
