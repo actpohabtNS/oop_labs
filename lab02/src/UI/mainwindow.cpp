@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <algorithm>
+#include "../dataDef/movieTypes.h"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -22,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->tv_seenTable->setModel(_moviesSeenFilter);
 
-    _moviesSeenDelegate = new MoviesSeenDelegate(this);
+    _moviesSeenDelegate = new MoviesDelegate(this, MovieTypes::movieSeen);
 
     connect(ui->tv_seenTable,
             SIGNAL(hoverIndexChanged(const QModelIndex&)),
