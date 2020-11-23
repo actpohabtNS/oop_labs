@@ -52,7 +52,7 @@ QVariant MoviesToSeeModel::data(const QModelIndex &index, int role) const
 
             int row = index.row();
             int column = index.column();
-            const MovieToSee& result = _moviesToSee[row];
+            const MovieToSee& result = _moviesToSee[_moviesToSee.size() - 1 - row]; //movies order is reversed in _moviesToSee due to higher performance in writing to file
             switch(column) {
                 case 2:
                     return result.title;
