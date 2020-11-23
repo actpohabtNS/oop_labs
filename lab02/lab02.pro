@@ -24,6 +24,7 @@ SOURCES += \
     src/UI/hovertableview.cpp \
     src/UI/mainwindow.cpp \
     src/dataDef/movieSeen.cpp \
+    src/dataDef/movieToSee.cpp \
     src/dataDef/timevault.cpp \
     src/main.cpp
 
