@@ -6,7 +6,8 @@
 #include <QString>
 #include <QDataStream>
 
-struct MovieSeen {
+class MovieSeen {
+public:
     QString title;
     quint8 rate;
     QString genre;

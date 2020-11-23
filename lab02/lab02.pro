@@ -34,6 +34,7 @@ HEADERS += \
     src/Models/moviesSeenModel.h \
     src/Models/moviesseenfilterproxymodel.h \
     src/UI/hovertableview.h \
+    src/dataDef/movie.h \
     src/dataDef/movieSeen.h \
     src/dataDef/movieToSee.h \
     src/Models/movieToSeeModel.h \
