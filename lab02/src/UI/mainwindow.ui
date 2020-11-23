@@ -78,7 +78,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -160,6 +160,9 @@ border: none;
           </item>
           <item>
            <widget class="QLineEdit" name="le_seenTitle">
+            <property name="toolTip">
+             <string>Movie's title</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -202,6 +205,9 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QSpinBox" name="sb_seenRate">
+            <property name="toolTip">
+             <string>Movie's rate (0 - 10)</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QSpinBox {
 height: 25px;
@@ -253,6 +259,9 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QLineEdit" name="le_seenGenre">
+            <property name="toolTip">
+             <string>Movie's genre</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -295,6 +304,9 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QLineEdit" name="le_seenDesc">
+            <property name="toolTip">
+             <string>Movie's description</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -337,6 +349,9 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QLineEdit" name="le_seenGroup">
+            <property name="toolTip">
+             <string>Movie's group</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -408,6 +423,9 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QSpinBox" name="sb_seenLength">
+            <property name="toolTip">
+             <string>Movie's length (mins)</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QSpinBox {
 height: 25px;
@@ -861,6 +879,9 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QLineEdit" name="le_toSeeTitle">
+            <property name="toolTip">
+             <string>Movie's title</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -903,6 +924,9 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QLineEdit" name="le_toSeeGenre">
+            <property name="toolTip">
+             <string>Movie's genre</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -945,6 +969,9 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QLineEdit" name="le_toSeeDesc">
+            <property name="toolTip">
+             <string>Movie's description</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 height: 25px;
@@ -1013,6 +1040,9 @@ border-color: #b3b3b3;
           </item>
           <item>
            <widget class="QSpinBox" name="sb_toSeeLength">
+            <property name="toolTip">
+             <string>Movie's length (mins)</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">QSpinBox {
 height: 25px;
