@@ -27,6 +27,14 @@ void MoviesSeenFilterProxyModel::setFilterRegExp(const QRegExp &regExp)
     QSortFilterProxyModel::setFilterRegExp(regExp);
 }
 
+void MoviesSeenFilterProxyModel::invalidate()
+{
+    _timeVault.nullify();
+    _timeLabel->setText(_timeVault.toString());
+
+    QSortFilterProxyModel::invalidate();
+}
+
 bool MoviesSeenFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     bool accepts = false;

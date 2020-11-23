@@ -18,8 +18,10 @@ public:
     void setTimeVault(const TimeVault& timeVault);
     void setTimeDisplay(QLabel *label);
 
+
 public slots:
     void setFilterRegExp(const QRegExp &regExp);
+    void invalidate();
 
 protected:
     mutable TimeVault _timeVault;
