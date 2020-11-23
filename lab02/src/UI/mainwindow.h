@@ -54,6 +54,10 @@ private slots:
 
     void on_le_toSeeGenre_textChanged(const QString &arg1);
 
+    void on_le_toSeeSearch_textChanged(const QString &arg1);
+
+    void on_tv_toSeeTable_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 

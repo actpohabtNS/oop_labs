@@ -290,6 +290,12 @@ void MainWindow::on_le_seenSearch_textChanged(const QString &arg1)
     _moviesSeenFilter->setFilterRegExp(regExp);
 }
 
+void MainWindow::on_le_toSeeSearch_textChanged(const QString &arg1)
+{
+    QRegExp regExp(arg1, Qt::CaseInsensitive);
+    _moviesToSeeFilter->setFilterRegExp(regExp);
+}
+
 void MainWindow::on_tv_seenTable_clicked(const QModelIndex &index)
 {
     int sourceRow = _moviesSeenFilter->mapToSource(index).row();
@@ -327,6 +333,46 @@ void MainWindow::on_tv_seenTable_clicked(const QModelIndex &index)
         default: {
             QGuiApplication::clipboard()->setText(
                         _moviesSeenModel->toString(sourceRow)
+                        );
+        }
+    }
+}
+
+void MainWindow::on_tv_toSeeTable_clicked(const QModelIndex &index)
+{
+    int sourceRow = _moviesToSeeFilter->mapToSource(index).row();
+
+    switch (index.column()) {
+        case 1: {
+            _editToSeeRow = sourceRow;
+            ui->btn_addToSee->setText("✓");
+            ui->btn_addToSee->setToolTip("Confirm edits");
+
+            auto movie = _moviesToSeeModel->movie(sourceRow);
+            ui->le_toSeeTitle->setText(movie.title);
+            ui->le_toSeeGenre->setText(movie.genre);
+            ui->le_toSeeDesc->setText(movie.description);
+            ui->sb_toSeeLength->setValue(movie.length);
+            break;
+        }
+
+        case 6: {
+
+        if (_editToSeeRow == sourceRow) {
+            _editToSeeRow = -1;
+            ui->btn_addToSee->setText("+");
+            ui->btn_addToSee->setToolTip("Add movie");
+
+            _clearToSeeMovieInputs();
+        }
+            _moviesToSeeModel->removeMovie(sourceRow);
+            _moviesToSeeFilter->invalidate();
+            break;
+        }
+
+        default: {
+            QGuiApplication::clipboard()->setText(
+                        _moviesToSeeModel->toString(sourceRow)
                         );
         }
     }
