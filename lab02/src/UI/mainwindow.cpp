@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QGuiApplication>
 #include <QClipboard>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,8 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     _moviesSeenModel = std::make_shared<MoviesSeenModel>();
     _moviesToSeeModel = std::make_shared<MovieToSeeModel>();
 
-    _moviesSeenModel->setFilepath("moviesSeen.mvf");
-    _moviesSeenModel->loadData();
+    _moviesSeenModel->setFilepath("moviesSeen.mfsn");
+    _moviesSeenModel->loadFromFile();
 
     _moviesSeenFilter = new MoviesSeenFilterProxyModel({}, ui->lbl_seenTotalLength,this);
     _moviesSeenFilter->setSourceModel(_moviesSeenModel.get());
@@ -253,4 +254,19 @@ void MainWindow::on_btn_seenCopyAll_clicked()
                     );
 
     QGuiApplication::clipboard()->setText(str);
+}
+
+void MainWindow::on_btn_seenExport_clicked()
+{
+    QString filepath = QFileDialog::getSaveFileName(this,
+           tr("Save Movies Seen list"), "",
+           tr("Moviefy Movies Seen (*.mfsn);;All Files (*)"));
+
+    for (int row = _moviesSeenFilter->rowCount() - 1; row >= 0; row--)
+        _moviesSeenModel->addToFile(
+                    _moviesSeenModel->movie(
+                        _moviesSeenFilter->mapToSource(_moviesSeenFilter->index(row, 0)).row()
+                        ),
+                    filepath
+                    );
 }

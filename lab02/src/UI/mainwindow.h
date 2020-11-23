@@ -42,6 +42,8 @@ private slots:
 
     void on_btn_seenCopyAll_clicked();
 
+    void on_btn_seenExport_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<MoviesSeenModel> _moviesSeenModel;

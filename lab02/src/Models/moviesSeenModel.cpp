@@ -148,11 +148,16 @@ QString MoviesSeenModel::toString(int row) const
     return str;
 }
 
-void MoviesSeenModel::loadData()
+void MoviesSeenModel::loadFromFile()
+{
+    loadFromFile(_filepath);
+}
+
+void MoviesSeenModel::loadFromFile(const QString &filename)
 {
     MovieSeen movie;
 
-    QFile file(_filepath);
+    QFile file(filename);
     file.open(QIODevice::ReadOnly);
 
     if (!file.isOpen()) {
@@ -177,7 +182,12 @@ void MoviesSeenModel::loadData()
 
 void MoviesSeenModel::addToFile(const MovieSeen &movie) const
 {
-    QFile file(_filepath);
+    addToFile(movie, _filepath);
+}
+
+void MoviesSeenModel::addToFile(const MovieSeen &movie, const QString &filepath) const
+{
+    QFile file(filepath);
     file.open(QIODevice::Append | QIODevice::WriteOnly);
 
     if (!file.isOpen()) {
@@ -195,7 +205,12 @@ void MoviesSeenModel::addToFile(const MovieSeen &movie) const
 
 void MoviesSeenModel::flushToFile() const
 {
-    QFile file(_filepath);
+    flushToFile(_filepath);
+}
+
+void MoviesSeenModel::flushToFile(const QString &filepath) const
+{
+    QFile file(filepath);
     file.open(QIODevice::Truncate | QIODevice::WriteOnly);
 
     if (!file.isOpen()) {
@@ -229,6 +244,11 @@ void MoviesSeenModel::removeMovie(int row)
 void MoviesSeenModel::setFilepath(QString path)
 {
     _filepath = path;
+}
+
+const MovieSeen &MoviesSeenModel::movie(int row) const
+{
+    return _moviesSeen[_moviesSeen.size() - 1 - row];
 }
 
 const std::vector<MovieSeen> &MoviesSeenModel::moviesSeen() const
