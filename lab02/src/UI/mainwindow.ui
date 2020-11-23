@@ -78,7 +78,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -802,10 +802,23 @@ color: #5b5c5c;
          <number>15</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="addMovieLayout_2" stretch="0,7,10,16,0,1">
+         <layout class="QHBoxLayout" name="addMovieLayout_2" stretch="2,2,2,14,1,27,1,32,1,8,1,8">
           <property name="spacing">
-           <number>50</number>
+           <number>0</number>
           </property>
+          <item>
+           <spacer name="horizontalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item>
            <widget class="QPushButton" name="btn_addToSee">
             <property name="cursor">
@@ -821,8 +834,6 @@ height: 25px;
 color: #5b5c5c;
 font-weight: 900;
 font-size: 20px;
-border: 1.5px solid #5b5c5c;
-    border-radius: 12.5px;
 }
 
 QPushButton::hover {
@@ -834,6 +845,19 @@ border-color: #b3b3b3;
              <string>+</string>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_18">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QLineEdit" name="le_toSeeTitle">
@@ -865,6 +889,19 @@ border-color: #b3b3b3;
            </widget>
           </item>
           <item>
+           <spacer name="horizontalSpacer_14">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <widget class="QLineEdit" name="le_toSeeGenre">
             <property name="styleSheet">
              <string notr="true">QLineEdit {
@@ -892,6 +929,19 @@ border-color: #b3b3b3;
              <number>170</number>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_15">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QLineEdit" name="le_toSeeDesc">
@@ -923,6 +973,19 @@ border-color: #b3b3b3;
            </widget>
           </item>
           <item>
+           <spacer name="horizontalSpacer_16">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_6">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -936,9 +999,22 @@ border-color: #b3b3b3;
            </spacer>
           </item>
           <item>
-           <widget class="QTimeEdit" name="te_toSeeLength">
+           <spacer name="horizontalSpacer_17">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="sb_toSeeLength">
             <property name="styleSheet">
-             <string notr="true">QTimeEdit {
+             <string notr="true">QSpinBox {
 height: 25px;
 border-bottom: 1.5px solid #5b5c5c;
 font-size: 20px;
@@ -946,34 +1022,36 @@ color: #5b5c5c;
 font-family: Roboto;
 }
 
-QTimeEdit::up-button {
+QSpinBox::up-button {
  width: 0px;
 }
 
-QTimeEdit::down-button {
+QSpinBox::down-button {
  width: 0px;
 }
 
 
-QTimeEdit::hover {
+QSpinBox::hover {
 color: #b3b3b3;
 border-color: #b3b3b3;
 }
 
-QTimeEdit::focus {
+QSpinBox::focus {
 color: #b3b3b3;
 border-color: #b3b3b3;
 }</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
-            <property name="minimumTime">
-             <time>
-              <hour>0</hour>
-              <minute>1</minute>
-              <second>0</second>
-             </time>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>51420</number>
+            </property>
+            <property name="value">
+             <number>1</number>
             </property>
            </widget>
           </item>
@@ -983,6 +1061,56 @@ border-color: #b3b3b3;
          <widget class="HoverTableView" name="tv_toSeeTable">
           <property name="cursor" stdset="0">
            <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTableView {
+	selection-color: transparent;
+	border: none;
+
+	font-size: 20px;
+	font-family: Roboto;
+	color: #cfd0d0;
+}
+
+QHeaderView {
+	border: none;
+}
+
+QHeaderView::section {
+    background-color: transparent;
+
+    color: #5b5c5c;
+	font-family: Roboto;
+
+	border: none;
+	border-bottom: 1px solid #5b5c5c;
+}
+
+QHeaderView::up-arrow {
+image: url(up_arrow.png);
+width: 15px;
+subcontrol-origin: border;
+subcontrol-position: top center;
+margin-bottom: 15px;
+}
+
+QHeaderView::down-arrow {
+image: url(down_arrow.png);
+width: 15px;
+subcontrol-origin: border;
+subcontrol-position: top center;
+margin-bottom: 15px;
+}
+
+QTableView::item {
+	border: 0px solid #5b5c5c;
+	border-bottom: 1px solid #5b5c5c;
+}
+
+QTableView::item::selected {
+    background-color: transparent;
+	color: #cfd0d0;
+}</string>
           </property>
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1219,7 +1347,7 @@ color: #5b5c5c;
 }</string>
               </property>
               <property name="text">
-               <string>20h 37m</string>
+               <string>0h 0m</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

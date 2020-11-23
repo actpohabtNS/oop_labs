@@ -3,7 +3,7 @@
 
 #include "../Models/moviesSeenModel.h"
 #include "../Models/moviesToSeeModel.h"
-#include "../Models/moviesseenfilterproxymodel.h"
+#include "../Models/moviesfilterproxymodel.h"
 #include "../Delegates/moviesdelegate.h"
 #include "hovertableview.h"
 
@@ -46,18 +46,29 @@ private slots:
 
     void on_btn_seenImport_clicked();
 
+    void on_moviesTabs_currentChanged(int);
+
 private:
     Ui::MainWindow *ui;
+
     MoviesSeenModel* _moviesSeenModel;
-    MoviesToSeeModel* _moviesToSeeModel;
-    MoviesSeenFilterProxyModel* _moviesSeenFilter;
+    MoviesFilterProxyModel* _moviesSeenFilter;
     MoviesDelegate* _moviesSeenDelegate;
 
+    MoviesToSeeModel* _moviesToSeeModel;
+    MoviesFilterProxyModel* _moviesToSeeFilter;
+    MoviesDelegate* _moviesToSeeDelegate;
+
     int _editSeenRow;
+    int _editToSeeRow;
+
+    void _setUpSeen();
+    void _setUpToSee();
 
     void _enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineEdit *> lineEdits);
     bool _checkHighlightIsEmpty(std::vector<QLineEdit*> lineEdits, QColor color = {"#cc1616"});
     bool _checkHighlightIsUniqueSeen(QLineEdit* lineEdit, QColor color = {"#cc1616"});
+    bool _checkHighlightIsUniqueToSee(QLineEdit* lineEdit, QColor color = {"#cc1616"});
     void _setBorderBottomColor(QLineEdit* lineEdit, QColor color = {"#5b5c5c"});
 
     void _clearQLineEdits(std::vector<QLineEdit*> lineEdits);
@@ -67,6 +78,8 @@ private:
     void _setRelativeTabsHeight(float percent);
 
     void _setupMovieSeenTable();
+    void _setupMovieToSeeTable();
+    void _setUpLockedTable(QTableView* table, int rowHeight = 60);
     void _setTableColumnWidths(QTableView* table, const std::vector<int>& proportions);
 
 };

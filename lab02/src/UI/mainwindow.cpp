@@ -15,34 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
-    _moviesSeenModel = new MoviesSeenModel();
-    _moviesToSeeModel = new MoviesToSeeModel();
-
-    _moviesSeenModel->setFilepath("moviesSeen.mfsn");
-    _moviesSeenModel->loadFromFile();
-
-    _moviesSeenFilter = new MoviesSeenFilterProxyModel({}, ui->lbl_seenTotalLength,this);
-    _moviesSeenFilter->setSourceModel(_moviesSeenModel);
-
-    ui->tv_seenTable->setModel(_moviesSeenFilter);
-
-    _moviesSeenDelegate = new MoviesDelegate(this, MovieTypes::movieSeen);
-
-    connect(ui->tv_seenTable,
-            SIGNAL(hoverIndexChanged(const QModelIndex&)),
-            _moviesSeenDelegate,
-            SLOT(onHoverIndexChanged(const QModelIndex&)));
-    connect(ui->tv_seenTable,
-            SIGNAL(leaveTableEvent()),
-            _moviesSeenDelegate,
-            SLOT(onLeaveTableEvent()));
-
-    ui->tv_seenTable->setItemDelegate(_moviesSeenDelegate);
-
-    _setupMovieSeenTable();
-
-    _editSeenRow = -1;
+    _setUpSeen();
+    _setUpToSee();
 }
 
 MainWindow::~MainWindow()
@@ -56,6 +30,7 @@ void MainWindow::showEvent(QShowEvent *ev)
     this->_stretchTabs();
     this->_setRelativeTabsHeight(0.05);
     _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
+    _setTableColumnWidths(ui->tv_toSeeTable, {3,3,15,28,32,8,2,8});
 }
 
 void MainWindow::resizeEvent(QResizeEvent* event)
@@ -64,6 +39,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
    this->_stretchTabs();
    this->_setRelativeTabsHeight(0.05);
    _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
+   _setTableColumnWidths(ui->tv_toSeeTable, {3,3,15,28,32,8,2,8});
 }
 
 void MainWindow::_stretchTabs()
@@ -87,22 +63,35 @@ void MainWindow::_setRelativeTabsHeight(float percent)
 
 void MainWindow::_setupMovieSeenTable()
 {
-    ui->tv_seenTable->verticalHeader()->setVisible(false);
-    ui->tv_seenTable->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
-    ui->tv_seenTable->horizontalHeader()->setStretchLastSection(true); // for table to take all availible space
-    ui->tv_seenTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tv_seenTable->setFocusPolicy(Qt::NoFocus);
-    ui->tv_seenTable->setSelectionMode(QAbstractItemView::NoSelection);
-
-    QHeaderView *verticalHeader = ui->tv_seenTable->verticalHeader();
-    verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
-    verticalHeader->setDefaultSectionSize(60);
-
-     ui->tv_seenTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+     _setUpLockedTable(ui->tv_seenTable);
 
      ui->tv_seenTable->sortByColumn(6, Qt::DescendingOrder);
 
-    _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
+     _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
+}
+
+void MainWindow::_setupMovieToSeeTable()
+{
+     _setUpLockedTable(ui->tv_toSeeTable);
+
+     ui->tv_toSeeTable->sortByColumn(5, Qt::DescendingOrder);
+
+     _setTableColumnWidths(ui->tv_toSeeTable, {3,3,15,28,32,8,2,8});
+}
+
+void MainWindow::_setUpLockedTable(QTableView *table, int rowHeight)
+{
+    table->verticalHeader()->setVisible(false);
+    table->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    table->horizontalHeader()->setStretchLastSection(true); // for table to take all availible space
+    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    table->setFocusPolicy(Qt::NoFocus);
+    table->setSelectionMode(QAbstractItemView::NoSelection);
+
+    QHeaderView *verticalHeader = table->verticalHeader();
+    verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
+    verticalHeader->setDefaultSectionSize(rowHeight);
 }
 
 void MainWindow::_setTableColumnWidths(QTableView* table, const std::vector<int>& proportions)
@@ -119,9 +108,7 @@ void MainWindow::_setTableColumnWidths(QTableView* table, const std::vector<int>
     for (uint idx = 0; idx < proportions.size() && idx < columnCount; idx++) {
         table->setColumnWidth(idx, partialWidth * proportions[idx]);
     }
-
 }
-
 
 void MainWindow::on_btn_addSeen_clicked()
 {
@@ -312,4 +299,70 @@ void MainWindow::on_btn_seenImport_clicked()
 
     _moviesSeenModel->importFromFile(filepath);
     _moviesSeenFilter->invalidate();
+}
+
+void MainWindow::_setUpSeen()
+{
+    _moviesSeenModel = new MoviesSeenModel();
+
+    _moviesSeenModel->setFilepath("moviesSeen.mfsn");
+    _moviesSeenModel->loadFromFile();
+
+    _moviesSeenFilter = new MoviesFilterProxyModel({}, ui->lbl_seenTotalLength,this);
+    _moviesSeenFilter->setSourceModel(_moviesSeenModel);
+
+    ui->tv_seenTable->setModel(_moviesSeenFilter);
+
+    _moviesSeenDelegate = new MoviesDelegate(this, MovieTypes::movieSeen);
+
+    connect(ui->tv_seenTable,
+            SIGNAL(hoverIndexChanged(const QModelIndex&)),
+            _moviesSeenDelegate,
+            SLOT(onHoverIndexChanged(const QModelIndex&)));
+    connect(ui->tv_seenTable,
+            SIGNAL(leaveTableEvent()),
+            _moviesSeenDelegate,
+            SLOT(onLeaveTableEvent()));
+
+    ui->tv_seenTable->setItemDelegate(_moviesSeenDelegate);
+
+    _setupMovieSeenTable();
+
+    _editSeenRow = -1;
+}
+
+void MainWindow::_setUpToSee()
+{
+    _moviesToSeeModel = new MoviesToSeeModel();
+
+    _moviesToSeeModel->setFilepath("moviesToSee.mfsn");
+    _moviesToSeeModel->loadFromFile();
+
+    _moviesToSeeFilter = new MoviesFilterProxyModel({}, ui->lbl_toSeeTotalLength,this);
+    _moviesToSeeFilter->setSourceModel(_moviesToSeeModel);
+
+    ui->tv_toSeeTable->setModel(_moviesToSeeFilter);
+
+    _moviesToSeeDelegate = new MoviesDelegate(this, MovieTypes::movieToSee);
+
+    connect(ui->tv_toSeeTable,
+            SIGNAL(hoverIndexChanged(const QModelIndex&)),
+            _moviesToSeeDelegate,
+            SLOT(onHoverIndexChanged(const QModelIndex&)));
+    connect(ui->tv_toSeeTable,
+            SIGNAL(leaveTableEvent()),
+            _moviesToSeeDelegate,
+            SLOT(onLeaveTableEvent()));
+
+    ui->tv_toSeeTable->setItemDelegate(_moviesToSeeDelegate);
+
+    _setupMovieToSeeTable();
+
+    _editToSeeRow = -1;
+}
+
+void MainWindow::on_moviesTabs_currentChanged(int)
+{
+    _setTableColumnWidths(ui->tv_seenTable, {3,15,3,21,29,14,8,2,4});
+    _setTableColumnWidths(ui->tv_toSeeTable, {3,3,15,28,32,8,2,8});
 }
