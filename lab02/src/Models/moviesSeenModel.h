@@ -26,6 +26,8 @@ public:
     // Add data:
     bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 
+    bool removeRows(int row, int count, const QModelIndex& parent);
+
     void sort(int column, Qt::SortOrder order) override;
 
 
@@ -35,7 +37,11 @@ public:
 
     void addToFile(const MovieSeen& movie) const;
 
+    void flushToFile() const;
+
     void addMovie(const MovieSeen& movie);
+
+    void removeMovie(int row);
 
     void setFilepath(QString path);
 
@@ -45,7 +51,6 @@ private:
     std::vector<MovieSeen> _moviesSeen;
 
     QString _filepath;
-
 };
 
 #endif // MOVIESSEENMODEL_H

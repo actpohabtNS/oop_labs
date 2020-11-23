@@ -94,6 +94,14 @@ bool MoviesSeenModel::insertRows(int row, int count, const QModelIndex &parent)
     return true;
 }
 
+bool MoviesSeenModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    beginRemoveRows(parent, row, row + count - 1);
+    // Insertion not implemented
+    endRemoveRows();
+    return true;
+}
+
 void MoviesSeenModel::sort(int column, Qt::SortOrder order)
 {
     switch(column) {
@@ -141,7 +149,7 @@ void MoviesSeenModel::toClipboard(int row) const
 
 void MoviesSeenModel::loadData()
 {
-    MovieSeen movie;MovieSeen movie1;
+    MovieSeen movie;
 
     QFile file(_filepath);
     file.open(QIODevice::ReadOnly);
@@ -179,13 +187,26 @@ void MoviesSeenModel::addToFile(const MovieSeen &movie) const
     QDataStream stream(&file);
     stream.setVersion(QDataStream::Qt_5_1);
 
-    stream << movie.title
-        << movie.rate
-        << movie.genre
-        << movie.description
-        << movie.group
-        << movie.added
-        << movie.length;
+    stream << movie;
+
+    file.close();
+}
+
+void MoviesSeenModel::flushToFile() const
+{
+    QFile file(_filepath);
+    file.open(QIODevice::Truncate | QIODevice::WriteOnly);
+
+    if (!file.isOpen()) {
+        qDebug() << "addToFile: file can Not be opened!";
+        return;
+    }
+
+    QDataStream stream(&file);
+    stream.setVersion(QDataStream::Qt_5_1);
+
+    for (auto movie : _moviesSeen)
+        stream << movie;
 
     file.close();
 }
@@ -195,6 +216,13 @@ void MoviesSeenModel::addMovie(const MovieSeen &movie)
     this->insertRow(_moviesSeen.size());
     _moviesSeen.push_back(movie);
     addToFile(movie);
+}
+
+void MoviesSeenModel::removeMovie(int row)
+{
+    this->removeRow(row);
+    _moviesSeen.erase(_moviesSeen.end() - 1 - row);
+    flushToFile();
 }
 
 void MoviesSeenModel::setFilepath(QString path)

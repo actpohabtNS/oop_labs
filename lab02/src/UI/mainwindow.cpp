@@ -232,7 +232,8 @@ void MainWindow::on_tv_seenTable_clicked(const QModelIndex &index)
         break;
 
         case 7:
-
+        _moviesSeenModel->removeMovie(_moviesSeenFilter->mapToSource(index).row());
+        _moviesSeenFilter->invalidate();
         break;
     }
 }
