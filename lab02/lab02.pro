@@ -17,8 +17,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/Delegates/hoverrowdelegate.cpp \
-    src/Models/movieSeenModel.cpp \
+    src/Delegates/moviesseendelegate.cpp \
     src/Models/movieToSeeModel.cpp \
+    src/Models/moviesSeenModel.cpp \
     src/Models/moviesseenfilterproxymodel.cpp \
     src/UI/hovertableview.cpp \
     src/UI/mainwindow.cpp \
@@ -28,11 +29,12 @@ SOURCES += \
 
 HEADERS += \
     src/Delegates/hoverrowdelegate.h \
+    src/Delegates/moviesseendelegate.h \
+    src/Models/moviesSeenModel.h \
     src/Models/moviesseenfilterproxymodel.h \
     src/UI/hovertableview.h \
     src/dataDef/movieSeen.h \
     src/dataDef/movieToSee.h \
-    src/Models/movieSeenModel.h \
     src/Models/movieToSeeModel.h \
     src/UI/mainwindow.h \
     src/dataDef/timevault.h

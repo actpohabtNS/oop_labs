@@ -1,5 +1,5 @@
-#ifndef MOVIESEENMODEL_H
-#define MOVIESEENMODEL_H
+#ifndef MOVIESSEENMODEL_H
+#define MOVIESSEENMODEL_H
 
 #include "../dataDef/movieSeen.h"
 
@@ -7,12 +7,12 @@
 #include <QFile>
 #include <vector>
 
-class MovieSeenModel : public QAbstractTableModel
+class MoviesSeenModel : public QAbstractTableModel
 {
     Q_OBJECT
 
 public:
-    explicit MovieSeenModel(QObject *parent = nullptr);
+    explicit MoviesSeenModel(QObject *parent = nullptr);
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
@@ -46,4 +46,4 @@ private:
 
 };
 
-#endif // MOVIESEENMODEL_H
+#endif // MOVIESSEENMODEL_H
