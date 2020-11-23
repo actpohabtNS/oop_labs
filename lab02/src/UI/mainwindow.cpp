@@ -11,29 +11,29 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
-    _movieSeenModel = std::make_shared<MovieSeenModel>();
-    _movieToSeeModel = std::make_shared<MovieToSeeModel>();
+    _moviesSeenModel = std::make_shared<MoviesSeenModel>();
+    _moviesToSeeModel = std::make_shared<MovieToSeeModel>();
 
-    _movieSeenModel->setFilepath("moviesSeen.mvf");
-    _movieSeenModel->loadData();
+    _moviesSeenModel->setFilepath("moviesSeen.mvf");
+    _moviesSeenModel->loadData();
 
     _moviesSeenFilter = new MoviesSeenFilterProxyModel({}, ui->lbl_seenTotalLength,this);
-    _moviesSeenFilter->setSourceModel(_movieSeenModel.get());
+    _moviesSeenFilter->setSourceModel(_moviesSeenModel.get());
 
     ui->tv_seenTable->setModel(_moviesSeenFilter);
 
-    _hoverRowDelegate = new HoverRowDelegate(this);
+    _moviesSeenDelegate = new MoviesSeenDelegate(this);
 
     connect(ui->tv_seenTable,
             SIGNAL(hoverIndexChanged(const QModelIndex&)),
-            _hoverRowDelegate,
+            _moviesSeenDelegate,
             SLOT(onHoverIndexChanged(const QModelIndex&)));
     connect(ui->tv_seenTable,
             SIGNAL(leaveTableEvent()),
-            _hoverRowDelegate,
+            _moviesSeenDelegate,
             SLOT(onLeaveTableEvent()));
 
-    ui->tv_seenTable->setItemDelegate(_hoverRowDelegate);
+    ui->tv_seenTable->setItemDelegate(_moviesSeenDelegate);
 
     _setupMovieSeenTable();
 }
@@ -122,7 +122,7 @@ void MainWindow::on_btn_addSeen_clicked()
                     ui->le_seenGenre}) || !_checkHighlightIsUniqueSeen(ui->le_seenTitle))
         return;
 
-    _movieSeenModel->addMovie({ // TODO: add isEditing check
+    _moviesSeenModel->addMovie({ // TODO: add isEditing check
                                   ui->le_seenTitle->text(),
                                   static_cast<quint8>(ui->sb_seenRate->value()),
                                   ui->le_seenGenre->text(),
@@ -168,7 +168,7 @@ bool MainWindow::_checkHighlightIsUniqueSeen(QLineEdit *lineEdit, QColor color)
 {
     bool unique = true;
 
-    std::vector<MovieSeen> movies = _movieSeenModel->moviesSeen();
+    std::vector<MovieSeen> movies = _moviesSeenModel->moviesSeen();
 
     for (const auto& movie : movies) {
         if (movie.title.toUpper() == lineEdit->text().simplified().toUpper()) { // simplified - check if "Title" == " Title  "

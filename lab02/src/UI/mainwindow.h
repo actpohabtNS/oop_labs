@@ -1,10 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "../Models/movieSeenModel.h"
+#include "../Models/moviesSeenModel.h"
 #include "../Models/movieToSeeModel.h"
 #include "../Models/moviesseenfilterproxymodel.h"
-#include "../Delegates/hoverrowdelegate.h"
+#include "../Delegates/moviesseendelegate.h"
 #include "hovertableview.h"
 
 #include <memory>
@@ -40,10 +40,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    std::shared_ptr<MovieSeenModel> _movieSeenModel;
-    std::shared_ptr<MovieToSeeModel> _movieToSeeModel;
+    std::shared_ptr<MoviesSeenModel> _moviesSeenModel;
+    std::shared_ptr<MovieToSeeModel> _moviesToSeeModel;
     MoviesSeenFilterProxyModel* _moviesSeenFilter;
-    HoverRowDelegate* _hoverRowDelegate;
+    MoviesSeenDelegate* _moviesSeenDelegate;
 
     void _enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineEdit *> lineEdits);
     bool _checkHighlightIsEmpty(std::vector<QLineEdit*> lineEdits, QColor color = {"#cc1616"});
