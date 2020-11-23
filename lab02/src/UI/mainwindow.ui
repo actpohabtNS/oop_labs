@@ -78,7 +78,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -446,7 +446,7 @@ border-color: #b3b3b3;
              <number>51420</number>
             </property>
             <property name="value">
-             <number>51420</number>
+             <number>1</number>
             </property>
            </widget>
           </item>
@@ -557,7 +557,7 @@ QTableView::item::selected {
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="toolTip">
-               <string>Copy all list to clipboard</string>
+               <string>Copy list to clipboard</string>
               </property>
               <property name="toolTipDuration">
                <number>0</number>
@@ -1008,7 +1008,7 @@ border-color: #b3b3b3;
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="toolTip">
-               <string>Copy all list to clipboard</string>
+               <string>Copy list to clipboard</string>
               </property>
               <property name="toolTipDuration">
                <number>0</number>
