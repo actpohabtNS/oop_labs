@@ -58,6 +58,12 @@ private slots:
 
     void on_tv_toSeeTable_clicked(const QModelIndex &index);
 
+    void on_btn_toSeeCopyAll_clicked();
+
+    void on_btn_toSeeExport_clicked();
+
+    void on_btn_toSeeImport_clicked();
+
 private:
     Ui::MainWindow *ui;
 

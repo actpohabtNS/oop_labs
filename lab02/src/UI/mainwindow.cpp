@@ -253,7 +253,7 @@ void MainWindow::_clearSeenMovieInputs()
 void MainWindow::_clearToSeeMovieInputs()
 {
     _clearQLineEdits({ui->le_toSeeTitle, ui->le_toSeeGenre, ui->le_toSeeDesc});
-    ui->sb_seenLength->setValue(1);
+    ui->sb_toSeeLength->setValue(1);
 }
 
 void MainWindow::on_le_seenTitle_textChanged(const QString &arg1)
@@ -390,6 +390,18 @@ void MainWindow::on_btn_seenCopyAll_clicked()
     QGuiApplication::clipboard()->setText(str);
 }
 
+void MainWindow::on_btn_toSeeCopyAll_clicked()
+{
+    QString str;
+
+    for (int row = 0; row < _moviesToSeeFilter->rowCount(); row++)
+        str += ((row == 0) ? "" : "\n\n") + _moviesToSeeModel->toString(
+                    _moviesToSeeFilter->mapToSource(_moviesToSeeFilter->index(row, 0)).row()
+                    );
+
+    QGuiApplication::clipboard()->setText(str);
+}
+
 void MainWindow::on_btn_seenExport_clicked()
 {
     QString filepath = QFileDialog::getSaveFileName(this,
@@ -405,6 +417,21 @@ void MainWindow::on_btn_seenExport_clicked()
                     );
 }
 
+void MainWindow::on_btn_toSeeExport_clicked()
+{
+    QString filepath = QFileDialog::getSaveFileName(this,
+           tr("Save Movies To See list"), "",
+           tr("Moviefy Movies To See (*.mfts);;All Files (*)"));
+
+    for (int row = _moviesToSeeFilter->rowCount() - 1; row >= 0; row--)
+        _moviesToSeeModel->addToFile(
+                    _moviesToSeeModel->movie(
+                        _moviesToSeeFilter->mapToSource(_moviesToSeeFilter->index(row, 0)).row()
+                        ),
+                    filepath
+                    );
+}
+
 void MainWindow::on_btn_seenImport_clicked()
 {
     QString filepath = QFileDialog::getOpenFileName(this,
@@ -413,6 +440,16 @@ void MainWindow::on_btn_seenImport_clicked()
 
     _moviesSeenModel->importFromFile(filepath);
     _moviesSeenFilter->invalidate();
+}
+
+void MainWindow::on_btn_toSeeImport_clicked()
+{
+    QString filepath = QFileDialog::getOpenFileName(this,
+           tr("Load Movies ToSee list"), "",
+           tr("Moviefy Movies To See (*.mfts);;All Files (*)"));
+
+    _moviesToSeeModel->importFromFile(filepath);
+    _moviesToSeeFilter->invalidate();
 }
 
 void MainWindow::_setUpSeen()
@@ -449,7 +486,7 @@ void MainWindow::_setUpToSee()
 {
     _moviesToSeeModel = new MoviesToSeeModel();
 
-    _moviesToSeeModel->setFilepath("moviesToSee.mfsn");
+    _moviesToSeeModel->setFilepath("moviesToSee.mfts");
     _moviesToSeeModel->loadFromFile();
 
     _moviesToSeeFilter = new MoviesFilterProxyModel({}, ui->lbl_toSeeTotalLength,this);
