@@ -76,10 +76,7 @@ QVariant MoviesSeenModel::data(const QModelIndex &index, int role) const
                 case 7:
                     return "";
                 case 8:
-                    QString qres = "";
-                    qres.append(QString::number(result.length.hour() * 60 + result.length.minute()) + " min");
-
-                    return qres;
+                    return QString::number(result.length) + " min";
             }
         }
 
@@ -143,7 +140,7 @@ QString MoviesSeenModel::toString(int row) const
     str += "Genre: " + movie.genre + "\n";
     str += "Description: " + movie.description + "\n";
     str += "Group: " + movie.group + "\n";
-    str += "Length: " + QString::number(movie.length.hour() * 60 + movie.length.minute()) + " min";
+    str += "Length: " + QString::number(movie.length) + " min";
 
     return str;
 }

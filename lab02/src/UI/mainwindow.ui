@@ -143,6 +143,14 @@ font-size: 20px;
 QPushButton::hover {
 color: #b3b3b3;
 border-color: #b3b3b3;
+}
+
+QPushButton::selected {
+border: none;
+}
+
+QPushButton::focus {
+border: none;
 }</string>
             </property>
             <property name="text">
@@ -399,41 +407,31 @@ border-color: #b3b3b3;
            </spacer>
           </item>
           <item>
-           <widget class="QTimeEdit" name="te_seenLength">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
+           <widget class="QSpinBox" name="sb_seenLength">
             <property name="styleSheet">
-             <string notr="true">QTimeEdit {
+             <string notr="true">QSpinBox {
 height: 25px;
 border-bottom: 1.5px solid #5b5c5c;
 font-size: 20px;
 color: #5b5c5c;
 font-family: Roboto;
-width: 18px;
 }
 
-QTimeEdit::up-button {
+QSpinBox::up-button {
  width: 0px;
 }
 
-QTimeEdit::down-button {
+QSpinBox::down-button {
  width: 0px;
 }
 
 
-QTimeEdit::hover {
+QSpinBox::hover {
 color: #b3b3b3;
 border-color: #b3b3b3;
 }
 
-QTimeEdit::focus {
+QSpinBox::focus {
 color: #b3b3b3;
 border-color: #b3b3b3;
 }</string>
@@ -441,19 +439,14 @@ border-color: #b3b3b3;
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
-            <property name="minimumTime">
-             <time>
-              <hour>0</hour>
-              <minute>1</minute>
-              <second>0</second>
-             </time>
+            <property name="minimum">
+             <number>1</number>
             </property>
-            <property name="time">
-             <time>
-              <hour>0</hour>
-              <minute>1</minute>
-              <second>0</second>
-             </time>
+            <property name="maximum">
+             <number>51420</number>
+            </property>
+            <property name="value">
+             <number>51420</number>
             </property>
            </widget>
           </item>

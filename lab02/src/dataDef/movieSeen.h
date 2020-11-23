@@ -13,7 +13,7 @@ struct MovieSeen {
     QString description;
     QString group;
     QDate added;
-    QTime length;
+    quint16 length;
 };
 
 QDataStream & operator<<(QDataStream & str, const MovieSeen & movie);

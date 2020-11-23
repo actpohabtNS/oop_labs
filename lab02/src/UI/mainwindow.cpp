@@ -135,7 +135,7 @@ void MainWindow::on_btn_addSeen_clicked()
                    ui->le_seenDesc->text(),
                    ui->le_seenGroup->text(),
                    QDate(),
-                   ui->te_seenLength->time()
+                   static_cast<quint16>(ui->sb_seenLength->value())
                };
 
     if (_editSeenRow == -1) {
@@ -212,7 +212,7 @@ void MainWindow::_clearSeenMovieInputs()
 {
     _clearQLineEdits({ui->le_seenTitle, ui->le_seenGenre, ui->le_seenDesc, ui->le_seenGroup});
     ui->sb_seenRate->setValue(0);
-    ui->te_seenLength->setTime({0,0});
+    ui->sb_seenLength->setValue(1);
 }
 
 void MainWindow::on_le_seenTitle_textChanged(const QString &arg1)
@@ -251,7 +251,7 @@ void MainWindow::on_tv_seenTable_clicked(const QModelIndex &index)
             ui->le_seenGenre->setText(movie.genre);
             ui->le_seenDesc->setText(movie.description);
             ui->le_seenGroup->setText(movie.group);
-            ui->te_seenLength->setTime(movie.length);
+            ui->sb_seenLength->setValue(movie.length);
             break;
         }
 
