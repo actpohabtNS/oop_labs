@@ -356,7 +356,7 @@ void MainWindow::on_tv_toSeeTable_clicked(const QModelIndex &index)
             movieSeen.length = movieToSee.length;
 
             _moviesSeenModel->addMovie(movieSeen);
-            _moviesSeenFilter->invalidate();
+            _moviesSeenFilter->invalidate(); // Falthrough here to delete movie
         }
 
         case 6: {
