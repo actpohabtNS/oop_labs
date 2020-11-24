@@ -1,3 +1,19 @@
+IMPLEMENTED
+===========
+HoverTableView		| Passes hovered QModelIndex to HoverRowDelegate
+
+HoverRowDelegate	| Highlight hovered row
+
+MoviesDelegate		| Draws controls (move, edit, delete) for row when it is hovered
+
+MoviesFilterProxyModel	| Sorts, Filters and Counts total time watched
+
+MoviesSeenModel		| Just models for Movies
+MoviesToSeeModel	|
+
+mainwindow		| Controls user input, checks it, conduct changes in model depending on user's actions
+
+
 Moviefy
 ===========
 
