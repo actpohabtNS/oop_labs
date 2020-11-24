@@ -723,6 +723,9 @@ border-color: #b3b3b3;
               <property name="text">
                <string/>
               </property>
+              <property name="maxLength">
+               <number>85</number>
+              </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
               </property>
@@ -905,7 +908,7 @@ border-color: #b3b3b3;
              <string/>
             </property>
             <property name="maxLength">
-             <number>168</number>
+             <number>85</number>
             </property>
            </widget>
           </item>
@@ -995,7 +998,7 @@ border-color: #b3b3b3;
              <string/>
             </property>
             <property name="maxLength">
-             <number>400</number>
+             <number>200</number>
             </property>
            </widget>
           </item>
@@ -1334,6 +1337,9 @@ border-color: #b3b3b3;
               </property>
               <property name="text">
                <string/>
+              </property>
+              <property name="maxLength">
+               <number>85</number>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
