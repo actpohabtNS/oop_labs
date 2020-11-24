@@ -122,11 +122,11 @@ void MainWindow::on_btn_addSeen_clicked()
                     ui->le_seenGenre}) || !_checkHighlightIsUniqueSeen(ui->le_seenTitle))
         return;
 
-    MovieSeen movie = { ui->le_seenTitle->text(),
+    MovieSeen movie = { ui->le_seenTitle->text().simplified(),
                    static_cast<quint8>(ui->sb_seenRate->value()),
-                   ui->le_seenGenre->text(),
-                   ui->le_seenDesc->text(),
-                   ui->le_seenGroup->text(),
+                   ui->le_seenGenre->text().simplified(),
+                   ui->le_seenDesc->text().simplified(),
+                   ui->le_seenGroup->text().simplified(),
                    QDate(),
                    static_cast<quint16>(ui->sb_seenLength->value())
                };
@@ -153,9 +153,9 @@ void MainWindow::on_btn_addToSee_clicked()
                     ui->le_toSeeGenre}) || !_checkHighlightIsUniqueToSee(ui->le_toSeeTitle))
         return;
 
-    MovieToSee movie = { ui->le_toSeeTitle->text(),
-                   ui->le_toSeeGenre->text(),
-                   ui->le_toSeeDesc->text(),
+    MovieToSee movie = { ui->le_toSeeTitle->text().simplified(),
+                   ui->le_toSeeGenre->text().simplified(),
+                   ui->le_toSeeDesc->text().simplified(),
                    QDate(),
                    static_cast<quint16>(ui->sb_toSeeLength->value())
                };
@@ -181,7 +181,7 @@ void MainWindow::_enableButtonIfNotEmpty(QPushButton *button, std::vector<QLineE
     bool isEnabled = true;
 
     std::for_each(lineEdits.begin(), lineEdits.end(), [&isEnabled](QLineEdit *lineEdit){
-        if (lineEdit && lineEdit->text().isEmpty())
+        if (lineEdit && lineEdit->text().simplified().isEmpty())
             isEnabled = false;
     });
 
@@ -193,7 +193,7 @@ bool MainWindow::_checkHighlightIsEmpty(std::vector<QLineEdit *> lineEdits, QCol
     bool anyEmpty = false;
 
     std::for_each(lineEdits.begin(), lineEdits.end(), [color, &anyEmpty](QLineEdit *lineEdit){
-        if (lineEdit && lineEdit->text().isEmpty()) {
+        if (lineEdit && lineEdit->text().simplified().isEmpty()) {
             lineEdit->setStyleSheet(lineEdit->styleSheet() + "QLineEdit {"
                                                              "border-bottom-color: " + color.name(QColor::HexRgb) + ";}");
             anyEmpty = true;
@@ -286,13 +286,13 @@ void MainWindow::on_le_toSeeGenre_textChanged(const QString &arg1)
 
 void MainWindow::on_le_seenSearch_textChanged(const QString &arg1)
 {
-    QRegExp regExp(arg1, Qt::CaseInsensitive);
+    QRegExp regExp(arg1.simplified(), Qt::CaseInsensitive);
     _moviesSeenFilter->setFilterRegExp(regExp);
 }
 
 void MainWindow::on_le_toSeeSearch_textChanged(const QString &arg1)
 {
-    QRegExp regExp(arg1, Qt::CaseInsensitive);
+    QRegExp regExp(arg1.simplified(), Qt::CaseInsensitive);
     _moviesToSeeFilter->setFilterRegExp(regExp);
 }
 
@@ -356,7 +356,7 @@ void MainWindow::on_tv_toSeeTable_clicked(const QModelIndex &index)
             movieSeen.length = movieToSee.length;
 
             _moviesSeenModel->addMovie(movieSeen);
-            _moviesSeenFilter->invalidate(); // Falthrough here to delete movie
+            _moviesSeenFilter->invalidate();    // Fallthrough here to delete movie
         }
 
         case 6: {
@@ -421,7 +421,7 @@ void MainWindow::on_btn_seenExport_clicked()
 {
     QString filepath = QFileDialog::getSaveFileName(this,
            tr("Save Movies Seen list"), "",
-           tr("Moviefy Movies Seen (*.mfsn);;All Files (*)"));
+           tr("Moviefy Movies Seen (*.mfsn)"));
 
     for (int row = _moviesSeenFilter->rowCount() - 1; row >= 0; row--)
         _moviesSeenModel->addToFile(
@@ -436,7 +436,7 @@ void MainWindow::on_btn_toSeeExport_clicked()
 {
     QString filepath = QFileDialog::getSaveFileName(this,
            tr("Save Movies To See list"), "",
-           tr("Moviefy Movies To See (*.mfts);;All Files (*)"));
+           tr("Moviefy Movies To See (*.mfts)"));
 
     for (int row = _moviesToSeeFilter->rowCount() - 1; row >= 0; row--)
         _moviesToSeeModel->addToFile(
@@ -451,7 +451,7 @@ void MainWindow::on_btn_seenImport_clicked()
 {
     QString filepath = QFileDialog::getOpenFileName(this,
            tr("Load Movies Seen list"), "",
-           tr("Moviefy Movies Seen (*.mfsn);;All Files (*)"));
+           tr("Moviefy Movies Seen (*.mfsn)"));
 
     _moviesSeenModel->importFromFile(filepath);
     _moviesSeenFilter->invalidate();
@@ -461,7 +461,7 @@ void MainWindow::on_btn_toSeeImport_clicked()
 {
     QString filepath = QFileDialog::getOpenFileName(this,
            tr("Load Movies ToSee list"), "",
-           tr("Moviefy Movies To See (*.mfts);;All Files (*)"));
+           tr("Moviefy Movies To See (*.mfts)"));
 
     _moviesToSeeModel->importFromFile(filepath);
     _moviesToSeeFilter->invalidate();
