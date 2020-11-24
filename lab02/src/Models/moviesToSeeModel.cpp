@@ -19,7 +19,7 @@ QVariant MoviesToSeeModel::headerData(int section, Qt::Orientation orientation, 
                                    "Description",
                                    "Added",
                                    "",
-                                   "Length",
+                                   "Length (min)",
                                     };
                 return headers[section];
             }
@@ -63,7 +63,7 @@ QVariant MoviesToSeeModel::data(const QModelIndex &index, int role) const
                 case 5:
                     return result.added.toString(Qt::ISODate);
                 case 7:
-                    return QString::number(result.length) + " min";
+                    return result.length;
             }
         }
 

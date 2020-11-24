@@ -24,7 +24,7 @@ QVariant MoviesSeenModel::headerData(int section, Qt::Orientation orientation, i
                                    "Group",
                                    "Added",
                                    "",
-                                   "Length",
+                                   "Length (min)",
                                     };
                 return headers[section];
             }
@@ -64,7 +64,7 @@ QVariant MoviesSeenModel::data(const QModelIndex &index, int role) const
                 case 1:
                     return result.title;
                 case 2:
-                    return QString::number(result.rate);
+                    return result.rate;
                 case 3:
                     return result.genre;
                 case 4:
@@ -76,7 +76,7 @@ QVariant MoviesSeenModel::data(const QModelIndex &index, int role) const
                 case 7:
                     return "";
                 case 8:
-                    return QString::number(result.length) + " min";
+                    return result.length;
             }
         }
 
